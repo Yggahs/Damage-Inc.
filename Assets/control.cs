@@ -8,15 +8,17 @@ public class control : MonoBehaviour {
 
     public float runSpeed = 40f;
 
-    float horizontalMove = 0f;
+    float horizontalMove = 0f, timer;
     bool jump = false;
     bool crouch = false;
     public GameObject bullet;
     int i = 0, firespeed = 10;
+    bool facing = true;
     // Update is called once per frame
     void Update()
     {
-
+        timer += Time.deltaTime;
+        print(timer);
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
         if (Input.GetButtonDown("Jump"))
@@ -74,7 +76,7 @@ public class control : MonoBehaviour {
         }
         else if (Input.GetKey(KeyCode.LeftArrow) /*&& Input.GetButtonDown("Fire1")*/ )
         {
-            i++;
+            i++;            
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 if (i == firespeed)
@@ -117,42 +119,36 @@ public class control : MonoBehaviour {
                 i = 0;
             }
         }
-        //else if ((Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))|| (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.RightArrow))) // right up
 
-        else if ((Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow)) || (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))) // right down
+        //Dash logic
+
+        
+        if (timer > 0.5)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                position.x += .5f;
-                position.y -= .5f;
-                GameObject go = (GameObject)Instantiate(bullet, position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = 0.1f;
-                go.GetComponent<BulletComponent>().yspeed = 0.1f;
-            }
-        }
-        else if ((Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.UpArrow)) || (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow))) // left up
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                position.x -= .5f;
-                position.y += .5f;
-                GameObject go = (GameObject)Instantiate(bullet, position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = 0.1f;
-                go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                print(timer);
+                //transform.Translate(Vector3.forward * Time.deltaTime);
+                //GetComponent<Rigidbody2D>().AddForce(new Vector2(200, 0));
+                if (facing == false)
+                {
+
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(-30, 0), ForceMode2D.Impulse);
+
+                }
+                else
+                {
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(30, 0), ForceMode2D.Impulse);
+
+                }
+
+                timer = 0;
             }
 
         }
-        else if ((Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow)) || (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))) // left down
-        {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                position.x -= .5f;
-                position.y -= .5f;
-                GameObject go = (GameObject)Instantiate(bullet, position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = 0.1f;
-                go.GetComponent<BulletComponent>().yspeed = 0.1f;
-            }
-        }
+        
+        if (Input.GetKey(KeyCode.A)) facing = false;
+        if (Input.GetKey(KeyCode.D)) facing = true;
 
     }
 }
