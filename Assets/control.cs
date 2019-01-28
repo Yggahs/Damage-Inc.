@@ -23,13 +23,13 @@ public class control : MonoBehaviour {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
 
-        if (GetComponent<Rigidbody2D>().velocity.y > 0 && climbing == false)
+        if (GetComponent<Rigidbody2D>().velocity.y != 0 && climbing == false)
         {
 
             airborne = true;
+            if (climbing == true) airborne = false;
 
-        }
-        else airborne = false;
+        } else airborne = false;
 
 
         if (Input.GetButtonDown("Jump"))
@@ -167,6 +167,7 @@ public class control : MonoBehaviour {
         //WallClimbing and Gliding logic
         if(col.tag == "Terrain")
         {
+            climbing = true;
             GetComponent<Rigidbody2D>().drag = 20;
             GetComponent<CharacterController2D>().m_JumpForce = 1000;
             print("Collision with: " + col.name);
@@ -182,7 +183,7 @@ public class control : MonoBehaviour {
         //WallClimbing and Gliding logic
         if (col.tag == "Terrain")
         {
-
+            climbing = false;
             GetComponent<Rigidbody2D>().drag = 0;
             GetComponent<CharacterController2D>().m_JumpForce = 400;
             print("Collision with: " + col.name);
