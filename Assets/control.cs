@@ -9,21 +9,35 @@ public class control : MonoBehaviour {
     public float runSpeed = 40f;
 
     float horizontalMove = 0f, timer;
-    bool jump = false;
-    bool crouch = false;
+    bool jump = false, crouch = false, airborne = false, facing = true, climbing = false;
     public GameObject bullet;
     int i = 0, firespeed = 10;
-    bool facing = true;
+    public GameObject BulletExit;
+
     // Update is called once per frame
     void Update()
     {
+        print(airborne);
+
         timer += Time.deltaTime;
-        print(timer);
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+
+
+        if (GetComponent<Rigidbody2D>().velocity.y > 0 && climbing == false)
+        {
+
+            airborne = true;
+
+        }
+        else airborne = false;
+
 
         if (Input.GetButtonDown("Jump"))
         {
-            jump = true;
+            if (airborne == false)
+            {
+                jump = true;
+            }
         }
 
         if (Input.GetButtonDown("Crouch"))
@@ -50,40 +64,38 @@ public class control : MonoBehaviour {
     {
         Vector2 position = transform.position;
 
-        if (Input.GetKey(KeyCode.RightArrow) /*&& Input.GetButtonDown("Fire1")*/)
+        //Shoot Right Up
+        if (Input.GetKey(KeyCode.RightArrow) )
         {
             i++;
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 if (i == firespeed)
                 {
-                    position.x += .5f;
-                    position.y += .5f;
-                    GameObject go = (GameObject)Instantiate(bullet, position, Quaternion.identity);
+                    GameObject go = (GameObject)Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
                     go.GetComponent<BulletComponent>().xspeed = 0.1f;
                     go.GetComponent<BulletComponent>().yspeed = 0.1f;
                     i = 0;
                 }
             }
-            else if(i== firespeed) 
+            else if(i   == firespeed) 
                  {
-                    GameObject go = (GameObject)Instantiate(bullet, position, Quaternion.identity);
+                    GameObject go = (GameObject)Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
                     go.GetComponent<BulletComponent>().xspeed = 0.1f;
                     i = 0;
                  }
 
 
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) /*&& Input.GetButtonDown("Fire1")*/ )
+        //Shoot Left Up
+        else if (Input.GetKey(KeyCode.LeftArrow)  )
         {
             i++;            
             if (Input.GetKey(KeyCode.UpArrow))
             {
                 if (i == firespeed)
                 {
-                    position.x += .5f;
-                    position.y += .5f;
-                    GameObject go = (GameObject)Instantiate(bullet, position, Quaternion.identity);
+                    GameObject go = (GameObject)Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
                     go.GetComponent<BulletComponent>().xspeed = -0.1f;
                     go.GetComponent<BulletComponent>().yspeed = 0.1f;
                     i = 0;
@@ -92,44 +104,42 @@ public class control : MonoBehaviour {
             else if (i == firespeed)
                 {
                     position.x -= .5f;
-                    GameObject go = (GameObject)Instantiate(bullet, position, Quaternion.identity);
+                    GameObject go = (GameObject)Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
                     go.GetComponent<BulletComponent>().xspeed = -0.1f;
                     i = 0;
                 }
         }
-        else if (Input.GetKey(KeyCode.UpArrow) /*&& Input.GetButtonDown("Fire1")*/ )
+        //Shoot  Up
+        else if (Input.GetKey(KeyCode.UpArrow))
         {
             i++;
             if (i == firespeed)
             {
-                position.y += .5f;
-                GameObject go = (GameObject)Instantiate(bullet, position, Quaternion.identity);
+                position.y += .2f;
+                GameObject go = (GameObject)Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
                 go.GetComponent<BulletComponent>().yspeed = 0.1f;
                 i = 0;
             }
         }
-        else if (Input.GetKey(KeyCode.DownArrow) /*&& Input.GetButtonDown("Fire1")*/ )
+        //Shoot  Down
+        else if (Input.GetKey(KeyCode.DownArrow))
         {
             i++;
             if (i == firespeed)
             {
                 position.y -= .5f;
-                GameObject go = (GameObject)Instantiate(bullet, position, Quaternion.identity);
+                GameObject go = (GameObject)Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
                 go.GetComponent<BulletComponent>().yspeed = -0.1f;
                 i = 0;
             }
         }
 
         //Dash logic
-
-        
+       
         if (timer > 0.5)
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                print(timer);
-                //transform.Translate(Vector3.forward * Time.deltaTime);
-                //GetComponent<Rigidbody2D>().AddForce(new Vector2(200, 0));
                 if (facing == false)
                 {
 
@@ -151,4 +161,32 @@ public class control : MonoBehaviour {
         if (Input.GetKey(KeyCode.D)) facing = true;
 
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        //WallClimbing and Gliding logic
+        if(col.tag == "Terrain")
+        {
+            GetComponent<Rigidbody2D>().drag = 20;
+            GetComponent<CharacterController2D>().m_JumpForce = 1000;
+            print("Collision with: " + col.name);
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        
+    }
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        //WallClimbing and Gliding logic
+        if (col.tag == "Terrain")
+        {
+
+            GetComponent<Rigidbody2D>().drag = 0;
+            GetComponent<CharacterController2D>().m_JumpForce = 400;
+            print("Collision with: " + col.name);
+        }
+    }
+
 }
