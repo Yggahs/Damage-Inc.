@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class control : MonoBehaviour {
-
+    public int health = 3;
+    public int damage = 1;
     public CharacterController2D controller;
 
     public float runSpeed = 40f;
@@ -17,7 +18,7 @@ public class control : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+        
         timer += Time.deltaTime;
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
@@ -82,7 +83,7 @@ public class control : MonoBehaviour {
             {
                 if (i == firespeed)
                 {
-                    GameObject go = (GameObject)Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
+                    GameObject go = Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
                     go.GetComponent<BulletComponent>().xspeed = 0.1f;
                     go.GetComponent<BulletComponent>().yspeed = 0.1f;
                     i = 0;
@@ -90,7 +91,7 @@ public class control : MonoBehaviour {
             }
             else if(i   == firespeed) 
                  {
-                    GameObject go = (GameObject)Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
+                    GameObject go = Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
                     go.GetComponent<BulletComponent>().xspeed = 0.1f;
                     i = 0;
                  }
@@ -105,7 +106,7 @@ public class control : MonoBehaviour {
             {
                 if (i == firespeed)
                 {
-                    GameObject go = (GameObject)Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
+                    GameObject go = Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
                     go.GetComponent<BulletComponent>().xspeed = -0.1f;
                     go.GetComponent<BulletComponent>().yspeed = 0.1f;
                     i = 0;
@@ -114,7 +115,7 @@ public class control : MonoBehaviour {
             else if (i == firespeed)
                 {
                     position.x -= .5f;
-                    GameObject go = (GameObject)Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
+                    GameObject go = Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
                     go.GetComponent<BulletComponent>().xspeed = -0.1f;
                     i = 0;
                 }

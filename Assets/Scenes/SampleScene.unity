@@ -286,6 +286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56029f76fd3c4784e850e428e0e626ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 3
+  damage: 1
   controller: {fileID: 21396537}
   runSpeed: 60
   bullet: {fileID: 1281459079426276, guid: e65b0a619c0655140aebeff790533765, type: 2}
@@ -491,6 +493,26 @@ Prefab:
     - target: {fileID: 4684657359006162, guid: 582ba8db0e8df294dbb7933618539f06, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813921463269396, guid: 582ba8db0e8df294dbb7933618539f06,
+        type: 2}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813921463269396, guid: 582ba8db0e8df294dbb7933618539f06,
+        type: 2}
+      propertyPath: groundDetection
+      value: 
+      objectReference: {fileID: 1639900536}
+    - target: {fileID: 114813921463269396, guid: 582ba8db0e8df294dbb7933618539f06,
+        type: 2}
+      propertyPath: health
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813921463269396, guid: 582ba8db0e8df294dbb7933618539f06,
+        type: 2}
+      propertyPath: damage
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 582ba8db0e8df294dbb7933618539f06, type: 2}
@@ -1390,6 +1412,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 11.864368, y: 6.2175307}
   m_EdgeRadius: 0
+--- !u!4 &1639900536 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4542707003609170, guid: 582ba8db0e8df294dbb7933618539f06,
+    type: 2}
+  m_PrefabInternal: {fileID: 497299508}
 --- !u!1 &1824455912
 GameObject:
   m_ObjectHideFlags: 0
