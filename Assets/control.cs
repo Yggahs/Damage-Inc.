@@ -17,7 +17,6 @@ public class control : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        print(airborne);
 
         timer += Time.deltaTime;
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
@@ -36,6 +35,17 @@ public class control : MonoBehaviour {
         {
             if (airborne == false)
             {
+                if (climbing)
+                {
+                    if (controller.m_FacingRight)
+                    {
+                        GetComponent<Rigidbody2D>().AddForce(new Vector2(-250f, 0));
+                    }
+                    else
+                    {
+                        GetComponent<Rigidbody2D>().AddForce(new Vector2(250f, 0));
+                    }
+                }
                 jump = true;
             }
         }
@@ -164,23 +174,20 @@ public class control : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        //WallClimbing and Gliding logic
+        //WallClimbing and Sliding logic
         if(col.tag == "Terrain")
         {
             climbing = true;
             GetComponent<Rigidbody2D>().drag = 20;
-            GetComponent<CharacterController2D>().m_JumpForce = 1000;
+            GetComponent<CharacterController2D>().m_JumpForce = 650;
+            
             print("Collision with: " + col.name);
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        
-    }
     private void OnTriggerExit2D(Collider2D col)
     {
-        //WallClimbing and Gliding logic
+        //WallClimbing and Sliding logic
         if (col.tag == "Terrain")
         {
             climbing = false;
