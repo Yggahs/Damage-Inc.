@@ -76,15 +76,6 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "player")
-        {
-            DealDamage();
-        }
-    }
-
-    
 
     public void DealDamage()
 	{
@@ -101,7 +92,12 @@ public class Enemy : MonoBehaviour {
 
     void TakeDamage(int DamageTaken)
     {
-        health -= DamageTaken;
-        Debug.Log("My health is now " + health);
+        if (GameObject.FindGameObjectWithTag("GameController").GetComponent<control>().invincible == false)
+        {
+            health -= DamageTaken;
+            Debug.Log("My health is now " + health);
+        }
+        else Debug.Log("I AM BULLETPROOF");
+
     }
 }
