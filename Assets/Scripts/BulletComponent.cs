@@ -8,7 +8,7 @@ public class BulletComponent : MonoBehaviour {
     public float yspeed = 0f;
     // Use this for initialization
     void Start () {
-        StartCoroutine(DestroyBullet());
+        Destroy(gameObject, 5f);
 	}
 	
 	// Update is called once per frame
@@ -18,9 +18,4 @@ public class BulletComponent : MonoBehaviour {
         position.y += yspeed;
         transform.position = position;
 	}
-    IEnumerator DestroyBullet()
-    {
-        yield return new WaitForSeconds(5f);
-        Destroy(gameObject);
-    }
 }

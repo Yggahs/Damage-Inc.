@@ -19,6 +19,7 @@ public class CharacterController2D : MonoBehaviour
     public bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
     public GameObject Enemy;
+    public int health = 4;
 
     [Header("Events")]
     [Space]
@@ -145,4 +146,6 @@ public class CharacterController2D : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
+   
 }

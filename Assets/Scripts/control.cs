@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class control : MonoBehaviour {
-    public int health = 3;
+    
     public int damage = 1;
     public CharacterController2D controller;
 

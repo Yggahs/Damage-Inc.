@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Patroller : Enemy
-{
-    private void Update()
-    {       
+public class Shooter : Enemy {	
+	
+	void Update ()
+    {
         Patrol();
-        Death();        
-    }
+        Shoot();
+        Death();	
+	}
 }
