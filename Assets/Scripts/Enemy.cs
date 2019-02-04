@@ -42,22 +42,14 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.name == "player")
-        {
-            DealDamage();
-        }
-    }
-
-    
 
     public void DealDamage()
 	{
-        Debug.Log("I am dealing "+ damage +" damage");
-        PlayerRef.GetComponent<control>().health -= damage;
-        PlayerRef.GetComponent<Rigidbody2D>().AddForce(new Vector2(100f, 200f));
-	}
+            Debug.Log("I am dealing " + damage + " damage");
+            PlayerRef.GetComponent<control>().health -= damage;
+            PlayerRef.GetComponent<Rigidbody2D>().AddForce(new Vector2(100f, 200f));
+        
+    }
 
     private void Awake()
     {
@@ -66,8 +58,12 @@ public class Enemy : MonoBehaviour {
 
     void TakeDamage(int DamageTaken)
     {
+        if (GameObject.FindGameObjectWithTag("GameController").GetComponent<control>().invincible == false)
+        {
+            health -= DamageTaken;
+            Debug.Log("My health is now " + health);
+        }
+        else Debug.Log("I AM BULLETPROOF");
 
-        health -= DamageTaken;
-        Debug.Log("My health is now " + health);
     }
 }
