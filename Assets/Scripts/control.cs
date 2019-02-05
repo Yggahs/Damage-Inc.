@@ -40,7 +40,7 @@ public class control : MonoBehaviour
 
         //Jump Command Logic
         if (Input.GetButtonDown("Jump"))
-        {
+        { 
             if (airborne == false)
             {
                 if (climbing)
@@ -187,12 +187,13 @@ public class control : MonoBehaviour
         //WallClimbing and Sliding logic
         if (col.tag == "Terrain")
         {
+            
             climbing = true;
             GetComponent<Rigidbody2D>().drag = 20;
             GetComponent<CharacterController2D>().m_JumpForce = 650;
 
             print("Collision with: " + col.name);
-        }
+        } 
 
         if (col.tag == "Enemy")
         {
@@ -204,7 +205,7 @@ public class control : MonoBehaviour
                 print(health);
                 if (health >= 16)
                 {
-                    life5.GetComponent<Image>().fillAmount = (life5.GetComponent<Image>().fillAmount - 0.25f);
+                    life5.GetComponent<Image>().fillAmount -= 0.25f;
                 }
                 else if (health >= 12)
                 {
@@ -223,54 +224,6 @@ public class control : MonoBehaviour
                     life1.GetComponent<Image>().fillAmount -= 0.25f;
                 }
             }
-
-            
-            //switch (health)
-            //{
-            //    case 1:
-            //        life1.SetActive(true);
-            //        life2.SetActive(false);
-            //        life3.SetActive(false);
-            //        life4.SetActive(false);
-            //        life5.SetActive(false);
-            //        break;
-            //    case 2:
-            //        life1.SetActive(true);
-            //        life2.SetActive(true);
-            //        life3.SetActive(false);
-            //        life4.SetActive(false);
-            //        life5.SetActive(false);
-            //        break;
-            //    case 3:
-            //        life1.SetActive(true);
-            //        life2.SetActive(true);
-            //        life3.SetActive(true);
-            //        life4.SetActive(false);
-            //        life5.SetActive(false);
-            //        break;
-            //    case 4:
-            //        life1.SetActive(true);
-            //        life2.SetActive(true);
-            //        life3.SetActive(true);
-            //        life4.SetActive(true);
-            //        life5.SetActive(false);
-            //        break;
-            //    case 5:
-            //        life1.SetActive(true);
-            //        life2.SetActive(true);
-            //        life3.SetActive(true);
-            //        life4.SetActive(true);
-            //        life5.SetActive(true);
-            //        break;
-            //    default:
-            //        life1.SetActive(false);
-            //        life2.SetActive(false);
-            //        life3.SetActive(false);
-            //        life4.SetActive(false);
-            //        life5.SetActive(false);
-            //        break;
-            //}
-
         }
 
     }
