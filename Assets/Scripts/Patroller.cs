@@ -5,8 +5,10 @@ using UnityEngine;
 public class Patroller : Enemy
 {
     private void Update()
-    {       
-        Patrol();
+    {
+        //gameObject.GetComponent<Rigidbody2D>().gravityScale = 0f;
+        Crawl();
+        //Patrol();
         Death();        
     }
 }

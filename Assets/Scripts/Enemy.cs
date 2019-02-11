@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour {
     public int damage;
     private bool movingRight;
     public Transform groundDetection;
+    public Transform ActualGroundDetection;
     public Vector2 horizontalMove;
     public GameObject PlayerRef;
     public GameObject BulletRef;
@@ -17,14 +18,30 @@ public class Enemy : MonoBehaviour {
     float nextFire;
     bool TargetAcquired = false;
 
+    public void Crawl()
+    {
+        
+        
+        horizontalMove = transform.right * speed * 10;             
+        RaycastHit2D rabamasto = Physics2D.Raycast(ActualGroundDetection.position,Vector2.down,0.5f);
+        transform.rotation = Quaternion.FromToRotation(Vector2.up, rabamasto.normal);
+        
+        gameObject.GetComponent<Rigidbody2D>().AddForce(-rabamasto.normal);
+        gameObject.GetComponent<Rigidbody2D>().AddForce(horizontalMove);
+
+
+    }
+
+
     public void Patrol()
     {
+        
         horizontalMove = Vector2.right * speed * Time.deltaTime;
         transform.Translate(horizontalMove);
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 1f);
         if (groundInfo.collider == false)
         {
-            
+
             if (movingRight == true)
             {
                 transform.eulerAngles = new Vector3(0, -180, 0);
@@ -35,6 +52,7 @@ public class Enemy : MonoBehaviour {
                 transform.eulerAngles = new Vector3(0, 0, 0);
                 movingRight = true;
             }
+
         }
     }
 
@@ -51,6 +69,9 @@ public class Enemy : MonoBehaviour {
         }
         
     }
+
+   
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -88,7 +109,11 @@ public class Enemy : MonoBehaviour {
     {
         PlayerRef = GameObject.Find("player");
         nextFire = Time.time;
+
+       
     }
+
+    
 
     void TakeDamage(int DamageTaken)
     {

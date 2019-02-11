@@ -192,7 +192,7 @@ public class control : MonoBehaviour
             GetComponent<Rigidbody2D>().drag = 20;
             GetComponent<CharacterController2D>().m_JumpForce = 650;
 
-            print("Collision with: " + col.name);
+            //print("Collision with: " + col.name);
         } 
 
         if (col.tag == "Enemy")
@@ -236,7 +236,7 @@ public class control : MonoBehaviour
             climbing = false;
             GetComponent<Rigidbody2D>().drag = 0;
             GetComponent<CharacterController2D>().m_JumpForce = 400;
-            print("Collision with: " + col.name);
+            //print("Collision with: " + col.name);
         }
     }
 
