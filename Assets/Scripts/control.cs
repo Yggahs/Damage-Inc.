@@ -195,12 +195,18 @@ public class control : MonoBehaviour
             //print("Collision with: " + col.name);
         } 
 
-        if (col.tag == "Enemy")
+        
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Enemy")
         {
 
             if (invincible == false)
             {
-                col.GetComponent<Enemy>().DealDamage();
+                collision.transform.GetComponent<Enemy>().DealDamage();
                 StartCoroutine(Invincible());
                 print(health);
                 if (health >= 16)

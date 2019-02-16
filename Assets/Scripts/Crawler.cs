@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Patroller : Enemy
+public class Crawler : Enemy
 {
     private void Update()
-    {            
-        Patrol();
-        Death();        
+    {
+        
+
+        Crawl();
+        Death();
     }
 }

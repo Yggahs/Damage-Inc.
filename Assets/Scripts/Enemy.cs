@@ -10,24 +10,74 @@ public class Enemy : MonoBehaviour {
     private bool movingRight;
     public Transform groundDetection;
     public Transform ActualGroundDetection;
-    public Vector2 horizontalMove;
+    public Vector2 horizontalMove;    
     public GameObject PlayerRef;
     public GameObject BulletRef;
     public GameObject EnemyBulletRef;
     public float fireRate;
     float nextFire;
+    bool inGeometry = false;
     bool TargetAcquired = false;
+    Vector3 targetPostion;
 
+    public void Fly()
+    {
+        if (TargetAcquired)
+        {
+            speed = 2.0f;
+            transform.position = Vector2.MoveTowards(transform.position, PlayerRef.transform.position, speed * Time.deltaTime);
+        }
+        else
+        {
+            speed = 0.5f;
+            RandomMovementFly();
+
+        }
+    }
+
+    void RandomMovementFly()
+    {
+        float resetTime = 0f;
+        resetTime -= Time.deltaTime;
+        if (resetTime <= 0)
+    { 
+        if (transform.position != targetPostion  || inGeometry)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, targetPostion, speed * Time.deltaTime);
+            }
+            else
+            {
+                targetPostion = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0);
+            }
+            resetTime = 3f;
+    }
+        
+        //    target = new Vector2(Random.Range(-5f, 5), Random.Range(-5f, 5)).normalized;
+
+        //}
+
+        /*= Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);*/
+
+    }
+
+    //doesn't currently work   
     public void Crawl()
     {
         
         
-        horizontalMove = transform.right * speed * 10;             
-        RaycastHit2D rabamasto = Physics2D.Raycast(ActualGroundDetection.position,Vector2.down,0.5f);
-        transform.rotation = Quaternion.FromToRotation(Vector2.up, rabamasto.normal);
+        horizontalMove = Vector2.right * speed * Time.deltaTime;
+        transform.Translate(horizontalMove);
+        RaycastHit2D hit = Physics2D.Raycast(ActualGroundDetection.position,Vector2.down,0.25f);
+
         
-        gameObject.GetComponent<Rigidbody2D>().AddForce(-rabamasto.normal);
-        gameObject.GetComponent<Rigidbody2D>().AddForce(horizontalMove);
+        if(hit == false)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation,new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z+90f, transform.rotation.w),1);
+        }
+        else
+        {
+            transform.up = hit.normal;
+        }
 
 
     }
@@ -70,7 +120,21 @@ public class Enemy : MonoBehaviour {
         
     }
 
-   
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.otherCollider.name == "Tilemap")
+        {
+            inGeometry = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Tilemap")
+        {
+            inGeometry = false;
+        }
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
