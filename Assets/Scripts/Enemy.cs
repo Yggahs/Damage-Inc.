@@ -20,6 +20,44 @@ public class Enemy : MonoBehaviour {
     bool TargetAcquired = false;
     Vector3 targetPostion;
 
+
+
+    public void Burrow()
+    {
+        Vector3 heading = transform.position - PlayerRef.transform.position;
+        float distance = heading.magnitude;
+
+        if (distance < 2f)
+        {
+            GetComponent<Rigidbody2D>().AddForce(transform.up);           
+        }
+
+        if (inGeometry)
+        {
+
+        }
+    }
+
+    public void LoungeAtPlayer(float distance,Vector3 direction)
+    {
+        if (distance < 0.5f && distance > 0.4f)
+            {
+                GetComponent<Rigidbody2D>().AddForce(direction + (Vector3.up * 50f));
+            }  
+        
+    }
+    public void Sprint()
+    {     
+        Vector3 heading = transform.position - PlayerRef.transform.position;
+        float distance = heading.magnitude;
+        Vector3 direction = heading / distance;
+        if (TargetAcquired)
+        {
+                transform.position = Vector2.MoveTowards(transform.position, PlayerRef.transform.position, (speed * 2) * Time.deltaTime);
+                LoungeAtPlayer(distance,direction);
+        }        
+    }
+
     public void Fly()
     {
         if (TargetAcquired)
@@ -60,32 +98,31 @@ public class Enemy : MonoBehaviour {
 
     }
 
-    //doesn't currently work   
+    //doesn't currently work with concave angles
+    // turning rigidbody to kinematic in crawler script
     public void Crawl()
-    {
-        
-        
-        horizontalMove = Vector2.right * speed * Time.deltaTime;
-        transform.Translate(horizontalMove);
-        RaycastHit2D hit = Physics2D.Raycast(ActualGroundDetection.position,Vector2.down,0.25f);
-
-        
-        if(hit == false)
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation,new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z+90f, transform.rotation.w),1);
+    {                       
+        RaycastHit2D hit = Physics2D.Raycast(ActualGroundDetection.position,-transform.up,0.10f);
+        RaycastHit2D hit2 = Physics2D.Raycast(groundDetection.position, -transform.up, 0.22f);
+        RaycastHit2D hit3 = Physics2D.Raycast(groundDetection.position, transform.right, 0.2f);
+        GetComponent<Rigidbody2D>().AddForce(-transform.up*2f);
+        if(!hit && !hit2)
+        {           
+            transform.RotateAround(ActualGroundDetection.position, Vector3.forward, -1f);
         }
         else
         {
-            transform.up = hit.normal;
-        }
-
-
+            horizontalMove = Vector2.right * speed * Time.deltaTime;
+            transform.Translate(horizontalMove);
+        }        
+        Debug.DrawLine(ActualGroundDetection.position, ActualGroundDetection.position + -transform.up*0.1f,Color.red);
+        Debug.DrawLine(groundDetection.position, groundDetection.position + -transform.up * 0.22f, Color.blue);
+        Debug.DrawLine(groundDetection.position, groundDetection.position + transform.right * 0.2f, Color.yellow);
     }
 
 
     public void Patrol()
-    {
-        
+    {        
         horizontalMove = Vector2.right * speed * Time.deltaTime;
         transform.Translate(horizontalMove);
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 1f);
