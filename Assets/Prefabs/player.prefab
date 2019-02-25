@@ -40,8 +40,9 @@ GameObject:
   - component: {fileID: 50424078795747424}
   - component: {fileID: 61546974923490360}
   - component: {fileID: 61743681159851958}
+  - component: {fileID: 114398425351197332}
   m_Layer: 0
-  m_Name: Player
+  m_Name: player
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -314,6 +315,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: CharacterController2D+BoolEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114398425351197332
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1436082164116598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bac4b2aed72acd4aa4976bda4e9a878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bomb: {fileID: 1217986702175278, guid: bb7399da1cb7b2249b9bf2534713c1d0, type: 2}
 --- !u!114 &114571781767970848
 MonoBehaviour:
   m_ObjectHideFlags: 1

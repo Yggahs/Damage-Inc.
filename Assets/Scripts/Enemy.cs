@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour {
     public Transform groundDetection;
     public Transform ActualGroundDetection;
     public Vector2 horizontalMove;    
-    public GameObject PlayerRef;
+    public CharacterController2D PlayerRef;
     public GameObject BulletRef;
     public GameObject EnemyBulletRef;
     public float fireRate;
@@ -98,7 +98,7 @@ public class Enemy : MonoBehaviour {
 
     }
 
-    //doesn't currently work with concave angles
+    // doesn't currently work with concave angles
     // turning rigidbody to kinematic in crawler script
     public void Crawl()
     {                       
@@ -148,7 +148,6 @@ public class Enemy : MonoBehaviour {
 
     public void Shoot()
     {
-
         if (TargetAcquired == true)
         {
             if (Time.time > nextFire)
@@ -156,8 +155,7 @@ public class Enemy : MonoBehaviour {
                 Instantiate(EnemyBulletRef, transform.position, transform.rotation,transform);
                 nextFire = Time.time + fireRate;
             }
-        }
-        
+        }        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -179,17 +177,15 @@ public class Enemy : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == PlayerRef.name)
+        if (collision.gameObject == PlayerRef)
         {
             TargetAcquired = true;
-        }
-
-        
+        }        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == PlayerRef.name)
+        if (collision.gameObject == PlayerRef)
         {
             TargetAcquired = false;
         }
@@ -213,10 +209,9 @@ public class Enemy : MonoBehaviour {
 
     private void Awake()
     {
-        PlayerRef = GameObject.Find("Player");
+        //PlayerRef = GameObject.Find("player");
+        PlayerRef = FindPlayer.Instance.player;
         nextFire = Time.time;
-
-       
     }
 
     void TakeDamage(int DamageTaken)

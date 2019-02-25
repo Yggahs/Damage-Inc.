@@ -76,6 +76,11 @@ public class CharacterController2D : MonoBehaviour
                     OnLandEvent.Invoke();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            // instantiate bomb
+        }
     }
 
 
@@ -150,6 +155,8 @@ public class CharacterController2D : MonoBehaviour
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
     }
+
+
 
 
     private void Flip()
