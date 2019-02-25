@@ -13,7 +13,7 @@ public class EnemyBulletComponent : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        target = GameObject.Find("player");
+        target = PlayerRef;
         movedirection = (target.transform.position - transform.position).normalized * movespeed;
         rb.velocity = new Vector2(movedirection.x, movedirection.y);
         Destroy(gameObject, 2f);
@@ -21,16 +21,16 @@ public class EnemyBulletComponent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.name == "player")
+        if (other.gameObject.name == PlayerRef.name)
         {
 
-            PlayerRef.GetComponent<CharacterController2D>().health -= transform.parent.GetComponent<Shooter>().damage;
+            transform.parent.GetComponent<Shooter>().DealDamage();
             Destroy(gameObject);
         }
     }
 
     private void Awake()
     {
-        PlayerRef = GameObject.Find("player");
+        PlayerRef = GameObject.Find("Player");
     }
 }

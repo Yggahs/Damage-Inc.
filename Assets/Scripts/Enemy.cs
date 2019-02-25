@@ -112,6 +112,7 @@ public class Enemy : MonoBehaviour {
         }
         else
         {
+            
             horizontalMove = Vector2.right * speed * Time.deltaTime;
             transform.Translate(horizontalMove);
         }        
@@ -126,9 +127,10 @@ public class Enemy : MonoBehaviour {
         horizontalMove = Vector2.right * speed * Time.deltaTime;
         transform.Translate(horizontalMove);
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 1f);
+        Debug.DrawLine(groundDetection.position,groundDetection.position+ -groundDetection.up* 1f,Color.red);
         if (groundInfo.collider == false)
         {
-
+            
             if (movingRight == true)
             {
                 transform.eulerAngles = new Vector3(0, -180, 0);
@@ -141,6 +143,7 @@ public class Enemy : MonoBehaviour {
             }
 
         }
+       
     }
 
     public void Shoot()
@@ -170,21 +173,23 @@ public class Enemy : MonoBehaviour {
         if (collision.gameObject.name == "Tilemap")
         {
             inGeometry = false;
-        }
+        }        
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "player")
+        if (collision.gameObject.name == PlayerRef.name)
         {
             TargetAcquired = true;
         }
+
+        
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "player")
+        if (collision.gameObject.name == PlayerRef.name)
         {
             TargetAcquired = false;
         }
@@ -208,13 +213,11 @@ public class Enemy : MonoBehaviour {
 
     private void Awake()
     {
-        PlayerRef = GameObject.Find("player");
+        PlayerRef = GameObject.Find("Player");
         nextFire = Time.time;
 
        
     }
-
-    
 
     void TakeDamage(int DamageTaken)
     {
