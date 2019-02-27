@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         PlayerRef = GameObject.Find("player");
-        damage = PlayerRef.GetComponent<control>().damage;
+        damage = PlayerRef.GetComponent<CharacterController2D>().damage;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,5 +18,10 @@ public class Bullet : MonoBehaviour
             collision.SendMessage("TakeDamage", damage,SendMessageOptions.DontRequireReceiver);
             Destroy(gameObject);
         }
+    }
+
+    private void Update()
+    {
+
     }
 }

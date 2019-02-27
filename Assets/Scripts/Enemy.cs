@@ -221,7 +221,7 @@ public class Enemy : MonoBehaviour {
 
     void TakeDamage(int DamageTaken)
     {
-        if (GameObject.FindGameObjectWithTag("GameController").GetComponent<control>().invincible == false)
+        if (GameObject.FindGameObjectWithTag("GameController").GetComponent<CharacterController2D>().invincible == false)
         {
             health -= DamageTaken;
             Debug.Log("My health is now " + health);

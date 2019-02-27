@@ -399,7 +399,44 @@ Prefab:
       propertyPath: life5
       value: 
       objectReference: {fileID: 931124450}
-    m_RemovedComponents: []
+    - target: {fileID: 114069430039783014, guid: 2faa2a8a4b7bc654fac5662a46591d43,
+        type: 2}
+      propertyPath: life1
+      value: 
+      objectReference: {fileID: 1346791649}
+    - target: {fileID: 114069430039783014, guid: 2faa2a8a4b7bc654fac5662a46591d43,
+        type: 2}
+      propertyPath: life2
+      value: 
+      objectReference: {fileID: 649986355}
+    - target: {fileID: 114069430039783014, guid: 2faa2a8a4b7bc654fac5662a46591d43,
+        type: 2}
+      propertyPath: life3
+      value: 
+      objectReference: {fileID: 2107264738}
+    - target: {fileID: 114069430039783014, guid: 2faa2a8a4b7bc654fac5662a46591d43,
+        type: 2}
+      propertyPath: life4
+      value: 
+      objectReference: {fileID: 693235503}
+    - target: {fileID: 114069430039783014, guid: 2faa2a8a4b7bc654fac5662a46591d43,
+        type: 2}
+      propertyPath: life5
+      value: 
+      objectReference: {fileID: 931124450}
+    - target: {fileID: 114069430039783014, guid: 2faa2a8a4b7bc654fac5662a46591d43,
+        type: 2}
+      propertyPath: BulletExit
+      value: 
+      objectReference: {fileID: 740067433}
+    - target: {fileID: 114069430039783014, guid: 2faa2a8a4b7bc654fac5662a46591d43,
+        type: 2}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 1569988719728776, guid: f21fb5235fa667545acd2359826054b0,
+        type: 2}
+    m_RemovedComponents:
+    - {fileID: 114571781767970848, guid: 2faa2a8a4b7bc654fac5662a46591d43, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 2faa2a8a4b7bc654fac5662a46591d43, type: 2}
   m_IsPrefabAsset: 0
 --- !u!20 &534669904 stripped
@@ -595,6 +632,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 693235503}
   m_CullTransparentMesh: 0
+--- !u!1 &740067433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1447929175402520, guid: 2faa2a8a4b7bc654fac5662a46591d43,
+    type: 2}
+  m_PrefabInternal: {fileID: 514815126}
 --- !u!1 &931124450
 GameObject:
   m_ObjectHideFlags: 0
@@ -1478,3 +1520,23 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2107264738}
   m_CullTransparentMesh: 0
+--- !u!1 &2137063549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1436082164116598, guid: 2faa2a8a4b7bc654fac5662a46591d43,
+    type: 2}
+  m_PrefabInternal: {fileID: 514815126}
+--- !u!114 &2137063554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2137063549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a58f3558ec4334fa5617fa66416cd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet1: {fileID: 1569988719728776, guid: f21fb5235fa667545acd2359826054b0, type: 2}
+  bullet2: {fileID: 1044310023076686, guid: bc57dd8c0a63a4f47a198fc686e46dc8, type: 2}
+  bullet3: {fileID: 1913101015633714, guid: c69305b782b27f947bbbf4b5a0068879, type: 2}
+  BulletExit: {fileID: 740067433}

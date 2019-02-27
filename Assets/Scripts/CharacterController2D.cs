@@ -6,16 +6,14 @@ using UnityEngine.UI;
 
 public class CharacterController2D : MonoBehaviour
 {
-    public int health = 20;
+    public int health = 20, selectedWeapon = 1;
     public int damage = 1;
     public GameObject life1, life2, life3, life4, life5;
     public float runSpeed = 40f;
     float horizontalMove = 0f, timer;
-    bool jump = false, crouch = false, airborne = false, facing = true, climbing = false;
+    bool jump = false, crouch = false, airborne = false, climbing = false;
+    public bool facing;
     public bool invincible = false;
-    public GameObject bullet;
-    int i = 0, firespeed = 10;
-    public GameObject BulletExit;
 
     [SerializeField] public float m_JumpForce = 200f;                          // Amount of force added when the player jumps.
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
@@ -88,6 +86,22 @@ public class CharacterController2D : MonoBehaviour
         }
         else airborne = false;
 
+        //Weapon Select Logic
+
+        if (Input.GetButtonDown("Select Weapon 1"))
+        {
+            selectedWeapon = 1;
+        }
+
+        if (Input.GetButtonDown("Select Weapon 2"))
+        {
+            selectedWeapon = 2;
+        }
+
+        if (Input.GetButtonDown("Select Weapon 3"))
+        {
+            selectedWeapon = 3;
+        }
         //Jump Command Logic
         if (Input.GetButtonDown("Jump"))
         {
@@ -118,7 +132,25 @@ public class CharacterController2D : MonoBehaviour
             crouch = false;
         }
 
-        DirectionalShooting();
+
+        //Weapon Selection
+
+        switch (selectedWeapon)
+        {
+            case 1:
+                GetComponent<WeaponsScript>().Weapon1();
+                break;
+            case 2:
+                GetComponent<WeaponsScript>().Weapon2();
+                break;
+            case 3:
+                GetComponent<WeaponsScript>().Weapon3();
+                break;
+            default:
+                GetComponent<WeaponsScript>().Weapon1();
+                break;
+        }
+
 
     }
     private void FixedUpdate()
@@ -230,107 +262,7 @@ public class CharacterController2D : MonoBehaviour
     }
 
     //Shooting Logic
-    void DirectionalShooting()
-    {
-        Vector2 position = transform.position;
-
-        //Shoot Right Up
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            i++;
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                if (i == firespeed)
-                {
-                    GameObject go = Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
-                    go.GetComponent<BulletComponent>().xspeed = 0.1f;
-                    go.GetComponent<BulletComponent>().yspeed = 0.1f;
-                    i = 0;
-                }
-            }
-            else if (i == firespeed)
-            {
-                GameObject go = Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = 0.1f;
-                i = 0;
-            }
-
-
-        }
-        //Shoot Left Up
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            i++;
-            if (Input.GetKey(KeyCode.UpArrow))
-            {
-                if (i == firespeed)
-                {
-                    GameObject go = Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
-                    go.GetComponent<BulletComponent>().xspeed = -0.1f;
-                    go.GetComponent<BulletComponent>().yspeed = 0.1f;
-                    i = 0;
-                }
-            }
-            else if (i == firespeed)
-            {
-                position.x -= .5f;
-                GameObject go = Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = -0.1f;
-                i = 0;
-            }
-        }
-        //Shoot  Up
-        else if (Input.GetKey(KeyCode.UpArrow))
-        {
-            i++;
-            if (i == firespeed)
-            {
-                position.y += .2f;
-                GameObject go = (GameObject)Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().yspeed = 0.1f;
-                i = 0;
-            }
-        }
-        //Shoot  Down
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            i++;
-            if (i == firespeed)
-            {
-                position.y -= .5f;
-                GameObject go = (GameObject)Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().yspeed = -0.1f;
-                i = 0;
-            }
-        }
-
-        //Dash logic
-
-        if (timer > 0.5)
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                if (facing == false)
-                {
-
-                    GetComponent<Rigidbody2D>().AddForce(new Vector2(-30, 0), ForceMode2D.Impulse);
-
-                }
-                else
-                {
-                    GetComponent<Rigidbody2D>().AddForce(new Vector2(30, 0), ForceMode2D.Impulse);
-
-                }
-
-                timer = 0;
-            }
-
-        }
-
-        if (Input.GetKey(KeyCode.A)) facing = false;
-        if (Input.GetKey(KeyCode.D)) facing = true;
-
-    }
+   
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -398,7 +330,7 @@ public class CharacterController2D : MonoBehaviour
 
     private IEnumerator Invincible()
     {
-        print("kek");
+
         invincible = true;
         GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(0.1f);
@@ -408,8 +340,5 @@ public class CharacterController2D : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         GetComponent<SpriteRenderer>().enabled = true;
         invincible = false;
-
-
-
     }
 }
