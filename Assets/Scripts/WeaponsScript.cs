@@ -89,28 +89,6 @@ public class WeaponsScript : MonoBehaviour
             }
         }
 
-        //Dash logic
-
-        if (timer > 0.5)
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                if (GameObject.FindGameObjectWithTag("GameController").GetComponent<CharacterController2D>().facing == false)
-                {
-
-                    GetComponent<Rigidbody2D>().AddForce(new Vector2(-30, 0), ForceMode2D.Impulse);
-
-                }
-                else
-                {
-                    GetComponent<Rigidbody2D>().AddForce(new Vector2(30, 0), ForceMode2D.Impulse);
-
-                }
-
-                timer = 0;
-            }
-
-        }
     }
 
     public void Weapon2()
@@ -166,29 +144,6 @@ public class WeaponsScript : MonoBehaviour
             position.y -= .5f;
             GameObject go = (GameObject)Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
             go.GetComponent<BulletComponent>().yspeed = -0.1f;
-        }
-
-        //Dash logic
-
-        if (timer > 0.5)
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                if (GameObject.FindGameObjectWithTag("GameController").GetComponent<CharacterController2D>().facing == false)
-                {
-
-                    GetComponent<Rigidbody2D>().AddForce(new Vector2(-30, 0), ForceMode2D.Impulse);
-
-                }
-                else
-                {
-                    GetComponent<Rigidbody2D>().AddForce(new Vector2(30, 0), ForceMode2D.Impulse);
-
-                }
-
-                timer = 0;
-            }
-
         }
     }
 
@@ -254,28 +209,6 @@ public class WeaponsScript : MonoBehaviour
             go.GetComponent<BulletComponent>().bulletType = 3;
         }
 
-        //Dash logic
-
-        if (timer > 0.5)
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                if (GameObject.FindGameObjectWithTag("GameController").GetComponent<CharacterController2D>().facing == false)
-                {
-
-                    GetComponent<Rigidbody2D>().AddForce(new Vector2(-30, 0), ForceMode2D.Impulse);
-
-                }
-                else
-                {
-                    GetComponent<Rigidbody2D>().AddForce(new Vector2(30, 0), ForceMode2D.Impulse);
-
-                }
-
-                timer = 0;
-            }
-
-        }
 
     }
 }

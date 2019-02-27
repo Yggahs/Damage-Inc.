@@ -12,7 +12,6 @@ public class CharacterController2D : MonoBehaviour
     public float runSpeed = 40f;
     float horizontalMove = 0f, timer;
     bool jump = false, crouch = false, airborne = false, climbing = false;
-    public bool facing;
     public bool invincible = false;
 
     [SerializeField] public float m_JumpForce = 200f;                          // Amount of force added when the player jumps.
@@ -120,6 +119,28 @@ public class CharacterController2D : MonoBehaviour
                 }
                 jump = true;
             }
+        }
+
+        //Dash Logic
+        if (timer > 0.5)
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (m_FacingRight == false)
+                {
+
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(-30, 0), ForceMode2D.Impulse);
+
+                }
+                else
+                {
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(30, 0), ForceMode2D.Impulse);
+
+                }
+
+                timer = 0;
+            }
+
         }
 
         //Crounch Command Logic
@@ -261,7 +282,7 @@ public class CharacterController2D : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    //Shooting Logic
+
    
 
     void OnTriggerEnter2D(Collider2D col)
