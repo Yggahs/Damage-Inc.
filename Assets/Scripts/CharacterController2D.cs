@@ -22,26 +22,14 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
+    [SerializeField] private Transform m_ClimbingCheck;
 
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;    
     
-    
-    
-    
-   
-    
-    
-    
-    
     // Whether or not the player is grounded.
     const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
     private Rigidbody2D m_Rigidbody2D;   
-
-
-
-
-
 
     public bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
@@ -69,9 +57,9 @@ public class CharacterController2D : MonoBehaviour
             OnCrouchEvent = new BoolEvent();
     }
 
+
     void Update()
     {
-
         timer += Time.deltaTime;
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
@@ -85,95 +73,11 @@ public class CharacterController2D : MonoBehaviour
         }
         else airborne = false;
 
-        //Weapon Select Logic
-
-        if (Input.GetButtonDown("Select Weapon 1"))
-        {
-            selectedWeapon = 1;
-        }
-
-        if (Input.GetButtonDown("Select Weapon 2"))
-        {
-            selectedWeapon = 2;
-        }
-
-        if (Input.GetButtonDown("Select Weapon 3"))
-        {
-            selectedWeapon = 3;
-        }
-        //Jump Command Logic
-        if (Input.GetButtonDown("Jump"))
-        {
-            if (airborne == false)
-            {
-                if (climbing)
-                {
-                    if (m_FacingRight)
-                    {
-                        GetComponent<Rigidbody2D>().AddForce(new Vector2(-250f, 0));
-                    }
-                    else
-                    {
-                        GetComponent<Rigidbody2D>().AddForce(new Vector2(250f, 0));
-                    }
-                }
-                jump = true;
-            }
-        }
-
-        //Dash Logic
-        if (timer > 0.5)
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                if (m_FacingRight == false)
-                {
-
-                    GetComponent<Rigidbody2D>().AddForce(new Vector2(-30, 0), ForceMode2D.Impulse);
-
-                }
-                else
-                {
-                    GetComponent<Rigidbody2D>().AddForce(new Vector2(30, 0), ForceMode2D.Impulse);
-
-                }
-
-                timer = 0;
-            }
-
-        }
-
-        //Crounch Command Logic
-        if (Input.GetButtonDown("Crouch"))
-        {
-            crouch = true;
-        }
-        else if (Input.GetButtonUp("Crouch"))
-        {
-            crouch = false;
-        }
-
-
-        //Weapon Selection
-
-        switch (selectedWeapon)
-        {
-            case 1:
-                GetComponent<WeaponsScript>().Weapon1();
-                break;
-            case 2:
-                GetComponent<WeaponsScript>().Weapon2();
-                break;
-            case 3:
-                GetComponent<WeaponsScript>().Weapon3();
-                break;
-            default:
-                GetComponent<WeaponsScript>().Weapon1();
-                break;
-        }
-
+        WeaponSelect();
+        Crouch();
 
     }
+
     private void FixedUpdate()
     {
         bool wasGrounded = m_Grounded;
@@ -195,8 +99,41 @@ public class CharacterController2D : MonoBehaviour
         // Move our character
         Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
         jump = false;
+
+        Jump();
+        Dash();
+        WallClimbing();
     }
 
+    private void WallClimbing()
+    {
+        if (m_FacingRight == true)
+        {
+            RaycastHit2D hit1 = Physics2D.Raycast(m_ClimbingCheck.position, transform.right, 0.07f);
+            Debug.DrawLine(m_ClimbingCheck.position, m_ClimbingCheck.position + transform.right * 0.07f, Color.yellow);
+            print(hit1.distance);
+            if (hit1.distance != 0)
+            {
+                GetComponent<Rigidbody2D>().drag = 10;
+            }
+            else GetComponent<Rigidbody2D>().drag = 0;
+        }
+        else
+        {
+            RaycastHit2D hit1 = Physics2D.Raycast(m_ClimbingCheck.position, -transform.right, 0.07f);
+            Debug.DrawLine(m_ClimbingCheck.position, m_ClimbingCheck.position + -transform.right * 0.07f, Color.yellow);
+            print(hit1.distance);
+            if (hit1.distance != 0)
+            {
+                GetComponent<Rigidbody2D>().drag = 10;
+            }
+            else GetComponent<Rigidbody2D>().drag = 0;
+
+
+        }
+
+
+    }
 
     public void Move(float move, bool crouch, bool jump)
     {
@@ -270,6 +207,104 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    private void WeaponSelect()
+    {
+        //Weapon Select Logic
+        if (Input.GetButtonDown("Select Weapon 1"))
+        {
+            selectedWeapon = 1;
+        }
+
+        if (Input.GetButtonDown("Select Weapon 2"))
+        {
+            selectedWeapon = 2;
+        }
+
+        if (Input.GetButtonDown("Select Weapon 3"))
+        {
+            selectedWeapon = 3;
+        }
+
+        //Weapon Selection
+
+        switch (selectedWeapon)
+        {
+            case 1:
+                GetComponent<WeaponsScript>().Weapon1();
+                break;
+            case 2:
+                GetComponent<WeaponsScript>().Weapon2();
+                break;
+            case 3:
+                GetComponent<WeaponsScript>().Weapon3();
+                break;
+            default:
+                GetComponent<WeaponsScript>().Weapon1();
+                break;
+        }
+    }
+
+    private void Jump()
+    {
+        //Jump Command Logic
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (airborne == false)
+            {
+                if (climbing)
+                {
+                    if (m_FacingRight)
+                    {
+                        GetComponent<Rigidbody2D>().AddForce(new Vector2(-250f, 0));
+                    }
+                    else
+                    {
+                        GetComponent<Rigidbody2D>().AddForce(new Vector2(250f, 0));
+                    }
+                }
+                jump = true;
+            }
+        }
+    }
+
+    private void Dash()
+    {
+        //Dash Logic
+        if (timer > 0.5)
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                if (m_FacingRight == false)
+                {
+
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(-30, 0), ForceMode2D.Impulse);
+
+                }
+                else
+                {
+                    GetComponent<Rigidbody2D>().AddForce(new Vector2(30, 0), ForceMode2D.Impulse);
+
+                }
+
+                timer = 0;
+            }
+
+        }
+    }
+
+    private void Crouch()
+    {
+
+        //Crounch Command Logic
+        if (Input.GetButtonDown("Crouch"))
+        {
+            crouch = true;
+        }
+        else if (Input.GetButtonUp("Crouch"))
+        {
+            crouch = false;
+        }
+    }
 
     private void Flip()
     {
@@ -285,22 +320,9 @@ public class CharacterController2D : MonoBehaviour
 
    
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        //WallClimbing and Sliding logic
-        if (col.tag == "Terrain")
-        {
-
-            climbing = true;
-            GetComponent<Rigidbody2D>().drag = 20;
-            m_JumpForce = 650;
-
-            //print("Collision with: " + col.name);
-        }
 
 
 
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -337,17 +359,6 @@ public class CharacterController2D : MonoBehaviour
 
     }
 
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        //WallClimbing and Sliding logic
-        if (col.tag == "Terrain")
-        {
-            climbing = false;
-            GetComponent<Rigidbody2D>().drag = 0;
-            m_JumpForce = 400;
-            //print("Collision with: " + col.name);
-        }
-    }
 
     private IEnumerator Invincible()
     {
