@@ -89,13 +89,6 @@ public class Enemy : MonoBehaviour {
             }
             resetTime = 3f;
     }
-        
-        //    target = new Vector2(Random.Range(-5f, 5), Random.Range(-5f, 5)).normalized;
-
-        //}
-
-        /*= Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);*/
-
     }
 
     // doesn't currently work with concave angles
@@ -111,8 +104,7 @@ public class Enemy : MonoBehaviour {
             transform.RotateAround(ActualGroundDetection.position, Vector3.forward, -1f);
         }
         else
-        {
-            
+        {            
             horizontalMove = Vector2.right * speed * Time.deltaTime;
             transform.Translate(horizontalMove);
         }        
@@ -209,9 +201,11 @@ public class Enemy : MonoBehaviour {
 
     private void Awake()
     {
-        //PlayerRef = GameObject.Find("player");
-        PlayerRef = FindPlayer.Instance.player;
         nextFire = Time.time;
+    }
+    private void Start()
+    {
+        PlayerRef = FindPlayer.Instance.player;
     }
 
     void TakeDamage(int DamageTaken)
@@ -220,7 +214,7 @@ public class Enemy : MonoBehaviour {
         {
             health -= DamageTaken;
             Debug.Log("My health is now " + health);
-        }
+        }   
         else Debug.Log("I AM BULLETPROOF");
 
     }
