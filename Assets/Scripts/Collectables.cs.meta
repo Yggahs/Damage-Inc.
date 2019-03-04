@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 4f730572993d6c346a2f636dc6ce48b4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Weapon2Ammo_1: {fileID: 21300000, guid: 01278755d81b8f649911c99a4804bd47, type: 3}
+  - Weapon3Ammo_2: {fileID: 21300000, guid: d388bb0fe0ffaa84eb9d41eb8418dde2, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
