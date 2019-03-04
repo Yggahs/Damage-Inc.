@@ -50,6 +50,8 @@ public class CharacterController2D : MonoBehaviour
     public BoolEvent OnCrouchEvent;
     private bool m_wasCrouching = false;
 
+    
+
     private void Awake()
     {
 
@@ -109,6 +111,11 @@ public class CharacterController2D : MonoBehaviour
         Jump();
         Dash();
         WallClimbing();
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            // instantiate bomb
+        }
     }
 
     private void WallClimbing()
