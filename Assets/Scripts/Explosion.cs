@@ -35,18 +35,13 @@ public class Explosion : MonoBehaviour {
         Vector3 hitPosition = Vector3.zero;
         if (collision.gameObject.tag == "Destructible")
         {
-            //foreach (ContactPoint2D hit in collision.contacts)
-            //{
-
-            //    hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
-            //    hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
-            //    tilemap.SetTile(tilemap.WorldToCell(hitPosition), null);
-
-            //}
-           
             Destroy(collision.gameObject);
         }
 
+        //if (collision.gameObject is Enemy)
+        //{
+
+        //}
     }
 
     private void Start()
