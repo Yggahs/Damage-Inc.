@@ -6,13 +6,17 @@ using UnityEngine.UI;
 
 public class CharacterController2D : MonoBehaviour
 {
-    public int health = 20, selectedWeapon = 1;
-    public int damage = 1;
+    public int health = 20, selectedWeapon = 1, damage = 1;
     public GameObject life1, life2, life3, life4, life5;
     public float runSpeed = 40f;
     float horizontalMove = 0f, timer;
     bool jump = false, crouch = false, airborne = false, climbing = false;
     public bool invincible = false;
+    public Image ActiveWeaponSprite;
+    public Sprite BSprite1, BSprite2, BSprite3;
+
+
+
 
     [SerializeField] public float m_JumpForce = 200f;                          // Amount of force added when the player jumps.
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          // Amount of maxSpeed applied to crouching movement. 1 = 100%
@@ -48,6 +52,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake()
     {
+
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
         if (OnLandEvent == null)
@@ -55,6 +60,7 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
+        ActiveWeaponSprite.sprite = BSprite1;
     }
 
 
@@ -111,7 +117,6 @@ public class CharacterController2D : MonoBehaviour
         {
             RaycastHit2D hit1 = Physics2D.Raycast(m_ClimbingCheck.position, transform.right, 0.07f);
             Debug.DrawLine(m_ClimbingCheck.position, m_ClimbingCheck.position + transform.right * 0.07f, Color.yellow);
-            print(hit1.distance);
             if (hit1.distance != 0)
             {
                 GetComponent<Rigidbody2D>().drag = 10;
@@ -209,20 +214,28 @@ public class CharacterController2D : MonoBehaviour
 
     private void WeaponSelect()
     {
+        var WeaponScriptVar = GetComponent<WeaponsScript>();
+
         //Weapon Select Logic
         if (Input.GetButtonDown("Select Weapon 1"))
         {
             selectedWeapon = 1;
+            ActiveWeaponSprite.sprite = BSprite1;
+            WeaponScriptVar.MagazineText.text = "∞";
         }
 
         if (Input.GetButtonDown("Select Weapon 2"))
         {
             selectedWeapon = 2;
+            ActiveWeaponSprite.sprite = BSprite2;
+            WeaponScriptVar.MagazineText.text = WeaponScriptVar.Weapon3MaxBullets.ToString() + "/" + WeaponScriptVar.Weapon2MaxBullets.ToString();
         }
 
         if (Input.GetButtonDown("Select Weapon 3"))
         {
             selectedWeapon = 3;
+            ActiveWeaponSprite.sprite = BSprite3;
+            WeaponScriptVar.MagazineText.text = WeaponScriptVar.Weapon3Bullets.ToString() + "/" + WeaponScriptVar.Weapon2MaxBullets.ToString();
         }
 
         //Weapon Selection
@@ -230,16 +243,21 @@ public class CharacterController2D : MonoBehaviour
         switch (selectedWeapon)
         {
             case 1:
-                GetComponent<WeaponsScript>().Weapon1();
+                WeaponScriptVar.Weapon1();
+
                 break;
             case 2:
-                GetComponent<WeaponsScript>().Weapon2();
+                WeaponScriptVar.Weapon2();
+
                 break;
             case 3:
-                GetComponent<WeaponsScript>().Weapon3();
+                WeaponScriptVar.Weapon3();
+
                 break;
             default:
-                GetComponent<WeaponsScript>().Weapon1();
+                WeaponScriptVar.Weapon1();
+                
+
                 break;
         }
     }
@@ -316,13 +334,6 @@ public class CharacterController2D : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
-
-
-   
-
-
-
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

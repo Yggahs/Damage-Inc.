@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class WeaponsScript : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class WeaponsScript : MonoBehaviour
     public GameObject bullet1, bullet2, bullet3;
     public GameObject BulletExit;
     float timer;
+    public int Weapon1Bullets, Weapon2Bullets, Weapon3Bullets;
+    public int Weapon1MaxBullets = 20, Weapon2MaxBullets = 20, Weapon3MaxBullets = 20;
+    public Text MagazineText;
 
     private void Update()
     {

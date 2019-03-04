@@ -28,10 +28,12 @@ public class BulletComponent : MonoBehaviour {
         //Logic for Boomerang shot
         if (bulletType == 3)
         {
+            transform.Rotate(new Vector3(0, 0, 20));
             if (timer > 0.5 && timer < 0.55)
             {
                 GetComponent<BulletComponent>().yspeed = GetComponent<BulletComponent>().yspeed * -1;
                 GetComponent<BulletComponent>().xspeed = GetComponent<BulletComponent>().xspeed * -1;
+                
             }
         }
     }
