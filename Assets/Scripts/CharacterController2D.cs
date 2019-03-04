@@ -50,13 +50,12 @@ public class CharacterController2D : MonoBehaviour
     public BoolEvent OnCrouchEvent;
     private bool m_wasCrouching = false;
 
-    
+    public Animator animator;
 
     private void Awake()
     {
-
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
-
+        animator = GetComponent<Animator>();
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
 
@@ -84,6 +83,9 @@ public class CharacterController2D : MonoBehaviour
         WeaponSelect();
         Crouch();
 
+
+        animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
+        animator.SetBool("IsFacingRight", m_FacingRight);
     }
 
     private void FixedUpdate()
@@ -111,11 +113,6 @@ public class CharacterController2D : MonoBehaviour
         Jump();
         Dash();
         WallClimbing();
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            // instantiate bomb
-        }
     }
 
     private void WallClimbing()
@@ -140,11 +137,7 @@ public class CharacterController2D : MonoBehaviour
                 GetComponent<Rigidbody2D>().drag = 10;
             }
             else GetComponent<Rigidbody2D>().drag = 0;
-
-
         }
-
-
     }
 
     public void Move(float move, bool crouch, bool jump)
@@ -197,18 +190,18 @@ public class CharacterController2D : MonoBehaviour
             // And then smoothing it out and applying it to the character
             m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
-            // If the input is moving the player right and the player is facing left...
-            if (move > 0 && !m_FacingRight)
-            {
-                // ... flip the player.
-                Flip();
-            }
-            // Otherwise if the input is moving the player left and the player is facing right...
-            else if (move < 0 && m_FacingRight)
-            {
-                // ... flip the player.
-                Flip();
-            }
+            //// If the input is moving the player right and the player is facing left...
+            //if (move > 0 && !m_FacingRight)
+            //{
+            //    // ... flip the player.
+            //    Flip();
+            //}
+            //// Otherwise if the input is moving the player left and the player is facing right...
+            //else if (move < 0 && m_FacingRight)
+            //{
+            //    // ... flip the player.
+            //    Flip();
+            //}
         }
         // If the player should jump...
         if (m_Grounded && jump)

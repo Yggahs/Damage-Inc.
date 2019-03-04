@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour {
     public Transform groundDetection;
     public Transform ActualGroundDetection;
     public Vector2 horizontalMove;    
-    public CharacterController2D PlayerRef;
+    public GameObject PlayerRef;
     public GameObject BulletRef;
     public GameObject EnemyBulletRef;
     public float fireRate;
@@ -62,15 +62,18 @@ public class Enemy : MonoBehaviour {
     {
         if (TargetAcquired)
         {
+            
             speed = 2.0f;
             transform.position = Vector2.MoveTowards(transform.position, PlayerRef.transform.position, speed * Time.deltaTime);
         }
         else
         {
+            
             speed = 0.5f;
             RandomMovementFly();
 
         }
+        Debug.Log(TargetAcquired);
     }
 
     void RandomMovementFly()
@@ -166,14 +169,22 @@ public class Enemy : MonoBehaviour {
         }        
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject == PlayerRef)
         {
             TargetAcquired = true;
-        }        
+           
+        }
     }
+
+    //    private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject == PlayerRef)
+    //    {
+    //        TargetAcquired = true;
+    //    }        
+    //}
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -181,6 +192,7 @@ public class Enemy : MonoBehaviour {
         {
             TargetAcquired = false;
         }
+        
     }
 
     public void Death()
@@ -205,7 +217,8 @@ public class Enemy : MonoBehaviour {
     }
     private void Start()
     {
-        PlayerRef = FindPlayer.Instance.player;
+        //PlayerRef = FindPlayer.Instance.player;
+        PlayerRef = GameObject.Find("player")/*.GetComponent<CharacterController2D>()*/;
     }
 
     void TakeDamage(int DamageTaken)

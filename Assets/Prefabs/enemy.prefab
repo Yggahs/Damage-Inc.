@@ -179,7 +179,7 @@ MonoBehaviour:
   groundDetection: {fileID: 4179423490566322}
   ActualGroundDetection: {fileID: 4587011559476786}
   horizontalMove: {x: 0, y: 0}
-  PlayerRef: {fileID: 0}
+  PlayerRef: {fileID: 1436082164116598, guid: 2faa2a8a4b7bc654fac5662a46591d43, type: 2}
   BulletRef: {fileID: 1569988719728776, guid: f21fb5235fa667545acd2359826054b0, type: 2}
   EnemyBulletRef: {fileID: 1542854073192616, guid: 27f68c0acd2a6f34c944039b2f26ef00,
     type: 2}

@@ -55,6 +55,9 @@ GameObject:
   - component: {fileID: 61743681159851958}
   - component: {fileID: 70235161198559920}
   - component: {fileID: 114597314138963866}
+  - component: {fileID: 70002672644187332}
+  - component: {fileID: 95024773943041906}
+  - component: {fileID: 114188924572548762}
   m_Layer: 0
   m_Name: player
   m_TagString: GameController
@@ -155,8 +158,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1436082164116598}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.385, y: -0.682, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_LocalPosition: {x: -0.385, y: -9.79, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4311491640027474}
   - {fileID: 4084508949911326}
@@ -277,6 +280,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 1.899}
   m_EdgeRadius: 0
+--- !u!70 &70002672644187332
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1436082164116598}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.026129961, y: -0.031936407}
+  m_Size: {x: 0.6470585, y: 1.9012876}
+  m_Direction: 0
 --- !u!70 &70235161198559920
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -299,6 +317,24 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1540447631857232}
   m_Enabled: 1
+--- !u!95 &95024773943041906
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1436082164116598}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 362ee1d75f1d33242a506b123f850811, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &95037703070378350
 Animator:
   serializedVersion: 3
@@ -328,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911ea4d30e5df4f45821e88a543b0632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: -22
+  health: -24
   selectedWeapon: 1
   damage: 1
   life1: {fileID: 0}
@@ -336,9 +372,13 @@ MonoBehaviour:
   life3: {fileID: 0}
   life4: {fileID: 0}
   life5: {fileID: 0}
-  runSpeed: 40
+  runSpeed: 100
   invincible: 0
-  m_JumpForce: 600
+  ActiveWeaponSprite: {fileID: 0}
+  BSprite1: {fileID: 21300000, guid: 67c248a47d466e94c8bc987ee0300b42, type: 3}
+  BSprite2: {fileID: 21300000, guid: 01278755d81b8f649911c99a4804bd47, type: 3}
+  BSprite3: {fileID: 21300000, guid: d388bb0fe0ffaa84eb9d41eb8418dde2, type: 3}
+  m_JumpForce: 1000
   m_CrouchSpeed: 0.4
   m_MovementSmoothing: 0.05
   m_AirControl: 1
@@ -348,6 +388,7 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 4084508949911326}
   m_CeilingCheck: {fileID: 4084508949911326}
   m_CrouchDisableCollider: {fileID: 0}
+  m_ClimbingCheck: {fileID: 4341110626300876}
   m_FacingRight: 1
   Enemy: {fileID: 1994840439053218, guid: 7f9eb445123913546a616993fae4bbe9, type: 2}
   OnLandEvent:
@@ -360,6 +401,18 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: CharacterController2D+BoolEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114188924572548762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1436082164116598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bac4b2aed72acd4aa4976bda4e9a878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bomb: {fileID: 1217986702175278, guid: bb7399da1cb7b2249b9bf2534713c1d0, type: 2}
 --- !u!114 &114597314138963866
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -375,6 +428,13 @@ MonoBehaviour:
   bullet2: {fileID: 1044310023076686, guid: bc57dd8c0a63a4f47a198fc686e46dc8, type: 2}
   bullet3: {fileID: 1913101015633714, guid: c69305b782b27f947bbbf4b5a0068879, type: 2}
   BulletExit: {fileID: 1447929175402520}
+  Weapon1Bullets: 0
+  Weapon2Bullets: 0
+  Weapon3Bullets: 0
+  Weapon1MaxBullets: 20
+  Weapon2MaxBullets: 20
+  Weapon3MaxBullets: 20
+  MagazineText: {fileID: 0}
 --- !u!212 &212278667662108130
 SpriteRenderer:
   m_ObjectHideFlags: 1

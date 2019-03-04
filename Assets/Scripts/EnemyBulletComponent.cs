@@ -12,6 +12,7 @@ public class EnemyBulletComponent : MonoBehaviour
     GameObject EnemyRef;
     private void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>();
         target = PlayerRef;
         movedirection = (target.transform.position - transform.position).normalized * movespeed;
@@ -31,6 +32,6 @@ public class EnemyBulletComponent : MonoBehaviour
 
     private void Awake()
     {
-        PlayerRef = GameObject.Find("Player");
+        PlayerRef = GameObject.Find("player");
     }
 }

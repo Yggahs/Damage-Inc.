@@ -5,17 +5,18 @@ using UnityEngine.Tilemaps;
 
 public class Explosion : MonoBehaviour {
     GameObject TilemapGameObject;
+    GameObject PlayerRef;
+    Enemy Enemy;
     Tilemap tilemap;
 
  
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
+        int damage = 3;
         Vector3 hitPosition = Vector3.zero;
         //Debug.Log(collision.transform.name);
         if (collision.gameObject.tag == "Destructible")
         {
-
-
             //foreach (ContactPoint2D hit in collision.contacts)
             //{
 
@@ -24,31 +25,40 @@ public class Explosion : MonoBehaviour {
             //    tilemap.SetTile(tilemap.WorldToCell(hitPosition), null);
 
             //}
-            Debug.Log("lolstay");
+            //Debug.Log("lolstay");
             Destroy(collision.gameObject);
         }
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Vector3 hitPosition = Vector3.zero;
-        if (collision.gameObject.tag == "Destructible")
+        else if (collision.gameObject == PlayerRef)
         {
-            Destroy(collision.gameObject);
+            PlayerRef.GetComponent<CharacterController2D>().health -= damage;
+        }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
         }
 
-        //if (collision.gameObject is Enemy)
-        //{
-
-        //}
     }
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    Vector3 hitPosition = Vector3.zero;
+    //    if (collision.gameObject.tag == "Destructible")
+    //    {
+    //        Destroy(collision.gameObject);
+    //    }
+
+    //    //if (collision.gameObject is Enemy)
+    //    //{
+
+    //    //}
+    //}
 
     private void Start()
     {
         
         TilemapGameObject = GameObject.Find("Tilemap");
-       
+        PlayerRef = GameObject.Find("player");
+
         tilemap = TilemapGameObject.GetComponent<Tilemap>();
         
         Destroy(gameObject, 0.5f);
