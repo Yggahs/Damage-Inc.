@@ -17,6 +17,7 @@ public class WeaponsScript : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
+
     }
 
     public void Weapon1()
@@ -92,127 +93,168 @@ public class WeaponsScript : MonoBehaviour
                 i = 0;
             }
         }
-
+        UpdateCanvasWeapon();
     }
 
     public void Weapon2()
     {
         Vector2 position = transform.position;
 
-        //Shoot Right Up
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Weapon2Bullets > 0)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            //Shoot Right Up
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+
+                    GameObject go = Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
+                    go.GetComponent<BulletComponent>().xspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                    Weapon2Bullets--;
+                }
+                else
+                {
+                    GameObject go = Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
+                    go.GetComponent<BulletComponent>().xspeed = 0.1f;
+                    Weapon2Bullets--;
+                }
+            }
+            //Shoot Left Up
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
 
-                GameObject go = Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = 0.1f;
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+
+                    GameObject go = Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
+                    go.GetComponent<BulletComponent>().xspeed = -0.1f;
+                    go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                    Weapon2Bullets--;
+                }
+                else
+                {
+                    position.x -= .5f;
+                    GameObject go = Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
+                    go.GetComponent<BulletComponent>().xspeed = -0.1f;
+                    Weapon2Bullets--;
+                }
+            }
+            //Shoot  Up
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                position.y += .2f;
+                GameObject go = (GameObject)Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
                 go.GetComponent<BulletComponent>().yspeed = 0.1f;
-
+                Weapon2Bullets--;
             }
-            else
+            //Shoot  Down
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                GameObject go = Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = 0.1f;
+                position.y -= .5f;
+                GameObject go = (GameObject)Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
+                go.GetComponent<BulletComponent>().yspeed = -0.1f;
+                Weapon2Bullets--;
             }
+            
         }
-        //Shoot Left Up
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
-
-                GameObject go = Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = -0.1f;
-                go.GetComponent<BulletComponent>().yspeed = 0.1f;
-
-            }
-            else
-            {
-                position.x -= .5f;
-                GameObject go = Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = -0.1f;
-            }
-        }
-        //Shoot  Up
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            position.y += .2f;
-            GameObject go = (GameObject)Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
-            go.GetComponent<BulletComponent>().yspeed = 0.1f;
-        }
-        //Shoot  Down
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            position.y -= .5f;
-            GameObject go = (GameObject)Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
-            go.GetComponent<BulletComponent>().yspeed = -0.1f;
-        }
+        UpdateCanvasWeapon();
     }
 
     public void Weapon3()
     {
         Vector2 position = transform.position;
-
-        //Shoot Right Up
-        if (Input.GetKeyDown(KeyCode.RightArrow))
+        if (Weapon3Bullets > 0)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            //Shoot Right Up
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+
+                    GameObject go = Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
+                    go.GetComponent<BulletComponent>().xspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().bulletType = 3;
+                    Weapon3Bullets--;
+
+                }
+                else
+                {
+                    GameObject go = Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
+                    go.GetComponent<BulletComponent>().xspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().bulletType = 3;
+                    Weapon3Bullets--;
+                }
+            }
+            //Shoot Left Up
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
 
-                GameObject go = Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = 0.1f;
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+
+                    GameObject go = Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
+                    go.GetComponent<BulletComponent>().xspeed = -0.1f;
+                    go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().bulletType = 3;
+                    Weapon3Bullets--;
+
+                }
+                else
+                {
+                    position.x -= .5f;
+                    GameObject go = Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
+                    go.GetComponent<BulletComponent>().xspeed = -0.1f;
+                    go.GetComponent<BulletComponent>().bulletType = 3;
+                    Weapon3Bullets--;
+                }
+            }
+            //Shoot  Up
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                position.y += .2f;
+                GameObject go = (GameObject)Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
                 go.GetComponent<BulletComponent>().yspeed = 0.1f;
                 go.GetComponent<BulletComponent>().bulletType = 3;
-
+                Weapon3Bullets--;
             }
-            else
+            //Shoot  Down
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
             {
-                GameObject go = Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = 0.1f;
+                position.y -= .5f;
+                GameObject go = (GameObject)Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
+                go.GetComponent<BulletComponent>().yspeed = -0.1f;
                 go.GetComponent<BulletComponent>().bulletType = 3;
+                Weapon3Bullets--;
             }
+            
         }
-        //Shoot Left Up
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        UpdateCanvasWeapon();
+    }
+    
+    private void UpdateCanvasWeapon()
+    {
+        var selectedWeapon = GetComponent<CharacterController2D>().selectedWeapon;
+
+        switch (selectedWeapon)
         {
+            case 1:
+                MagazineText.text = "∞";
+                break;
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-            {
+            case 2:
+                MagazineText.text = Weapon2Bullets.ToString() + "/" + Weapon2MaxBullets.ToString();
+                break;
 
-                GameObject go = Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = -0.1f;
-                go.GetComponent<BulletComponent>().yspeed = 0.1f;
-                go.GetComponent<BulletComponent>().bulletType = 3;
+            case 3:
+                MagazineText.text = Weapon3Bullets.ToString() + "/" + Weapon3MaxBullets.ToString();
+                print("kek");
+                break;
 
-
-            }
-            else
-            {
-                position.x -= .5f;
-                GameObject go = Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = -0.1f;
-                go.GetComponent<BulletComponent>().bulletType = 3;
-            }
+            default:
+                MagazineText.text = "∞";
+                break;
         }
-        //Shoot  Up
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            position.y += .2f;
-            GameObject go = (GameObject)Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
-            go.GetComponent<BulletComponent>().yspeed = 0.1f;
-            go.GetComponent<BulletComponent>().bulletType = 3;
-        }
-        //Shoot  Down
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            position.y -= .5f;
-            GameObject go = (GameObject)Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
-            go.GetComponent<BulletComponent>().yspeed = -0.1f;
-            go.GetComponent<BulletComponent>().bulletType = 3;
-        }
-
-
     }
 }

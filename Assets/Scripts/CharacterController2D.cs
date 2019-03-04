@@ -60,7 +60,6 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
-        ActiveWeaponSprite.sprite = BSprite1;
     }
 
 
@@ -221,21 +220,18 @@ public class CharacterController2D : MonoBehaviour
         {
             selectedWeapon = 1;
             ActiveWeaponSprite.sprite = BSprite1;
-            WeaponScriptVar.MagazineText.text = "∞";
         }
 
         if (Input.GetButtonDown("Select Weapon 2"))
         {
             selectedWeapon = 2;
             ActiveWeaponSprite.sprite = BSprite2;
-            WeaponScriptVar.MagazineText.text = WeaponScriptVar.Weapon3MaxBullets.ToString() + "/" + WeaponScriptVar.Weapon2MaxBullets.ToString();
         }
 
         if (Input.GetButtonDown("Select Weapon 3"))
         {
             selectedWeapon = 3;
             ActiveWeaponSprite.sprite = BSprite3;
-            WeaponScriptVar.MagazineText.text = WeaponScriptVar.Weapon3Bullets.ToString() + "/" + WeaponScriptVar.Weapon2MaxBullets.ToString();
         }
 
         //Weapon Selection
@@ -244,20 +240,18 @@ public class CharacterController2D : MonoBehaviour
         {
             case 1:
                 WeaponScriptVar.Weapon1();
-
                 break;
+
             case 2:
                 WeaponScriptVar.Weapon2();
-
                 break;
+
             case 3:
                 WeaponScriptVar.Weapon3();
-
                 break;
+
             default:
                 WeaponScriptVar.Weapon1();
-                
-
                 break;
         }
     }
