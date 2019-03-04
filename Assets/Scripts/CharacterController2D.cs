@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class CharacterController2D : MonoBehaviour
 {
-    public int health = 20, selectedWeapon = 1, damage = 1;
-    public GameObject life1, life2, life3, life4, life5;
+    public int health = 20, maxHealth = 20, selectedWeapon = 1, damage = 1;
+    public GameObject life1, life2, life3, life4, life5, emptyLife1, emptyLife2, emptyLife3, emptyLife4, emptyLife5;
     public float runSpeed = 40f;
     float horizontalMove = 0f, timer;
     bool jump = false, crouch = false, airborne = false, climbing = false;
@@ -60,6 +60,8 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
+
+        HealthDraw();
     }
 
 
@@ -126,7 +128,6 @@ public class CharacterController2D : MonoBehaviour
         {
             RaycastHit2D hit1 = Physics2D.Raycast(m_ClimbingCheck.position, -transform.right, 0.07f);
             Debug.DrawLine(m_ClimbingCheck.position, m_ClimbingCheck.position + -transform.right * 0.07f, Color.yellow);
-            print(hit1.distance);
             if (hit1.distance != 0)
             {
                 GetComponent<Rigidbody2D>().drag = 10;
@@ -339,32 +340,74 @@ public class CharacterController2D : MonoBehaviour
                 collision.transform.GetComponent<Enemy>().DealDamage();
                 StartCoroutine(Invincible());
                 print(health);
-                if (health >= 16)
-                {
-                    life5.GetComponent<Image>().fillAmount -= 0.25f;
-                }
-                else if (health >= 12)
-                {
-                    life4.GetComponent<Image>().fillAmount -= 0.25f;
-                }
-                else if (health >= 8)
-                {
-                    life3.GetComponent<Image>().fillAmount -= 0.25f;
-                }
-                else if (health >= 4)
-                {
-                    life2.GetComponent<Image>().fillAmount -= 0.25f;
-                }
-                else
-                {
-                    life1.GetComponent<Image>().fillAmount -= 0.25f;
-                }
+                HealthDamage();
             }
         }
 
     }
 
+    private void HealthDamage()
+    {
+        if (health >= 20)
+        {
+            life5.GetComponent<Image>().fillAmount -= 0.25f;
+        }
+        else if (health >= 16)
+        {
+            life4.GetComponent<Image>().fillAmount -= 0.25f;
+        }
+        else if (health >= 12)
+        {
+            life3.GetComponent<Image>().fillAmount -= 0.25f;
+        }
+        else if (health >= 8)
+        {
+            life2.GetComponent<Image>().fillAmount -= 0.25f;
+        }
+        else
+        {
+            life1.GetComponent<Image>().fillAmount -= 0.25f;
+        }
+    }
 
+    private void HealthDraw()
+    {
+        switch (maxHealth)
+        {
+            case 4:
+                life5.SetActive(false);
+                life4.SetActive(false);
+                life3.SetActive(false);
+                life2.SetActive(false);
+                emptyLife5.SetActive(false);
+                emptyLife4.SetActive(false);
+                emptyLife3.SetActive(false);
+                emptyLife2.SetActive(false);
+                break;
+
+            case 8:
+                life5.SetActive(false);
+                life4.SetActive(false);
+                life3.SetActive(false);
+                emptyLife5.SetActive(false);
+                emptyLife4.SetActive(false);
+                emptyLife3.SetActive(false);
+                break;
+
+            case 12:
+                life5.SetActive(false);
+                life4.SetActive(false);
+                emptyLife5.SetActive(false);
+                emptyLife4.SetActive(false);
+                break;
+
+            case 16:
+                life5.SetActive(false);
+                emptyLife5.SetActive(false);
+                print("kek");
+                break;
+        }
+    }
     private IEnumerator Invincible()
     {
 

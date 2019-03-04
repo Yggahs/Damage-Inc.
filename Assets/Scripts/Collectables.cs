@@ -13,9 +13,11 @@ public class Collectables : MonoBehaviour
         {
             case 1:
                 GetComponent<SpriteRenderer>().sprite = Weapon2Ammo_1;
+                name = "Weapon2Ammo";
                 break;
             case 2:
                 GetComponent<SpriteRenderer>().sprite = Weapon3Ammo_2;
+                name = "Weapon3Ammo";
                 break;
         }
     }
