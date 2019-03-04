@@ -16,6 +16,7 @@ public class control : MonoBehaviour
     public GameObject bullet;
     int i = 0, firespeed = 10;
     public GameObject BulletExit;
+    public Animator animator;
 
     private void Start()
     {
@@ -27,8 +28,9 @@ public class control : MonoBehaviour
 
         timer += Time.deltaTime;
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
-
+        animator.SetFloat("Horizontal", Input.GetAxis("Horizontal"));
+        //animator.SetBool("isFacingRight",controller.m_FacingRight);
+        //Debug.Log(Input.GetAxis("Horizontal"));
         if (GetComponent<Rigidbody2D>().velocity.y != 0 && climbing == false)
         {
 
