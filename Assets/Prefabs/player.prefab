@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4341110626300876}
   m_Layer: 0
-  m_Name: ClimbingCheck
+  m_Name: ClimbingCheckRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,6 @@ GameObject:
   - component: {fileID: 61743681159851958}
   - component: {fileID: 70235161198559920}
   - component: {fileID: 114597314138963866}
-  - component: {fileID: 70002672644187332}
   - component: {fileID: 95024773943041906}
   - component: {fileID: 114188924572548762}
   m_Layer: 0
@@ -112,6 +111,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1983540813865092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4964464135583486}
+  m_Layer: 0
+  m_Name: ClimbingCheckLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4084508949911326
 Transform:
   m_ObjectHideFlags: 1
@@ -119,7 +133,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1432802455764596}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.4037, z: 0}
+  m_LocalPosition: {x: 0, y: -0.755, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4595377590096234}
@@ -166,6 +180,7 @@ Transform:
   - {fileID: 4732580366998052}
   - {fileID: 4654235310504988}
   - {fileID: 4341110626300876}
+  - {fileID: 4964464135583486}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -189,11 +204,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1917360027983290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.4013, z: 0}
+  m_LocalPosition: {x: 0, y: 0.747, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4595377590096234}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4964464135583486
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1983540813865092}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.324, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4595377590096234}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20018735883537028
 Camera:
@@ -271,7 +299,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.33, y: 1}
+    oldSize: {x: 0.5, y: 1.5}
     newSize: {x: 5.06, y: 5.04}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -280,21 +308,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.75, y: 1.899}
   m_EdgeRadius: 0
---- !u!70 &70002672644187332
-CapsuleCollider2D:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1436082164116598}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.026129961, y: -0.031936407}
-  m_Size: {x: 0.6470585, y: 1.9012876}
-  m_Direction: 0
 --- !u!70 &70235161198559920
 CapsuleCollider2D:
   m_ObjectHideFlags: 1
@@ -307,8 +320,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.026129961, y: -0.031936407}
-  m_Size: {x: 0.6470585, y: 1.9012876}
+  m_Offset: {x: -0.0062746406, y: -0.021044254}
+  m_Size: {x: 0.51468956, y: 1.5619459}
   m_Direction: 0
 --- !u!81 &81046247397339656
 AudioListener:
@@ -326,7 +339,7 @@ Animator:
   m_GameObject: {fileID: 1436082164116598}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 362ee1d75f1d33242a506b123f850811, type: 2}
+  m_Controller: {fileID: 9100000, guid: d9922d6ef71adfd49afe07ef558ed0de, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -364,7 +377,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 911ea4d30e5df4f45821e88a543b0632, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: -24
+  health: 20
+  maxHealth: 20
   selectedWeapon: 1
   damage: 1
   life1: {fileID: 0}
@@ -372,6 +386,11 @@ MonoBehaviour:
   life3: {fileID: 0}
   life4: {fileID: 0}
   life5: {fileID: 0}
+  emptyLife1: {fileID: 1841206058979838, guid: 8574ed8485fabf4488e5be7c81ea68ee, type: 2}
+  emptyLife2: {fileID: 1841206058979838, guid: 8574ed8485fabf4488e5be7c81ea68ee, type: 2}
+  emptyLife3: {fileID: 1841206058979838, guid: 8574ed8485fabf4488e5be7c81ea68ee, type: 2}
+  emptyLife4: {fileID: 1841206058979838, guid: 8574ed8485fabf4488e5be7c81ea68ee, type: 2}
+  emptyLife5: {fileID: 1841206058979838, guid: 8574ed8485fabf4488e5be7c81ea68ee, type: 2}
   runSpeed: 100
   invincible: 0
   ActiveWeaponSprite: {fileID: 0}
@@ -388,7 +407,8 @@ MonoBehaviour:
   m_GroundCheck: {fileID: 4084508949911326}
   m_CeilingCheck: {fileID: 4084508949911326}
   m_CrouchDisableCollider: {fileID: 0}
-  m_ClimbingCheck: {fileID: 4341110626300876}
+  m_ClimbingCheckRight: {fileID: 4341110626300876}
+  m_ClimbingCheckLeft: {fileID: 4964464135583486}
   m_FacingRight: 1
   Enemy: {fileID: 1994840439053218, guid: 7f9eb445123913546a616993fae4bbe9, type: 2}
   OnLandEvent:
@@ -401,6 +421,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: CharacterController2D+BoolEvent, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  animator: {fileID: 95024773943041906}
 --- !u!114 &114188924572548762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -429,8 +450,8 @@ MonoBehaviour:
   bullet3: {fileID: 1913101015633714, guid: c69305b782b27f947bbbf4b5a0068879, type: 2}
   BulletExit: {fileID: 1447929175402520}
   Weapon1Bullets: 0
-  Weapon2Bullets: 0
-  Weapon3Bullets: 0
+  Weapon2Bullets: 20
+  Weapon3Bullets: 20
   Weapon1MaxBullets: 20
   Weapon2MaxBullets: 20
   Weapon3MaxBullets: 20
@@ -470,7 +491,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 278a46af7b6f76546bc7a6f057ba33e4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c47d378d5088e8b4086a40e8cf557fd5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

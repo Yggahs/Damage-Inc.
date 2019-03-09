@@ -3,14 +3,13 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
-
 public class CharacterController2D : MonoBehaviour
 {
     public int health = 20, maxHealth = 20, selectedWeapon = 1, damage = 1;
     public GameObject life1, life2, life3, life4, life5, emptyLife1, emptyLife2, emptyLife3, emptyLife4, emptyLife5;
     public float runSpeed = 40f;
     float horizontalMove = 0f, timer;
-    bool jump = false, crouch = false, airborne = false, climbing = false;
+    bool crouch = false, climbing = false;
     public bool invincible = false;
     public Image ActiveWeaponSprite;
     public Sprite BSprite1, BSprite2, BSprite3;
@@ -26,7 +25,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
     [SerializeField] private Transform m_CeilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
-    [SerializeField] private Transform m_ClimbingCheck;
+    [SerializeField] private Transform m_ClimbingCheckRight;
+    [SerializeField] private Transform m_ClimbingCheckLeft;
 
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     private bool m_Grounded;    
@@ -70,21 +70,8 @@ public class CharacterController2D : MonoBehaviour
     {
         timer += Time.deltaTime;
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
-
-        if (GetComponent<Rigidbody2D>().velocity.y != 0 && climbing == false)
-        {
-
-            airborne = true;
-            if (climbing == true) airborne = false;
-
-        }
-        else airborne = false;
-
         WeaponSelect();
         Crouch();
-
-
         animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
         animator.SetBool("IsFacingRight", m_FacingRight);
     }
@@ -93,7 +80,6 @@ public class CharacterController2D : MonoBehaviour
     {
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
-
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
         Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
@@ -106,41 +92,72 @@ public class CharacterController2D : MonoBehaviour
                     OnLandEvent.Invoke();
             }
         }
-
         // Move our character
-        Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-        jump = false;
-
-        Jump();
+        Move(horizontalMove * Time.fixedDeltaTime, crouch, m_Grounded);           
         Dash();
         WallClimbing();
+        if (horizontalMove > 0)
+        {
+            m_FacingRight = true;
+        }
+        else
+        {
+            m_FacingRight = false;
+        }
     }
 
     private void WallClimbing()
     {
-        if (m_FacingRight == true)
+        if (m_FacingRight)
         {
-            RaycastHit2D hit1 = Physics2D.Raycast(m_ClimbingCheck.position, transform.right, 0.07f);
-            Debug.DrawLine(m_ClimbingCheck.position, m_ClimbingCheck.position + transform.right * 0.07f, Color.yellow);
-            if (hit1.distance != 0)
+            RaycastHit2D hit1 = Physics2D.Raycast(m_ClimbingCheckRight.position, transform.right, 0.07f);
+            Debug.DrawLine(m_ClimbingCheckRight.position, m_ClimbingCheckRight.position + transform.right * 0.07f, Color.yellow);
+            if (hit1)
             {
+                Debug.Log("va");
+                climbing = true;
                 GetComponent<Rigidbody2D>().drag = 10;
+                if (Input.GetButtonDown("Jump") && climbing &&!m_Grounded)
+                {
+                    m_Rigidbody2D.AddForce(new Vector2(-m_JumpForce, m_JumpForce));
+                }
             }
-            else GetComponent<Rigidbody2D>().drag = 0;
+            else
+            {
+                Debug.Log("non va");
+                climbing = false;
+                GetComponent<Rigidbody2D>().drag = 0;
+            }
         }
         else
         {
-            RaycastHit2D hit1 = Physics2D.Raycast(m_ClimbingCheck.position, -transform.right, 0.07f);
-            Debug.DrawLine(m_ClimbingCheck.position, m_ClimbingCheck.position + -transform.right * 0.07f, Color.yellow);
-            if (hit1.distance != 0)
+            RaycastHit2D hit1 = Physics2D.Raycast(m_ClimbingCheckLeft.position, -transform.right, 0.07f);
+            Debug.DrawLine(m_ClimbingCheckLeft.position, m_ClimbingCheckLeft.position + (-transform.right * 0.07f), Color.green);
+            if (hit1)
             {
+                Debug.Log("va");
+                climbing = true;
                 GetComponent<Rigidbody2D>().drag = 10;
+                if (Input.GetButtonDown("Jump") && climbing && !m_FacingRight && !m_Grounded)
+                {
+                    m_Rigidbody2D.AddForce(new Vector2(m_JumpForce, m_JumpForce));
+                }
+
             }
-            else GetComponent<Rigidbody2D>().drag = 0;
+            else
+            {
+                Debug.Log("non va");
+                climbing = false;
+                GetComponent<Rigidbody2D>().drag = 0;
+            }
         }
+
+
+       
+
     }
 
-    public void Move(float move, bool crouch, bool jump)
+    public void Move(float move, bool crouch, bool m_Grounded)
     {
         // If crouching, check to see if the character can stand up
         if (!crouch)
@@ -190,26 +207,26 @@ public class CharacterController2D : MonoBehaviour
             // And then smoothing it out and applying it to the character
             m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
-            //// If the input is moving the player right and the player is facing left...
-            //if (move > 0 && !m_FacingRight)
-            //{
-            //    // ... flip the player.
-            //    Flip();
-            //}
-            //// Otherwise if the input is moving the player left and the player is facing right...
-            //else if (move < 0 && m_FacingRight)
-            //{
-            //    // ... flip the player.
-            //    Flip();
-            //}
         }
         // If the player should jump...
-        if (m_Grounded && jump)
+        if (Input.GetButtonDown("Jump"))
         {
-            // Add a vertical force to the player.
-            m_Grounded = false;
-            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            if (m_Grounded)
+            {
+                // Add a vertical force to the player.
+                m_Grounded = false;
+                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            }
         }
+
+        //if (m_Rigidbody2D.velocity.x<0f)
+        //{
+        //    Flip();
+        //}
+        //else if (m_Rigidbody2D.velocity.x>0f)
+        //{
+        //    Flip();
+        //}
     }
 
     private void WeaponSelect()
@@ -257,29 +274,6 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    private void Jump()
-    {
-        //Jump Command Logic
-        if (Input.GetButtonDown("Jump"))
-        {
-            if (airborne == false)
-            {
-                if (climbing)
-                {
-                    if (m_FacingRight)
-                    {
-                        GetComponent<Rigidbody2D>().AddForce(new Vector2(-250f, 0));
-                    }
-                    else
-                    {
-                        GetComponent<Rigidbody2D>().AddForce(new Vector2(250f, 0));
-                    }
-                }
-                jump = true;
-            }
-        }
-    }
-
     private void Dash()
     {
         //Dash Logic
@@ -321,13 +315,16 @@ public class CharacterController2D : MonoBehaviour
 
     private void Flip()
     {
-        // Switch the way the player is labelled as facing.
-        m_FacingRight = !m_FacingRight;
+        
+            // Switch the way the player is labelled as facing.
+            m_FacingRight = !m_FacingRight;
 
-        // Multiply the player's x local scale by -1.
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
+
+            // Multiply the player's x local scale by -1.
+            Vector3 theScale = transform.localScale;
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
