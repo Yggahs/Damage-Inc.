@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class CharacterController2D : MonoBehaviour
 {
     public int health = 20, maxHealth = 20, selectedWeapon = 1, damage = 1;
-    public GameObject life1, life2, life3, life4, life5, emptyLife1, emptyLife2, emptyLife3, emptyLife4, emptyLife5;
+    public GameObject life1, life2, life3, life4, life5, emptyLife1, emptyLife2, emptyLife3, emptyLife4, emptyLife5, PauseMenu;
     public float runSpeed = 40f;
     float horizontalMove = 0f, timer;
     bool crouch = false, climbing = false;
-    public bool invincible = false;
+    public bool invincible = false, pause = false;
     public Image ActiveWeaponSprite;
     public Sprite BSprite1, BSprite2, BSprite3;
+    
 
 
 
@@ -70,10 +71,8 @@ public class CharacterController2D : MonoBehaviour
     {
         timer += Time.deltaTime;
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        WeaponSelect();
-        Crouch();
-        animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
-        animator.SetBool("IsFacingRight", m_FacingRight);
+        Pause();
+
     }
 
     private void FixedUpdate()
@@ -92,10 +91,18 @@ public class CharacterController2D : MonoBehaviour
                     OnLandEvent.Invoke();
             }
         }
-        // Move our character
-        Move(horizontalMove * Time.fixedDeltaTime, crouch, m_Grounded);           
-        Dash();
-        WallClimbing();
+
+        // Controll our character
+
+
+            Move(horizontalMove * Time.fixedDeltaTime, crouch, m_Grounded);
+            Dash();
+            WeaponSelect();
+            Crouch();
+            WallClimbing();
+        animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
+        animator.SetBool("IsFacingRight", m_FacingRight);
+
         if (horizontalMove > 0)
         {
             m_FacingRight = true;
@@ -326,6 +333,25 @@ public class CharacterController2D : MonoBehaviour
             transform.localScale = theScale;
         
     }
+
+    private void Pause()
+    {
+        if(Input.GetButtonDown("Pause/Menu Button"))
+        {
+            if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+                PauseMenu.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                PauseMenu.SetActive(false);
+            }
+        }
+    }
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
