@@ -22,10 +22,10 @@ GameObject:
   - component: {fileID: 212941919445839032}
   - component: {fileID: 58804866094229930}
   - component: {fileID: 114414682281382880}
-  - component: {fileID: 50201575719693382}
+  - component: {fileID: 50682287066823988}
   m_Layer: 0
   m_Name: EnemyBullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,7 +43,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50201575719693382
+--- !u!50 &50682287066823988
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 1

@@ -8,6 +8,7 @@ public class BulletComponent : MonoBehaviour {
     public float yspeed = 0f;
     public int bulletType;
     float timer;
+    int Damage = 1;
 
     // Use this for initialization
     void Start ()
@@ -35,6 +36,15 @@ public class BulletComponent : MonoBehaviour {
                 GetComponent<BulletComponent>().xspeed = GetComponent<BulletComponent>().xspeed * -1;
                 
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Enemy")
+        {
+            other.GetComponent<Enemy>().TakeDamage(Damage);
+            Destroy(gameObject);   
         }
     }
 }

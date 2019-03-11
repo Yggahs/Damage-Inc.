@@ -114,7 +114,7 @@ public class CharacterController2D : MonoBehaviour
             Debug.DrawLine(m_ClimbingCheckRight.position, m_ClimbingCheckRight.position + transform.right * 0.07f, Color.yellow);
             if (hit1)
             {
-                Debug.Log("va");
+                //Debug.Log("va");
                 climbing = true;
                 GetComponent<Rigidbody2D>().drag = 10;
                 if (Input.GetButtonDown("Jump") && climbing &&!m_Grounded)
@@ -124,7 +124,7 @@ public class CharacterController2D : MonoBehaviour
             }
             else
             {
-                Debug.Log("non va");
+            //    Debug.Log("non va");
                 climbing = false;
                 GetComponent<Rigidbody2D>().drag = 0;
             }
@@ -135,7 +135,7 @@ public class CharacterController2D : MonoBehaviour
             Debug.DrawLine(m_ClimbingCheckLeft.position, m_ClimbingCheckLeft.position + (-transform.right * 0.07f), Color.green);
             if (hit1)
             {
-                Debug.Log("va");
+               // Debug.Log("va");
                 climbing = true;
                 GetComponent<Rigidbody2D>().drag = 10;
                 if (Input.GetButtonDown("Jump") && climbing && !m_FacingRight && !m_Grounded)
@@ -146,7 +146,7 @@ public class CharacterController2D : MonoBehaviour
             }
             else
             {
-                Debug.Log("non va");
+               // Debug.Log("non va");
                 climbing = false;
                 GetComponent<Rigidbody2D>().drag = 0;
             }
@@ -334,7 +334,6 @@ public class CharacterController2D : MonoBehaviour
 
             if (invincible == false)
             {
-                collision.transform.GetComponent<Enemy>().DealDamage();
                 StartCoroutine(Invincible());
                 print(health);
                 HealthDamage();
@@ -343,21 +342,37 @@ public class CharacterController2D : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag == "Bullet")
+        {
+
+            if (invincible == false)
+            {
+                StartCoroutine(Invincible());
+                //print(health);
+                HealthDamage();
+            }
+        }
+
+    }
+
+    //all hearts receive a single point of damage, no matter the actual damage dealt. you should have multiplied 0.25 * the damage received.
     private void HealthDamage()
     {
-        if (health >= 20)
+        if (health <= 20 && health > 16)
         {
             life5.GetComponent<Image>().fillAmount -= 0.25f;
         }
-        else if (health >= 16)
+        else if (health <= 16 && health > 12)
         {
             life4.GetComponent<Image>().fillAmount -= 0.25f;
         }
-        else if (health >= 12)
+        else if (health <= 12 && health > 8)
         {
             life3.GetComponent<Image>().fillAmount -= 0.25f;
         }
-        else if (health >= 8)
+        else if (health <= 8 && health > 4)
         {
             life2.GetComponent<Image>().fillAmount -= 0.25f;
         }
@@ -401,10 +416,11 @@ public class CharacterController2D : MonoBehaviour
             case 16:
                 life5.SetActive(false);
                 emptyLife5.SetActive(false);
-                print("kek");
+                
                 break;
         }
     }
+
     private IEnumerator Invincible()
     {
 
