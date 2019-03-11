@@ -16,4 +16,9 @@ public class MenuScript : MonoBehaviour
     {
         Time.timeScale = 1;
     }
+
+    public void RestartLevel()
+    {
+        Application.LoadLevel("SampleScene");
+    }
 }
