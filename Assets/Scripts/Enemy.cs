@@ -111,7 +111,12 @@ public class Enemy : MonoBehaviour {
         {            
             horizontalMove = Vector2.right * speed * Time.deltaTime;
             transform.Translate(horizontalMove);
-        }        
+        }
+
+        if (hit3)
+        {
+            transform.RotateAround(transform.position, Vector3.forward, 10f);
+        }
         Debug.DrawLine(ActualGroundDetection.position, ActualGroundDetection.position + -transform.up*0.1f,Color.red);
         Debug.DrawLine(groundDetection.position, groundDetection.position + -transform.up * 0.22f, Color.blue);
         Debug.DrawLine(groundDetection.position, groundDetection.position + transform.right * 0.2f, Color.yellow);
@@ -188,7 +193,6 @@ public class Enemy : MonoBehaviour {
             TargetAcquired = false;
             Target = null;
         }
-        
     }
 
     public void Death()
@@ -214,17 +218,12 @@ public class Enemy : MonoBehaviour {
     private void Start()
     {
         //PlayerRef = FindPlayer.Instance.player;
-        PlayerRef = GameObject.Find("player")/*.GetComponent<CharacterController2D>()*/;
+        PlayerRef = GameObject.Find("player");
     }
 
     public void TakeDamage(int DamageTaken)
     {
-        //if (GameObject.FindGameObjectWithTag("GameController").GetComponent<CharacterController2D>().invincible == false)
-        //{
             health -= DamageTaken;
             Debug.Log("My health is now " + health);
-        //}   
-        //else Debug.Log("I AM BULLETPROOF");
-
     }
 }
