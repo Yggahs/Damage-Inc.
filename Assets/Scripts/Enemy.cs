@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour {
             RandomMovementFly();
 
         }
-        Debug.Log(TargetAcquired);
+        //Debug.Log(TargetAcquired);
     }
 
     void RandomMovementFly()
@@ -98,25 +98,25 @@ public class Enemy : MonoBehaviour {
     // doesn't currently work with concave angles
     // turning rigidbody to kinematic in crawler script
     public void Crawl()
-    {                       
-        RaycastHit2D hit = Physics2D.Raycast(ActualGroundDetection.position,-transform.up,0.10f);
-        RaycastHit2D hit2 = Physics2D.Raycast(groundDetection.position, -transform.up, 0.22f);
+    {
+        RaycastHit2D hit = Physics2D.Raycast(ActualGroundDetection.position, -transform.up, 0.10f);
+        RaycastHit2D hit2 = Physics2D.Raycast(groundDetection.position, -transform.up, 0.3f);
         RaycastHit2D hit3 = Physics2D.Raycast(groundDetection.position, transform.right, 0.2f);
-        GetComponent<Rigidbody2D>().AddForce(-transform.up*2f);
-        if(!hit && !hit2)
-        {           
-            transform.RotateAround(ActualGroundDetection.position, Vector3.forward, -1f);
-        }
-        else
-        {            
-            horizontalMove = Vector2.right * speed * Time.deltaTime;
-            transform.Translate(horizontalMove);
-        }
-
-        if (hit3)
-        {
-            transform.RotateAround(transform.position, Vector3.forward, 10f);
-        }
+        GetComponent<Rigidbody2D>().AddForce(-transform.up * 2f);
+        
+            if (!hit && !hit2)
+            {
+                transform.RotateAround(ActualGroundDetection.position, Vector3.forward, -1f);
+            }
+            else
+            {
+                horizontalMove = Vector2.right * speed * Time.deltaTime;
+                transform.Translate(horizontalMove);
+            }
+            if (hit3)
+            {
+                transform.RotateAround(transform.position, Vector3.forward, 10f);
+            }
         Debug.DrawLine(ActualGroundDetection.position, ActualGroundDetection.position + -transform.up*0.1f,Color.red);
         Debug.DrawLine(groundDetection.position, groundDetection.position + -transform.up * 0.22f, Color.blue);
         Debug.DrawLine(groundDetection.position, groundDetection.position + transform.right * 0.2f, Color.yellow);
@@ -129,8 +129,6 @@ public class Enemy : MonoBehaviour {
         transform.Translate(horizontalMove);
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 1f);
         RaycastHit2D WallInfo = Physics2D.Raycast(groundDetection.position, groundDetection.right, 0.07f);
-        //Debug.DrawLine(groundDetection.position,groundDetection.position+ -groundDetection.up* 1f,Color.red);
-        //Debug.DrawLine(groundDetection.position, groundDetection.position + groundDetection.right * 1f, Color.green);
         if (groundInfo.collider == false || WallInfo)
         {
             
@@ -217,7 +215,6 @@ public class Enemy : MonoBehaviour {
     }
     private void Start()
     {
-        //PlayerRef = FindPlayer.Instance.player;
         PlayerRef = GameObject.Find("player");
     }
 
