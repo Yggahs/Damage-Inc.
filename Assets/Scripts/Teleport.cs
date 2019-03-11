@@ -3,23 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Teleport : MonoBehaviour {
+    public GameObject TeleportMenu;
     public bool discovered = false;
     GameObject[] Teleporters = new GameObject[5];
     Vector3[] TeleporterPosition = new Vector3[5];
     int i = 0;
+    int TeleID = 0;
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         Teleporters = GameObject.FindGameObjectsWithTag("Teleporter");
-        
-        //for (i=0; i <= 1; i++)
-        //{
-            
-        //}
-		//foreach(GameObject Teleporter in Teleporters)
-  //      {
-  //          TeleporterPosition[i] = Teleporter.transform.position;
-  //          i++;
-  //      }
 	}
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,9 +30,15 @@ public class Teleport : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-
-                collision.gameObject.transform.position = Teleporters[0].transform.position;
+                TeleportMenu.SetActive(true);
+                //set teleport menu active
+                //TeleportToTarget(collision, TeleID);
             }
         }
+    }
+
+    public void TeleportToTarget(Collider2D collision,int TeleID)
+    {
+            collision.gameObject.transform.position = Teleporters[TeleID].transform.position;
     }
 }

@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 50635742175031284}
   - component: {fileID: 58460257086037760}
   - component: {fileID: 114546474124088308}
+  - component: {fileID: 95005239349410180}
   m_Layer: 0
   m_Name: SprintingEnemy
   m_TagString: Enemy
@@ -162,6 +163,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!95 &95005239349410180
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1599921754794688}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9c29435347f279e41bcb2b7e1a41f414, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114546474124088308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,6 +202,7 @@ MonoBehaviour:
   BulletRef: {fileID: 1569988719728776, guid: f21fb5235fa667545acd2359826054b0, type: 2}
   EnemyBulletRef: {fileID: 1542854073192616, guid: 27f68c0acd2a6f34c944039b2f26ef00,
     type: 2}
+  Target: {fileID: 0}
   fireRate: 1
 --- !u!212 &212616815428187356
 SpriteRenderer:

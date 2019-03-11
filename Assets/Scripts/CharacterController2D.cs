@@ -149,7 +149,6 @@ public class CharacterController2D : MonoBehaviour
                 healthImages[i].enabled = false;
             } else healthImages[i].enabled = true;
         }
-        //healthSprites healthSprites.Length[i];
     }
 
     private void UpdateHearts()
@@ -189,7 +188,6 @@ public class CharacterController2D : MonoBehaviour
             Debug.DrawLine(m_ClimbingCheckRight.position, m_ClimbingCheckRight.position + transform.right * 0.07f, Color.yellow);
             if (hit1)
             {
-                //Debug.Log("va");
                 climbing = true;
                 GetComponent<Rigidbody2D>().drag = 10;
                 if (Input.GetButtonDown("Jump") && climbing &&!m_Grounded)
@@ -199,7 +197,6 @@ public class CharacterController2D : MonoBehaviour
             }
             else
             {
-            //    Debug.Log("non va");
                 climbing = false;
                 GetComponent<Rigidbody2D>().drag = 0;
             }
@@ -210,7 +207,6 @@ public class CharacterController2D : MonoBehaviour
             Debug.DrawLine(m_ClimbingCheckLeft.position, m_ClimbingCheckLeft.position + (-transform.right * 0.07f), Color.green);
             if (hit1)
             {
-               // Debug.Log("va");
                 climbing = true;
                 GetComponent<Rigidbody2D>().drag = 10;
                 if (Input.GetButtonDown("Jump") && climbing && !m_FacingRight && !m_Grounded)

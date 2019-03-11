@@ -99,6 +99,7 @@ public class Enemy : MonoBehaviour {
     // turning rigidbody to kinematic in crawler script
     public void Crawl()
     {
+        
         RaycastHit2D hit = Physics2D.Raycast(ActualGroundDetection.position, -transform.up, 0.10f);
         RaycastHit2D hit2 = Physics2D.Raycast(groundDetection.position, -transform.up, 0.3f);
         RaycastHit2D hit3 = Physics2D.Raycast(groundDetection.position, transform.right, 0.2f);
