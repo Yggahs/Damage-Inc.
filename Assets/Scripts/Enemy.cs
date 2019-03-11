@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour {
     public GameObject PlayerRef;
     public GameObject BulletRef;
     public GameObject EnemyBulletRef;
+    public GameObject Target;
     public float fireRate;
     float nextFire;
     bool inGeometry = false;
@@ -122,8 +123,10 @@ public class Enemy : MonoBehaviour {
         horizontalMove = Vector2.right * speed * Time.deltaTime;
         transform.Translate(horizontalMove);
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 1f);
-        Debug.DrawLine(groundDetection.position,groundDetection.position+ -groundDetection.up* 1f,Color.red);
-        if (groundInfo.collider == false)
+        RaycastHit2D WallInfo = Physics2D.Raycast(groundDetection.position, groundDetection.right, 0.07f);
+        //Debug.DrawLine(groundDetection.position,groundDetection.position+ -groundDetection.up* 1f,Color.red);
+        //Debug.DrawLine(groundDetection.position, groundDetection.position + groundDetection.right * 1f, Color.green);
+        if (groundInfo.collider == false || WallInfo)
         {
             
             if (movingRight == true)
@@ -147,7 +150,7 @@ public class Enemy : MonoBehaviour {
         {
             if (Time.time > nextFire)
             {
-                Instantiate(EnemyBulletRef, transform.position, transform.rotation,transform);
+                Instantiate(EnemyBulletRef, transform.position, Quaternion.identity,transform);
                 nextFire = Time.time + fireRate;
             }
         }        
@@ -174,23 +177,16 @@ public class Enemy : MonoBehaviour {
         if (collision.gameObject == PlayerRef)
         {
             TargetAcquired = true;
-           
+            Target = collision.gameObject;         
         }
     }
-
-    //    private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject == PlayerRef)
-    //    {
-    //        TargetAcquired = true;
-    //    }        
-    //}
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject == PlayerRef)
         {
             TargetAcquired = false;
+            Target = null;
         }
         
     }
@@ -204,7 +200,7 @@ public class Enemy : MonoBehaviour {
     }
 
 
-    public void DealDamage()
+    public void DealDamage(int damage)
 	{
         Debug.Log("I am dealing "+ damage +" damage");
         PlayerRef.GetComponent<CharacterController2D>().health -= damage;
@@ -221,14 +217,14 @@ public class Enemy : MonoBehaviour {
         PlayerRef = GameObject.Find("player")/*.GetComponent<CharacterController2D>()*/;
     }
 
-    void TakeDamage(int DamageTaken)
+    public void TakeDamage(int DamageTaken)
     {
-        if (GameObject.FindGameObjectWithTag("GameController").GetComponent<CharacterController2D>().invincible == false)
-        {
+        //if (GameObject.FindGameObjectWithTag("GameController").GetComponent<CharacterController2D>().invincible == false)
+        //{
             health -= DamageTaken;
             Debug.Log("My health is now " + health);
-        }   
-        else Debug.Log("I AM BULLETPROOF");
+        //}   
+        //else Debug.Log("I AM BULLETPROOF");
 
     }
 }
