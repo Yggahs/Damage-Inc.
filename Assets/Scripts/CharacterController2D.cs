@@ -5,14 +5,18 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 public class CharacterController2D : MonoBehaviour
 {
-    public int health = 20, maxHealth = 20, selectedWeapon = 1, damage = 1;
-    public GameObject life1, life2, life3, life4, life5, emptyLife1, emptyLife2, emptyLife3, emptyLife4, emptyLife5;
+    public int health = 20, maxHealth, selectedWeapon = 1, damage = 1, hearts = 3;
+    public GameObject PauseMenu, GameOverMenu;
     public float runSpeed = 40f;
     float horizontalMove = 0f, timer;
-    bool crouch = false, climbing = false;
-    public bool invincible = false;
+    private bool crouch = false, climbing = false, GameOver = false;
+    public bool invincible = false, pause = false;
     public Image ActiveWeaponSprite;
     public Sprite BSprite1, BSprite2, BSprite3;
+    public Image[] healthImages;
+    public Sprite[] healthSprites;
+
+    private int maxHeartAmount = 9, healthPerHeart = 4;
 
 
 
@@ -52,6 +56,12 @@ public class CharacterController2D : MonoBehaviour
 
     public Animator animator;
 
+    private void Start()
+    {
+        maxHealth = maxHeartAmount * healthPerHeart;
+        Time.timeScale = 1;
+
+    }
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
@@ -61,19 +71,24 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
-
-        HealthDraw();
     }
 
 
     void Update()
     {
+        print(health);
         timer += Time.deltaTime;
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        WeaponSelect();
-        Crouch();
-        animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
-        animator.SetBool("IsFacingRight", m_FacingRight);
+        Pause();
+        EmptyHeartsManager();
+        UpdateHearts();
+        if (health < 0) health = 0;
+        if (GameOver == false)
+        {
+            GameOverCheck();
+        }
+
+
     }
 
     private void FixedUpdate()
@@ -92,10 +107,18 @@ public class CharacterController2D : MonoBehaviour
                     OnLandEvent.Invoke();
             }
         }
-        // Move our character
-        Move(horizontalMove * Time.fixedDeltaTime, crouch, m_Grounded);           
+
+        // Controll our character
+
+
+        Move(horizontalMove * Time.fixedDeltaTime, crouch, m_Grounded);
         Dash();
+        WeaponSelect();
+        Crouch();
         WallClimbing();
+        animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
+        animator.SetBool("IsFacingRight", m_FacingRight);
+
         if (horizontalMove > 0)
         {
             m_FacingRight = true;
@@ -103,6 +126,57 @@ public class CharacterController2D : MonoBehaviour
         else
         {
             m_FacingRight = false;
+        }
+    }
+
+    private void GameOverCheck()
+    {
+
+        if (health <= 0)
+        {
+            GameOver = true;
+            Time.timeScale = 0;
+            GameOverMenu.SetActive(true);
+        }
+    }
+
+    private void EmptyHeartsManager()
+    {
+        for (int i = 0; i < maxHeartAmount; i++)
+        {
+            if (hearts <= i)
+            {
+                healthImages[i].enabled = false;
+            } else healthImages[i].enabled = true;
+        }
+    }
+
+    private void UpdateHearts()
+    {
+        bool empty = false;
+        int i = 0;
+
+        foreach (Image image in healthImages)
+        {
+            if(empty)
+            {
+                image.sprite = healthSprites[0];
+            } else
+            {
+                i++;
+                if(health >= i * healthPerHeart)
+                {
+                    image.sprite = healthSprites[healthSprites.Length - 1];
+                }
+                else
+                {
+                    int currentHeartHealth = (int)(healthPerHeart - (healthPerHeart * i - health));
+                    int healthPerImage = healthPerHeart / (healthSprites.Length - 1);
+                    int imageIndex = currentHeartHealth / healthPerImage;
+                    image.sprite = healthSprites[imageIndex];
+                    empty = true;
+                }
+            }
         }
     }
 
@@ -114,7 +188,6 @@ public class CharacterController2D : MonoBehaviour
             Debug.DrawLine(m_ClimbingCheckRight.position, m_ClimbingCheckRight.position + transform.right * 0.07f, Color.yellow);
             if (hit1)
             {
-                //Debug.Log("va");
                 climbing = true;
                 GetComponent<Rigidbody2D>().drag = 10;
                 if (Input.GetButtonDown("Jump") && climbing &&!m_Grounded)
@@ -124,7 +197,6 @@ public class CharacterController2D : MonoBehaviour
             }
             else
             {
-            //    Debug.Log("non va");
                 climbing = false;
                 GetComponent<Rigidbody2D>().drag = 0;
             }
@@ -135,7 +207,6 @@ public class CharacterController2D : MonoBehaviour
             Debug.DrawLine(m_ClimbingCheckLeft.position, m_ClimbingCheckLeft.position + (-transform.right * 0.07f), Color.green);
             if (hit1)
             {
-               // Debug.Log("va");
                 climbing = true;
                 GetComponent<Rigidbody2D>().drag = 10;
                 if (Input.GetButtonDown("Jump") && climbing && !m_FacingRight && !m_Grounded)
@@ -327,6 +398,25 @@ public class CharacterController2D : MonoBehaviour
         
     }
 
+    private void Pause()
+    {
+        if(Input.GetButtonDown("Pause/Menu Button"))
+        {
+            if (Time.timeScale == 1)
+            {
+                Time.timeScale = 0;
+                PauseMenu.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1;
+                PauseMenu.SetActive(false);
+            }
+        }
+    }
+
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Enemy")
@@ -336,7 +426,6 @@ public class CharacterController2D : MonoBehaviour
             {
                 StartCoroutine(Invincible());
                 print(health);
-                HealthDamage();
             }
         }
 
@@ -351,75 +440,12 @@ public class CharacterController2D : MonoBehaviour
             {
                 StartCoroutine(Invincible());
                 //print(health);
-                HealthDamage();
+
             }
         }
 
     }
 
-    //all hearts receive a single point of damage, no matter the actual damage dealt. you should have multiplied 0.25 * the damage received.
-    private void HealthDamage()
-    {
-        if (health <= 20 && health > 16)
-        {
-            life5.GetComponent<Image>().fillAmount -= 0.25f;
-        }
-        else if (health <= 16 && health > 12)
-        {
-            life4.GetComponent<Image>().fillAmount -= 0.25f;
-        }
-        else if (health <= 12 && health > 8)
-        {
-            life3.GetComponent<Image>().fillAmount -= 0.25f;
-        }
-        else if (health <= 8 && health > 4)
-        {
-            life2.GetComponent<Image>().fillAmount -= 0.25f;
-        }
-        else
-        {
-            life1.GetComponent<Image>().fillAmount -= 0.25f;
-        }
-    }
-
-    private void HealthDraw()
-    {
-        switch (maxHealth)
-        {
-            case 4:
-                life5.SetActive(false);
-                life4.SetActive(false);
-                life3.SetActive(false);
-                life2.SetActive(false);
-                emptyLife5.SetActive(false);
-                emptyLife4.SetActive(false);
-                emptyLife3.SetActive(false);
-                emptyLife2.SetActive(false);
-                break;
-
-            case 8:
-                life5.SetActive(false);
-                life4.SetActive(false);
-                life3.SetActive(false);
-                emptyLife5.SetActive(false);
-                emptyLife4.SetActive(false);
-                emptyLife3.SetActive(false);
-                break;
-
-            case 12:
-                life5.SetActive(false);
-                life4.SetActive(false);
-                emptyLife5.SetActive(false);
-                emptyLife4.SetActive(false);
-                break;
-
-            case 16:
-                life5.SetActive(false);
-                emptyLife5.SetActive(false);
-                
-                break;
-        }
-    }
 
     private IEnumerator Invincible()
     {

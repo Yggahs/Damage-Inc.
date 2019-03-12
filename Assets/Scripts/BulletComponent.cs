@@ -19,10 +19,8 @@ public class BulletComponent : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        Vector2 position = transform.position;
-        position.x += xspeed;
-        position.y += yspeed;
-        transform.position = position;
+
+
         timer += Time.deltaTime;
 
 
@@ -39,9 +37,18 @@ public class BulletComponent : MonoBehaviour {
         }
     }
 
+    private void FixedUpdate()
+    {
+        Vector2 position = transform.position;
+        position.x += xspeed;
+        position.y += yspeed;
+        transform.position = position;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Enemy")
+        
+        if (other.tag == "Enemy" && other == other.GetComponent<BoxCollider2D>())
         {
             other.GetComponent<Enemy>().TakeDamage(Damage);
             Destroy(gameObject);   
