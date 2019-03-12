@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf9598409c8eca14bbfe5cd9970fa122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TeleportMenu: {fileID: 1772994283930564, guid: cdab18452eb90de43914362044838192,
+  TeleportMenu: {fileID: 1443283945671320, guid: dcc32fb112215274e909530ac5f13fde,
     type: 2}
   discovered: 0
 --- !u!212 &212091891449964668

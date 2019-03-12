@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Teleport : MonoBehaviour {
+    Canvas canvas;
     public GameObject TeleportMenu;
     public bool discovered = false;
+    GameObject Traveller;
     GameObject[] Teleporters = new GameObject[5];
     Vector3[] TeleporterPosition = new Vector3[5];
     int i = 0;
@@ -13,14 +15,14 @@ public class Teleport : MonoBehaviour {
 	void Start ()
     {
         Teleporters = GameObject.FindGameObjectsWithTag("Teleporter");
-	}
+        canvas = FindObjectOfType<Canvas>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name.Equals("player") && !discovered)
         {
             discovered = true;
-            Debug.Log("You discovered a teleporter!");
         }
     }
 
@@ -28,17 +30,24 @@ public class Teleport : MonoBehaviour {
     {
         if (collision.gameObject.name.Equals("player") && discovered)
         {
+            Traveller = collision.gameObject;
             if (Input.GetKeyDown(KeyCode.W))
             {
-                TeleportMenu.SetActive(true);
-                //set teleport menu active
-                //TeleportToTarget(collision, TeleID);
+                Instantiate(TeleportMenu,transform.position,Quaternion.identity,canvas.transform);               
             }
         }
     }
 
-    public void TeleportToTarget(Collider2D collision,int TeleID)
+    public void TeleportToTarget(GameObject Traveller)
     {
-            collision.gameObject.transform.position = Teleporters[TeleID].transform.position;
+            TeleID = 1;
+            Traveller.transform.position = Teleporters[TeleID].transform.position;
+            Destroy(TeleportMenu.gameObject);
     }
+
+    public void ReturnToGame()
+    {
+        Destroy(TeleportMenu.gameObject);
+    }
+    
 }
