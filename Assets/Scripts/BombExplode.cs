@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BombExplode : MonoBehaviour {
+
+
+
     public GameObject Explosion;
     float time = 0f;
+
+
+
+
     // Use this for initialization
     private void Update()
     {

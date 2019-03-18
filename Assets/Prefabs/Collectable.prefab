@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1625976035393706}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4609704, y: -1.0738884, z: 0}
+  m_LocalPosition: {x: 13.567826, y: -15.023168, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -68,9 +68,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f730572993d6c346a2f636dc6ce48b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: 1
+  Item: 7
   Weapon2Ammo_1: {fileID: 21300000, guid: 01278755d81b8f649911c99a4804bd47, type: 3}
   Weapon3Ammo_2: {fileID: 21300000, guid: d388bb0fe0ffaa84eb9d41eb8418dde2, type: 3}
+  HealthRefill_3: {fileID: 21300000, guid: db4793878a1dd0b46bf582bd727cf9b9, type: 3}
+  HeartsIncrease_4: {fileID: 21300000, guid: 5d5c4b1c8651e1141b5139928c72fc53, type: 3}
+  UnlockWeapon2_5: {fileID: 21300000, guid: 01278755d81b8f649911c99a4804bd47, type: 3}
+  UnlockWeapon3_6: {fileID: 21300000, guid: d388bb0fe0ffaa84eb9d41eb8418dde2, type: 3}
+  UnlockBombs_7: {fileID: 21300000, guid: fe17e8bf4a9969b4789db5c0b53c345e, type: 3}
+  BombsRefill_8: {fileID: 21300000, guid: bcdcda345efd16f418f004d741dc89b2, type: 3}
+  Player: {fileID: 1436082164116598, guid: 2faa2a8a4b7bc654fac5662a46591d43, type: 2}
 --- !u!212 &212569388142417612
 SpriteRenderer:
   m_ObjectHideFlags: 1

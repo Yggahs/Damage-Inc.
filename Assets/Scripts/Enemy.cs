@@ -18,8 +18,8 @@ public class Enemy : MonoBehaviour {
     public float fireRate;
     float nextFire;
     bool inGeometry = false;
-    bool TargetAcquired = false;
-    Vector3 targetPostion;
+    public bool TargetAcquired = false;
+    public Vector3 targetPostion, facing;
 
 
 
@@ -56,7 +56,8 @@ public class Enemy : MonoBehaviour {
         {
                 transform.position = Vector2.MoveTowards(transform.position, PlayerRef.transform.position, (speed * 2) * Time.deltaTime);
                 LoungeAtPlayer(distance,direction);
-        }        
+        }
+        facing = direction;
     }
 
     public void Fly()
