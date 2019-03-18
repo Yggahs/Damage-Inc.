@@ -5,18 +5,18 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 public class CharacterController2D : MonoBehaviour
 {
-    public int health = 20, maxHealth, selectedWeapon = 1, damage = 1, hearts = 3;
+    public int health = 12, maxHealth, selectedWeapon = 1, damage = 1, hearts = 3;
     public GameObject PauseMenu, GameOverMenu;
     public float runSpeed = 40f;
     float horizontalMove = 0f, timer;
     private bool crouch = false, climbing = false, GameOver = false;
-    public bool invincible = false, pause = false;
+    public bool invincible = false, pause = false, weapon2Unlocked = false, weapon3Unlocked = false;
     public Image ActiveWeaponSprite;
     public Sprite BSprite1, BSprite2, BSprite3;
     public Image[] healthImages;
     public Sprite[] healthSprites;
 
-    private int maxHeartAmount = 9, healthPerHeart = 4;
+    public int maxHeartAmount = 9, healthPerHeart = 4;
 
 
 
@@ -58,7 +58,8 @@ public class CharacterController2D : MonoBehaviour
 
     private void Start()
     {
-        maxHealth = maxHeartAmount * healthPerHeart;
+        maxHealth = hearts * healthPerHeart;
+        health = maxHealth;
         Time.timeScale = 1;
 
     }
@@ -76,7 +77,7 @@ public class CharacterController2D : MonoBehaviour
 
     void Update()
     {
-        //print(health);
+
         timer += Time.deltaTime;
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         Pause();
@@ -108,9 +109,7 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        // Controll our character
-
-
+        // Control our character
         Move(horizontalMove * Time.fixedDeltaTime, crouch, m_Grounded);
         Dash();
         WeaponSelect();
@@ -300,7 +299,7 @@ public class CharacterController2D : MonoBehaviour
         //}
     }
 
-    private void WeaponSelect()
+    public void WeaponSelect()
     {
         var WeaponScriptVar = GetComponent<WeaponsScript>();
 
@@ -313,14 +312,20 @@ public class CharacterController2D : MonoBehaviour
 
         if (Input.GetButtonDown("Select Weapon 2"))
         {
-            selectedWeapon = 2;
-            ActiveWeaponSprite.sprite = BSprite2;
+            if (weapon2Unlocked)
+            {
+                selectedWeapon = 2;
+                ActiveWeaponSprite.sprite = BSprite2;
+            }
         }
 
         if (Input.GetButtonDown("Select Weapon 3"))
         {
-            selectedWeapon = 3;
-            ActiveWeaponSprite.sprite = BSprite3;
+            if (weapon3Unlocked)
+            {
+                selectedWeapon = 3;
+                ActiveWeaponSprite.sprite = BSprite3;
+            }
         }
 
         //Weapon Selection
@@ -425,7 +430,6 @@ public class CharacterController2D : MonoBehaviour
             if (invincible == false)
             {
                 StartCoroutine(Invincible());
-                print(health);
             }
         }
 
@@ -439,8 +443,6 @@ public class CharacterController2D : MonoBehaviour
             if (invincible == false)
             {
                 StartCoroutine(Invincible());
-                //print(health);
-
             }
         }
 
