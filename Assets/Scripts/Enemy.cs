@@ -23,21 +23,21 @@ public class Enemy : MonoBehaviour {
 
 
 
-    public void Burrow()
-    {
-        Vector3 heading = transform.position - PlayerRef.transform.position;
-        float distance = heading.magnitude;
+    //public void Burrow()
+    //{
+    //    Vector3 heading = transform.position - PlayerRef.transform.position;
+    //    float distance = heading.magnitude;
 
-        if (distance < 2f)
-        {
-            GetComponent<Rigidbody2D>().AddForce(transform.up);           
-        }
+    //    if (distance < 2f)
+    //    {
+    //        GetComponent<Rigidbody2D>().AddForce(transform.up);           
+    //    }
 
-        if (inGeometry)
-        {
+    //    //if (inGeometry)
+    //    //{
 
-        }
-    }
+    //    //}
+    //}
 
     public void LoungeAtPlayer(float distance,Vector3 direction)
     {
@@ -166,6 +166,10 @@ public class Enemy : MonoBehaviour {
         {
             inGeometry = true;
         }
+        if (collision.transform.name == "player")
+        {
+            DealDamage(damage);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -216,7 +220,7 @@ public class Enemy : MonoBehaviour {
     }
     private void Start()
     {
-        PlayerRef = GameObject.Find("player");
+        PlayerRef = GameObject.FindGameObjectWithTag("GameController");
     }
 
     public void TakeDamage(int DamageTaken)

@@ -76,7 +76,7 @@ public class CharacterController2D : MonoBehaviour
 
     void Update()
     {
-        print(health);
+        //print(health);
         timer += Time.deltaTime;
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         Pause();
