@@ -8,11 +8,11 @@ public class Explosion : MonoBehaviour {
     GameObject PlayerRef;
     Enemy Enemy;
     Tilemap tilemap;
+    int damage = 4;
 
- 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        int damage = 3;
+        
         Vector3 hitPosition = Vector3.zero;
         //Debug.Log(collision.transform.name);
         if (collision.gameObject.tag == "Destructible")
@@ -28,7 +28,20 @@ public class Explosion : MonoBehaviour {
             //Debug.Log("lolstay");
             Destroy(collision.gameObject);
         }
-        else if (collision.gameObject == PlayerRef)
+        //else if (collision.gameObject == PlayerRef)
+        //{
+        //    PlayerRef.GetComponent<CharacterController2D>().health -= damage;
+        //}
+        //else if (collision.gameObject.tag == "Enemy")
+        //{
+        //    collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+        //}
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject == PlayerRef)
         {
             PlayerRef.GetComponent<CharacterController2D>().health -= damage;
         }
@@ -36,9 +49,7 @@ public class Explosion : MonoBehaviour {
         {
             collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
         }
-
     }
-
     //private void OnCollisionEnter2D(Collision2D collision)
     //{
     //    Vector3 hitPosition = Vector3.zero;

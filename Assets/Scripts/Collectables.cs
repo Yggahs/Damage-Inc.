@@ -6,7 +6,7 @@ public class Collectables : MonoBehaviour
 {
     public int Item;
     public Sprite Weapon2Ammo_1,Weapon3Ammo_2, HealthRefill_3, HeartsIncrease_4, UnlockWeapon2_5, UnlockWeapon3_6, UnlockBombs_7, BombsRefill_8;
-    public GameObject Player;
+    public GameObject Player, BombsUI;
 
     private void Start()
     {
@@ -111,6 +111,7 @@ public class Collectables : MonoBehaviour
                 if (DropBombScript.bombUnlocked == false)
                 {
                     DropBombScript.bombUnlocked = true;
+                    BombsUI.SetActive(true);
                     Destroy(gameObject);
                 }
                 break;

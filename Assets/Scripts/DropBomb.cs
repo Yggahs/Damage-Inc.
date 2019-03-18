@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DropBomb : MonoBehaviour {
     public GameObject Bomb;
     public int bombs = 5, maxBombs = 10;
     public bool bombUnlocked = false;
+    public Text BombsText;
+
+
 
     private void Update()
     {
@@ -23,6 +27,7 @@ public class DropBomb : MonoBehaviour {
             {
                 Instantiate(Bomb, gameObject.GetComponent<Transform>().position, Quaternion.identity);
                 bombs--;
+                BombsText.text = bombs.ToString() + "/" + maxBombs.ToString(); 
             }
         }
     }
