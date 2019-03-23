@@ -34,7 +34,7 @@ public class Sprinter : Enemy
 
 
 
-        print(TargetAcquired);
+        //print(TargetAcquired);
     }
 }
 

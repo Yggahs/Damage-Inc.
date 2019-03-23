@@ -47,8 +47,9 @@ public class BulletComponent : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        
-        if (other.tag == "Enemy" && other == other.GetComponent<BoxCollider2D>())
+        Enemy EnemyComponent = other.GetComponent<Enemy>();
+
+        if (EnemyComponent is Enemy && other == other.GetComponent<BoxCollider2D>())
         {
             other.GetComponent<Enemy>().TakeDamage(Damage);
             Destroy(gameObject);   

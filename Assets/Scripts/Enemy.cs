@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
-
     public int health;
     public float speed;
     public int damage;
@@ -21,8 +20,6 @@ public class Enemy : MonoBehaviour {
     public bool TargetAcquired = false;
     public Vector3 targetPostion, facing;
 
-
-
     //public void Burrow()
     //{
     //    Vector3 heading = transform.position - PlayerRef.transform.position;
@@ -39,13 +36,24 @@ public class Enemy : MonoBehaviour {
     //    //}
     //}
 
+    public void Boss_Arm(bool touched_ground)
+    {
+        transform.Translate(Vector3.down * Time.deltaTime*2f);
+        if (touched_ground)
+        {
+           transform.eulerAngles = new Vector3(-180, 0, 0);
+        }else if (touched_ground && transform.eulerAngles.y == -180)
+        {
+            transform.eulerAngles = new Vector3(180, 0, 0);
+        }
+    }
+
     public void LoungeAtPlayer(float distance,Vector3 direction)
     {
         if (distance < 0.5f && distance > 0.4f)
             {
                 GetComponent<Rigidbody2D>().AddForce(direction + (Vector3.up * 50f));
-            }  
-        
+            }          
     }
     public void Sprint()
     {     
@@ -63,8 +71,7 @@ public class Enemy : MonoBehaviour {
     public void Fly()
     {
         if (TargetAcquired)
-        {
-            
+        {            
             speed = 2.0f;
             transform.position = Vector2.MoveTowards(transform.position, PlayerRef.transform.position, speed * Time.deltaTime);
         }
@@ -166,6 +173,7 @@ public class Enemy : MonoBehaviour {
         if(collision.otherCollider.name == "Tilemap")
         {
             inGeometry = true;
+            
         }
         if (collision.transform.name == "player")
         {
