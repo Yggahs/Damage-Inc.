@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+  maxHealth: 3
   speed: 4
   damage: 2
   groundDetection: {fileID: 4674720519766158}

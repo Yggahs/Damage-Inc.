@@ -33,15 +33,15 @@ public class WeaponsScript : MonoBehaviour
                 if (i == firespeed)
                 {
                     GameObject go = Instantiate(bullet1, BulletExit.transform.position, Quaternion.identity);
-                    go.GetComponent<BulletComponent>().xspeed = 0.1f;
-                    go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().xspeed = 0.3f;
+                    go.GetComponent<BulletComponent>().yspeed = 0.3f;
                     i = 0;
                 }
             }
             else if (i == firespeed)
             {
                 GameObject go = Instantiate(bullet1, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = 0.1f;
+                go.GetComponent<BulletComponent>().xspeed = 0.3f;
                 i = 0;
             }
 
@@ -56,8 +56,8 @@ public class WeaponsScript : MonoBehaviour
                 if (i == firespeed)
                 {
                     GameObject go = Instantiate(bullet1, BulletExit.transform.position, Quaternion.identity);
-                    go.GetComponent<BulletComponent>().xspeed = -0.1f;
-                    go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().xspeed = -0.3f;
+                    go.GetComponent<BulletComponent>().yspeed = 0.3f;
                     i = 0;
                 }
             }
@@ -65,7 +65,7 @@ public class WeaponsScript : MonoBehaviour
             {
                 position.x -= .5f;
                 GameObject go = Instantiate(bullet1, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().xspeed = -0.1f;
+                go.GetComponent<BulletComponent>().xspeed = -0.3f;
                 i = 0;
             }
         }
@@ -77,7 +77,7 @@ public class WeaponsScript : MonoBehaviour
             {
                 position.y += .2f;
                 GameObject go = (GameObject)Instantiate(bullet1, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                go.GetComponent<BulletComponent>().yspeed = 0.3f;
                 i = 0;
             }
         }
@@ -89,7 +89,7 @@ public class WeaponsScript : MonoBehaviour
             {
                 position.y -= .5f;
                 GameObject go = (GameObject)Instantiate(bullet1, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().yspeed = -0.1f;
+                go.GetComponent<BulletComponent>().yspeed = -0.3f;
                 i = 0;
             }
         }
@@ -109,14 +109,14 @@ public class WeaponsScript : MonoBehaviour
                 {
 
                     GameObject go = Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
-                    go.GetComponent<BulletComponent>().xspeed = 0.1f;
-                    go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().xspeed = 0.3f;
+                    go.GetComponent<BulletComponent>().yspeed = 0.3f;
                     Weapon2Bullets--;
                 }
                 else
                 {
                     GameObject go = Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
-                    go.GetComponent<BulletComponent>().xspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().xspeed = 0.3f;
                     Weapon2Bullets--;
                 }
             }
@@ -128,15 +128,15 @@ public class WeaponsScript : MonoBehaviour
                 {
 
                     GameObject go = Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
-                    go.GetComponent<BulletComponent>().xspeed = -0.1f;
-                    go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().xspeed = -0.3f;
+                    go.GetComponent<BulletComponent>().yspeed = 0.3f;
                     Weapon2Bullets--;
                 }
                 else
                 {
                     position.x -= .5f;
                     GameObject go = Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
-                    go.GetComponent<BulletComponent>().xspeed = -0.1f;
+                    go.GetComponent<BulletComponent>().xspeed = -0.3f;
                     Weapon2Bullets--;
                 }
             }
@@ -145,7 +145,7 @@ public class WeaponsScript : MonoBehaviour
             {
                 position.y += .2f;
                 GameObject go = (GameObject)Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                go.GetComponent<BulletComponent>().yspeed = 0.3f;
                 Weapon2Bullets--;
             }
             //Shoot  Down
@@ -153,7 +153,7 @@ public class WeaponsScript : MonoBehaviour
             {
                 position.y -= .5f;
                 GameObject go = (GameObject)Instantiate(bullet2, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().yspeed = -0.1f;
+                go.GetComponent<BulletComponent>().yspeed = -0.3f;
                 Weapon2Bullets--;
             }
             
@@ -173,8 +173,8 @@ public class WeaponsScript : MonoBehaviour
                 {
 
                     GameObject go = Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
-                    go.GetComponent<BulletComponent>().xspeed = 0.1f;
-                    go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().xspeed = 0.3f;
+                    go.GetComponent<BulletComponent>().yspeed = 0.3f;
                     go.GetComponent<BulletComponent>().bulletType = 3;
                     Weapon3Bullets--;
 
@@ -182,7 +182,7 @@ public class WeaponsScript : MonoBehaviour
                 else
                 {
                     GameObject go = Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
-                    go.GetComponent<BulletComponent>().xspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().xspeed = 0.3f;
                     go.GetComponent<BulletComponent>().bulletType = 3;
                     Weapon3Bullets--;
                 }
@@ -195,8 +195,8 @@ public class WeaponsScript : MonoBehaviour
                 {
 
                     GameObject go = Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
-                    go.GetComponent<BulletComponent>().xspeed = -0.1f;
-                    go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                    go.GetComponent<BulletComponent>().xspeed = -0.3f;
+                    go.GetComponent<BulletComponent>().yspeed = 0.3f;
                     go.GetComponent<BulletComponent>().bulletType = 3;
                     Weapon3Bullets--;
 
@@ -205,7 +205,7 @@ public class WeaponsScript : MonoBehaviour
                 {
                     position.x -= .5f;
                     GameObject go = Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
-                    go.GetComponent<BulletComponent>().xspeed = -0.1f;
+                    go.GetComponent<BulletComponent>().xspeed = -0.3f;
                     go.GetComponent<BulletComponent>().bulletType = 3;
                     Weapon3Bullets--;
                 }
@@ -215,7 +215,7 @@ public class WeaponsScript : MonoBehaviour
             {
                 position.y += .2f;
                 GameObject go = (GameObject)Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().yspeed = 0.1f;
+                go.GetComponent<BulletComponent>().yspeed = 0.3f;
                 go.GetComponent<BulletComponent>().bulletType = 3;
                 Weapon3Bullets--;
             }
@@ -224,7 +224,7 @@ public class WeaponsScript : MonoBehaviour
             {
                 position.y -= .5f;
                 GameObject go = (GameObject)Instantiate(bullet3, BulletExit.transform.position, Quaternion.identity);
-                go.GetComponent<BulletComponent>().yspeed = -0.1f;
+                go.GetComponent<BulletComponent>().yspeed = -0.3f;
                 go.GetComponent<BulletComponent>().bulletType = 3;
                 Weapon3Bullets--;
             }
