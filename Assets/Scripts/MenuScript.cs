@@ -22,6 +22,7 @@ public class MenuScript : MonoBehaviour
     public void RestartLevel()
     {
         Player.GetComponent<CharacterController2D>().OnRespawn();
+        Time.timeScale = 1;
         
     }
 }
