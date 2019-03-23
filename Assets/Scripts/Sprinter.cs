@@ -6,6 +6,7 @@ public class Sprinter : Enemy
 {
     Animator animatore;
     private bool animator;
+    
 
     private void Awake()
     {
@@ -31,10 +32,6 @@ public class Sprinter : Enemy
 
         animatore.SetBool("isFacingRight", animator);
         animatore.SetBool("TargetAcquired", TargetAcquired);
-
-
-
-        //print(TargetAcquired);
     }
 }
 

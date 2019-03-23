@@ -5,18 +5,23 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 public class CharacterController2D : MonoBehaviour
 {
-    public int health = 12, maxHealth, selectedWeapon = 1, damage = 1, hearts = 3;
-    public GameObject PauseMenu, GameOverMenu;
+    public int health = 12, maxHealth, selectedWeapon = 1, damage = 1, hearts = 3, maxHeartAmount = 9, healthPerHeart = 4;
     public float runSpeed = 40f;
-    float horizontalMove = 0f, timer;
-    private bool crouch = false, climbing = false, GameOver = false;
     public bool invincible = false, pause = false, weapon2Unlocked = false, weapon3Unlocked = false;
     public Image ActiveWeaponSprite;
     public Sprite BSprite1, BSprite2, BSprite3;
+    public GameObject PauseMenu, GameOverMenu;
+
+    float horizontalMove = 0f, timer;
+    private bool crouch = false, climbing = false, GameOver = false;
+    private float closestCheckpointDistance;
+    private int closestCheckpointIndex;
+
+    //Arrays
     public Image[] healthImages;
     public Sprite[] healthSprites;
+    public GameObject[] ConsumablesArray, EnemiesArray, CheckPointsArray;
 
-    public int maxHeartAmount = 9, healthPerHeart = 4;
 
 
 
@@ -420,7 +425,42 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    public void OnRespawn()
+    {
+        
 
+        //Respawn Consumables
+        for (var i = 0; i < ConsumablesArray.Length; i++)
+        {
+            ConsumablesArray[i].SetActive(true);
+        }
+
+        //Respawn Enemies
+        for (var i = 0; i < EnemiesArray.Length; i++)
+        {
+            EnemiesArray[i].GetComponent<Enemy>().health = EnemiesArray[i].GetComponent<Enemy>().maxHealth;
+            EnemiesArray[i].SetActive(true);
+        }
+
+        //Move the Player to the closest Checkpoint
+        closestCheckpointDistance = 1000;
+        for (var i = 0; i < CheckPointsArray.Length; i++)
+        {
+
+            if(Vector3.Distance(transform.position, CheckPointsArray[i].transform.position) < closestCheckpointDistance)
+            {
+                closestCheckpointDistance = Vector3.Distance(transform.position, CheckPointsArray[i].transform.position);
+                closestCheckpointIndex = i;
+            }
+
+            
+        }
+        transform.position = CheckPointsArray[closestCheckpointIndex].transform.position;
+
+        //Refill Player Health
+        health = maxHealth;
+
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

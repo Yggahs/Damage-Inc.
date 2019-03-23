@@ -24,11 +24,11 @@ public class BulletComponent : MonoBehaviour {
         timer += Time.deltaTime;
 
 
-        //Logic for Boomerang shot
+        //Logic for Boomerang Return
         if (bulletType == 3)
         {
             transform.Rotate(new Vector3(0, 0, 20));
-            if (timer > 0.5 && timer < 0.55)
+            if (timer > 0.8 && timer < 0.85)
             {
                 GetComponent<BulletComponent>().yspeed = GetComponent<BulletComponent>().yspeed * -1;
                 GetComponent<BulletComponent>().xspeed = GetComponent<BulletComponent>().xspeed * -1;
@@ -52,7 +52,10 @@ public class BulletComponent : MonoBehaviour {
         if (EnemyComponent is Enemy && other == other.GetComponent<BoxCollider2D>())
         {
             other.GetComponent<Enemy>().TakeDamage(Damage);
-            Destroy(gameObject);   
+            if (bulletType != 3)
+            {              
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    public GameObject PauseMenu;
+    public GameObject PauseMenu, Player;
+   
 
     public void ExitGame()
     {
@@ -20,6 +21,7 @@ public class MenuScript : MonoBehaviour
 
     public void RestartLevel()
     {
-        SceneManager.LoadScene("SampleScene");
+        Player.GetComponent<CharacterController2D>().OnRespawn();
+        
     }
 }

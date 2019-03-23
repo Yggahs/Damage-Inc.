@@ -193,6 +193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 3
+  maxHealth: 3
   speed: 1
   damage: 2
   groundDetection: {fileID: 4917497234765906}
@@ -204,6 +205,9 @@ MonoBehaviour:
     type: 2}
   Target: {fileID: 0}
   fireRate: 0
+  TargetAcquired: 0
+  targetPostion: {x: 0, y: 0, z: 0}
+  facing: {x: 0, y: 0, z: 0}
 --- !u!212 &212573552808661158
 SpriteRenderer:
   m_ObjectHideFlags: 1

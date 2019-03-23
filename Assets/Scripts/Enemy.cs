@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour {
-    public int health;
+
+    public int health, maxHealth;
     public float speed;
     public int damage;
     private bool movingRight;
@@ -211,11 +212,15 @@ public class Enemy : MonoBehaviour {
     {
         if (health <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
-
+    public void Respawn()
+    {
+        health = maxHealth;
+        gameObject.SetActive(true);
+    }
     public void DealDamage(int damage)
 	{
         Debug.Log("I am dealing "+ damage +" damage");
