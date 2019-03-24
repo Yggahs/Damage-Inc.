@@ -23,15 +23,15 @@ public class ArmBehaviour : Enemy {
         {
             if (movingDown == true)
             {
-                Instantiate(shockwaveL, new Vector3(transform.position.x - 1f, transform.position.y + 0.15f, transform.position.z), Quaternion.identity);
-                Instantiate(shockwaveR, new Vector3(transform.position.x + 1f, transform.position.y + 0.15f, transform.position.z), Quaternion.identity);
+                Instantiate(shockwaveL, new Vector3(transform.position.x - 0.8f, transform.position.y - 0.15f, transform.position.z), Quaternion.identity);
+                Instantiate(shockwaveR, new Vector3(transform.position.x + 0.8f, transform.position.y - 0.15f, transform.position.z), Quaternion.identity);
             }
             else
             {
-                Instantiate(shockwaveL, new Vector3(transform.position.x - 1f, transform.position.y - 0.15f, transform.position.z), Quaternion.identity);
-                Instantiate(shockwaveR, new Vector3(transform.position.x + 1f, transform.position.y - 0.15f, transform.position.z), Quaternion.identity);
+                Instantiate(shockwaveL, new Vector3(transform.position.x - 0.8f, transform.position.y + 0.15f, transform.position.z), Quaternion.identity);
+                Instantiate(shockwaveR, new Vector3(transform.position.x + 0.8f, transform.position.y + 0.15f, transform.position.z), Quaternion.identity);
             }
-            Debug.Log("dioca");
+            
         }
         movingDown = !movingDown;
     }

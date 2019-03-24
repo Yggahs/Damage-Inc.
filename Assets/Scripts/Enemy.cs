@@ -86,7 +86,6 @@ public class Enemy : MonoBehaviour {
             RandomMovementFly();
 
         }
-        //Debug.Log(TargetAcquired);
     }
 
     void RandomMovementFly()
@@ -104,10 +103,10 @@ public class Enemy : MonoBehaviour {
                 targetPostion = new Vector3(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f), 0);
             }
             resetTime = 3f;
-    }
+        }
     }
 
-    // doesn't currently work with concave angles
+    
     // turning rigidbody to kinematic in crawler script
     public void Crawl()
     {

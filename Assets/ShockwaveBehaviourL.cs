@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class ShockwaveBehaviourL : Enemy {
 
-    private void Update()
+    private void Awake()
     {
-        //Debug.Log("vivoL");
+        Destroy(gameObject, 4f);
+    }
+    private void Update()
+    {       
         transform.Translate(Vector2.left * Time.deltaTime);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
-       Destroy(gameObject);
+        Destroy(gameObject);
     }
 }

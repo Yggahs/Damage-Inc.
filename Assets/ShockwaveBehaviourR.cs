@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ShockwaveBehaviourR : Enemy
 {
-
+    private void Awake()
+    {
+        Destroy(gameObject, 4f);
+    }
     private void Update()
     {
         
