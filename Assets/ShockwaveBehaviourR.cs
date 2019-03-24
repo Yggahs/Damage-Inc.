@@ -7,7 +7,7 @@ public class ShockwaveBehaviourR : Enemy
 
     private void Update()
     {
-        Debug.Log("vivoR");
+        
         transform.Translate(Vector2.right * Time.deltaTime);
     }
 

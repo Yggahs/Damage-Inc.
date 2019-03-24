@@ -6,7 +6,7 @@ public class ShockwaveBehaviourL : Enemy {
 
     private void Update()
     {
-        Debug.Log("vivoL");
+        //Debug.Log("vivoL");
         transform.Translate(Vector2.left * Time.deltaTime);
     }
 

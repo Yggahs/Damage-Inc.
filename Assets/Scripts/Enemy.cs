@@ -37,15 +37,18 @@ public class Enemy : MonoBehaviour {
     //    //}
     //}
 
-    public void Boss_Arm(bool touched_ground)
+    public void Boss_Arm(bool movingDown)
     {
-        transform.Translate(Vector3.down * Time.deltaTime*2f);
-        if (touched_ground)
+        transform.Translate(Vector3.down * Time.deltaTime*2f);      
+        if (movingDown == true)
         {
-           transform.eulerAngles = new Vector3(-180, 0, 0);
-        }else if (touched_ground && transform.eulerAngles.y == -180)
+            transform.eulerAngles = new Vector3(-180, 0,0);
+            movingDown = false;
+        }
+        else
         {
-            transform.eulerAngles = new Vector3(180, 0, 0);
+            transform.eulerAngles = new Vector3(0, 0, 0);
+            movingDown = true;
         }
     }
 
@@ -140,8 +143,7 @@ public class Enemy : MonoBehaviour {
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, 1f);
         RaycastHit2D WallInfo = Physics2D.Raycast(groundDetection.position, groundDetection.right, 0.07f);
         if (groundInfo.collider == false || WallInfo)
-        {
-            
+        {            
             if (movingRight == true)
             {
                 transform.eulerAngles = new Vector3(0, -180, 0);
