@@ -9,6 +9,7 @@ TagManager:
   - ActiveWeapon
   - Bullet
   - Teleporter
+  - DialoguePoint
   layers:
   - Default
   - TransparentFX

@@ -249,7 +249,6 @@ public class WeaponsScript : MonoBehaviour
 
             case 3:
                 MagazineText.text = Weapon3Bullets.ToString() + "/" + Weapon3MaxBullets.ToString();
-                print("kek");
                 break;
 
             default:
