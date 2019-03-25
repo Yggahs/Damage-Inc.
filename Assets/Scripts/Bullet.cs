@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.name != "player")
         {
-            collision.SendMessage("TakeDamage", damage,SendMessageOptions.DontRequireReceiver);
+            collision.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
             Destroy(gameObject);
         }
     }

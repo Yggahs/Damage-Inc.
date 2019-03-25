@@ -420,6 +420,7 @@ public class CharacterController2D : MonoBehaviour
             else
             {
                 Time.timeScale = 1;
+                print("kek");
                 PauseMenu.SetActive(false);
             }
         }

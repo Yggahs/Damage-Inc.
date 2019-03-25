@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DialoguesScript : MonoBehaviour
 {
     public Text GuiText;
-    public GameObject DialogueScreen;
+    public GameObject DialogueScreen, PauseScreen;
     public List<string> DialoguesList;
 
     private void Start()
@@ -19,10 +19,14 @@ public class DialoguesScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Pause/Menu Button") || Input.GetKeyDown(KeyCode.Return))
+        if (DialogueScreen.gameObject.activeSelf)
         {
-            DialogueScreen.SetActive(false);
-            Time.timeScale = 1;
+            if (Input.GetButtonDown("Pause/Menu Button") || Input.GetKeyDown(KeyCode.Return))
+            {
+
+                DialogueScreen.SetActive(false);
+                Time.timeScale = 1;
+            }
         }
     }
 

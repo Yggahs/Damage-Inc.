@@ -6,7 +6,7 @@ public class _Bullet : MonoBehaviour {
     GameObject PlayerRef;
     GameObject EnemyRef;
 
-
+    
     private void DestroyBullet()
     {
         Destroy(gameObject, 1f);

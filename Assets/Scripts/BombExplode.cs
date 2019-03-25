@@ -19,7 +19,7 @@ public class BombExplode : MonoBehaviour {
         if (time >= 3f)
         {
             Debug.Log("EXPLOSION!");
-            Instantiate(Explosion, gameObject.GetComponent<Transform>().position, Quaternion.identity);
+            Instantiate(Explosion, GetComponent<Transform>().position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
