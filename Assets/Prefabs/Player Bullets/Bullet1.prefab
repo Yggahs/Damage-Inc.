@@ -71,6 +71,7 @@ MonoBehaviour:
   xspeed: 0
   yspeed: 0
   bulletType: 0
+  Explosion: {fileID: 1189406175317306, guid: 78e4cf795763a7d4da0d4f053b2770bc, type: 2}
 --- !u!212 &212534505680693964
 SpriteRenderer:
   m_ObjectHideFlags: 1
