@@ -753,12 +753,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3c55303429e13f4185ff008a7a35539, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dialogue1: Ma che ci faccio qui?
-  Dialogue2: "Bello sto computer, m\xF2 faccio una partita a Lol"
-  Dialogue3: "Ma quanto cazzo \xE8 fatta male sta bandiera"
+  Dialogue1: 
+  Dialogue2: 
+  Dialogue3: 
   Dialogue1Done: 0
   Dialogue2Done: 0
-  Dialogue3Done: 1
+  Dialogue3Done: 0
   Dialogues: []
   GuiText: {fileID: 695992722}
   DialogueScreen: {fileID: 1171787011}
@@ -1346,34 +1346,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 341716263}
   m_CullTransparentMesh: 0
---- !u!1 &349132472
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 349132473}
-  m_Layer: 0
-  m_Name: BossRoomEntrance
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &349132473
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 349132472}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.378, y: -2.079, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1328839859}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &365216193
 GameObject:
   m_ObjectHideFlags: 0
@@ -5408,75 +5380,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1326943693}
   m_CullTransparentMesh: 0
---- !u!1 &1328839856
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1328839859}
-  - component: {fileID: 1328839858}
-  - component: {fileID: 1328839857}
-  m_Layer: 0
-  m_Name: TeleportToBoss
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1328839857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1328839856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92ab6a8782dbd5e4d85bc4834fceb132, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerRef: {fileID: 186699496}
-  BossRoomEntrace: {fileID: 349132472}
---- !u!61 &1328839858
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1328839856}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
---- !u!4 &1328839859
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1328839856}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 74.17, y: 84.5, z: -2.78125}
-  m_LocalScale: {x: 7.6608, y: 4.9665923, z: 5.1072}
-  m_Children:
-  - {fileID: 349132473}
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1346791649
 GameObject:
   m_ObjectHideFlags: 0
