@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Collectables : MonoBehaviour
 {
     public int Item;
     public Sprite Weapon2Ammo_1,Weapon3Ammo_2, HealthRefill_3, BombsRefill_4, HeartsIncrease_5, UnlockWeapon2_6, UnlockWeapon3_7, UnlockBombs_8;
-    public GameObject Player, BombsUI;
+    public GameObject Player, BombsUI, CollectablesUI;
+    public TMP_Text Title, Description, InputButton;
     public bool RandomConsumable;
+    //public Tmpro Title, Description;
 
     private void Start()
     {
@@ -17,6 +21,8 @@ public class Collectables : MonoBehaviour
         }
 
         SetNameAppearance();
+        StartCoroutine(Glowing());
+        
     }
 
 
@@ -75,7 +81,10 @@ public class Collectables : MonoBehaviour
                     CharacterController2DScript.weapon2Unlocked = true;
                     CharacterController2DScript.selectedWeapon = 2;
                     CharacterController2DScript.ActiveWeaponSprite.sprite = CharacterController2DScript.BSprite2;
-                    gameObject.SetActive(false);
+                    Title.text = "Rocket Launcher Unlocked!";
+                    Description.text = "Feel like a gun is not the answer?" + System.Environment.NewLine + "Well you are right, but a Rocket Launcher definitely is!";
+                    InputButton.text = "2";
+                    StartCoroutine(GuiFeedback());
                 }
                 break;
             case 7:
@@ -84,15 +93,21 @@ public class Collectables : MonoBehaviour
                     CharacterController2DScript.weapon3Unlocked = true;
                     CharacterController2DScript.selectedWeapon = 3;
                     CharacterController2DScript.ActiveWeaponSprite.sprite = CharacterController2DScript.BSprite3;
-                    gameObject.SetActive(false);
+                    Title.text = "Boomerang Unlocked!";
+                    Description.text = "The boomerang is a versatile weapon that  hits all the enemy in a line...and comes back to give them double!";
+                    InputButton.text = "3";
+                    StartCoroutine(GuiFeedback());
                 }
                 break;
 
             case 8:
                 if (DropBombScript.bombs < DropBombScript.maxBombs)
                 {
-                    DropBombScript.bombs = DropBombScript.maxBombs;
-                    gameObject.SetActive(false);
+                    DropBombScript.bombs = DropBombScript.maxBombs;                
+                    Title.text = "Bombs Unlocked!";
+                    Description.text = "The bomb is a strong weapon that destroyes cracked walls, enemies or...yourself.";
+                    InputButton.text = "Q";
+                    StartCoroutine(GuiFeedback());                  
                 }
                 break;
         }
@@ -137,5 +152,29 @@ public class Collectables : MonoBehaviour
         }
     }
 
+    private IEnumerator Glowing()
+    {
 
+        while (true)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(0.3f);
+            GetComponent<SpriteRenderer>().enabled = true;
+            yield return new WaitForSeconds(0.6f);
+
+        }
+
+    }
+
+    private IEnumerator GuiFeedback()
+    {
+        CollectablesUI.SetActive(true);
+        Time.timeScale = 0;       
+        yield return new WaitForSecondsRealtime(6f); 
+        Time.timeScale = 1;
+        CollectablesUI.SetActive(false);
+        gameObject.SetActive(false);
+
+
+    }
 }
