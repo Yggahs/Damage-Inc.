@@ -427,8 +427,6 @@ public class CharacterController2D : MonoBehaviour
 
     public void OnRespawn()
     {
-        
-
         //Respawn Consumables
         for (var i = 0; i < ConsumablesArray.Length; i++)
         {
@@ -466,32 +464,27 @@ public class CharacterController2D : MonoBehaviour
     {
         if (collision.transform.tag == "Enemy")
         {
-
             if (invincible == false)
             {
                 StartCoroutine(Invincible());
             }
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "Bullet")
         {
-
             if (invincible == false)
             {
                 StartCoroutine(Invincible());
             }
         }
-
     }
 
 
     private IEnumerator Invincible()
     {
-
         invincible = true;
         GetComponent<SpriteRenderer>().enabled = false;
         yield return new WaitForSeconds(0.1f);

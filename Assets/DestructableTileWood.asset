@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d8fc7a75c8b7d34a9e013f91d1aa34a, type: 3}
-  m_Name: DestructableMetal
+  m_Name: DestructableTileWood
   m_EditorClassIdentifier: 
-  objectName: New Destructable Tile
+  objectName: Wood_Destructable
   destructable: 1
-  m_Sprite: {fileID: 21300008, guid: d8c13697426ab8c4b9394425df946da2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 14c3568696b4a7b4c80103adca1c7866, type: 3}
   m_Prefab: {fileID: 1823622064886022, guid: 9babee08264241541a26e33c3ec3af16, type: 2}
