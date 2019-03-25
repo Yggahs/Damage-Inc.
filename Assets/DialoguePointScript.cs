@@ -6,4 +6,6 @@ public class DialoguePointScript : MonoBehaviour
 {
     public bool Visited = false;
     public int DialogueNumberTriggered;
+
+
 }

@@ -7,13 +7,16 @@ public class BulletComponent : MonoBehaviour {
     public float xspeed = 0f;
     public float yspeed = 0f;
     public int bulletType;
+    public GameObject Explosion;
     float timer;
     int Damage = 1;
 
     // Use this for initialization
     void Start ()
     {
+        print(bulletType);
         Destroy(gameObject, 3f);
+        
 	}
 	
 	// Update is called once per frame
@@ -45,17 +48,50 @@ public class BulletComponent : MonoBehaviour {
         transform.position = position;
     }
 
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         Enemy EnemyComponent = other.GetComponent<Enemy>();
 
         if (EnemyComponent is Enemy && other == other.GetComponent<BoxCollider2D>())
         {
-            other.GetComponent<Enemy>().TakeDamage(Damage);
-            if (bulletType != 3)
-            {              
-                Destroy(gameObject);
+            switch (bulletType)
+            {
+                case 1:
+                    other.GetComponent<Enemy>().TakeDamage(Damage);
+                    Destroy(gameObject);
+                    break;
+                case 2:
+                    Instantiate(Explosion, GetComponent<Transform>().position, Quaternion.identity);
+                    Destroy(gameObject);
+                    break;
+                case 3:
+                    other.GetComponent<Enemy>().TakeDamage(Damage);
+                    break;
+            }
+        }
+
+
+        Debug.Log(other.gameObject.name);
+        if (other.gameObject.tag == "Destructible")
+        {
+            
+        }
+
+
+    }
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Destructible")
+        {
+            if (bulletType == 2)
+            {
+                print("kek");
+                Instantiate(Explosion, GetComponent<Transform>().position, Quaternion.identity);
+                Destroy(other.gameObject);
             }
         }
     }
+
+    
 }

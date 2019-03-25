@@ -5,13 +5,30 @@ using UnityEngine.UI;
 
 public class DialoguesScript : MonoBehaviour
 {
-
-    public string Dialogue1, Dialogue2, Dialogue3;
-    public bool Dialogue1Done, Dialogue2Done, Dialogue3Done;
-    public string[] Dialogues;
     public Text GuiText;
-    public GameObject DialogueScreen;
+    public GameObject DialogueScreen, PauseScreen;
+    public List<string> DialoguesList;
 
+    private void Start()
+    {
+        
+        DialoguesList.Add("*record scratches*");
+        DialoguesList.Add("Yup, that's me");
+        DialoguesList.Add("You might be wondering how I ended up here");
+    }
+
+    private void Update()
+    {
+        if (DialogueScreen.gameObject.activeSelf)
+        {
+            if (Input.GetButtonDown("Pause/Menu Button") || Input.GetKeyDown(KeyCode.Return))
+            {
+
+                DialogueScreen.SetActive(false);
+                Time.timeScale = 1;
+            }
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -23,19 +40,8 @@ public class DialoguesScript : MonoBehaviour
             {
                 DialogueScreen.SetActive(true);
                 dp.Visited = true;
-
-                switch (dp.DialogueNumberTriggered)
-                {
-                    case 1:
-                        GuiText.text = Dialogue1;
-                        break;
-                    case 2:
-                        GuiText.text = Dialogue2;
-                        break;
-                    case 3:
-                        GuiText.text = Dialogue3;
-                        break;
-                }
+                GuiText.text = DialoguesList[dp.DialogueNumberTriggered - 1];
+                Time.timeScale = 0;
             }
         }
 

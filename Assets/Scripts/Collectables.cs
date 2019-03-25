@@ -1,25 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Collectables : MonoBehaviour
 {
     public int Item;
     public Sprite Weapon2Ammo_1,Weapon3Ammo_2, HealthRefill_3, BombsRefill_4, HeartsIncrease_5, UnlockWeapon2_6, UnlockWeapon3_7, UnlockBombs_8;
-    public GameObject Player, BombsUI;
+    public GameObject Player;
+    private GameManager Manager;
     public bool RandomConsumable;
+    //public Tmpro Title, Description;
 
     private void Start()
     {
+
         if (RandomConsumable)
         {
             Item = Random.Range(1, 4);
         }
-
-        SetNameAppearance();
+        Manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        SetNameAppearance();      
+        StartCoroutine(Glowing());
     }
 
-
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var WeaponsScript = collision.GetComponent<WeaponsScript>();
@@ -56,7 +62,7 @@ public class Collectables : MonoBehaviour
                 if (DropBombScript.bombUnlocked == false)
                 {
                     DropBombScript.bombUnlocked = true;
-                    BombsUI.SetActive(true);
+                    Manager.BombsUI.SetActive(true);
                     gameObject.SetActive(false);
                 }
                 break;
@@ -75,7 +81,10 @@ public class Collectables : MonoBehaviour
                     CharacterController2DScript.weapon2Unlocked = true;
                     CharacterController2DScript.selectedWeapon = 2;
                     CharacterController2DScript.ActiveWeaponSprite.sprite = CharacterController2DScript.BSprite2;
-                    gameObject.SetActive(false);
+                    Manager.Title.text = "Rocket Launcher Unlocked!";
+                    Manager.Description.text = "Feel like a gun is not the answer?" + System.Environment.NewLine + "Well you are right, but a Rocket Launcher definitely is!";
+                    Manager.InputButton.text = "2";
+                    StartCoroutine(GuiFeedback());
                 }
                 break;
             case 7:
@@ -84,7 +93,10 @@ public class Collectables : MonoBehaviour
                     CharacterController2DScript.weapon3Unlocked = true;
                     CharacterController2DScript.selectedWeapon = 3;
                     CharacterController2DScript.ActiveWeaponSprite.sprite = CharacterController2DScript.BSprite3;
-                    gameObject.SetActive(false);
+                    Manager.Title.text = "Boomerang Unlocked!";
+                    Manager.Description.text = "The boomerang is a versatile weapon that  hits all the enemy in a line...and comes back to give them double!";
+                    Manager.InputButton.text = "3";
+                    StartCoroutine(GuiFeedback());
                 }
                 break;
 
@@ -92,7 +104,10 @@ public class Collectables : MonoBehaviour
                 if (DropBombScript.bombs < DropBombScript.maxBombs)
                 {
                     DropBombScript.bombs = DropBombScript.maxBombs;
-                    gameObject.SetActive(false);
+                    Manager.Title.text = "Bombs Unlocked!";
+                    Manager.Description.text = "The bomb is a strong weapon that destroyes cracked walls, enemies or...yourself.";
+                    Manager.InputButton.text = "Q";
+                    StartCoroutine(GuiFeedback());                  
                 }
                 break;
         }
@@ -137,5 +152,29 @@ public class Collectables : MonoBehaviour
         }
     }
 
+    private IEnumerator Glowing()
+    {
 
+        while (true)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(0.3f);
+            GetComponent<SpriteRenderer>().enabled = true;
+            yield return new WaitForSeconds(0.6f);
+
+        }
+
+    }
+
+    private IEnumerator GuiFeedback()
+    {
+        Manager.CollectablesUI.SetActive(true);
+        Time.timeScale = 0;       
+        yield return new WaitForSecondsRealtime(6f); 
+        Time.timeScale = 1;
+        Manager.CollectablesUI.SetActive(false);
+        gameObject.SetActive(false);
+
+
+    }
 }
