@@ -11,8 +11,10 @@ public class CharacterController2D : MonoBehaviour
     public Image ActiveWeaponSprite;
     public Sprite BSprite1, BSprite2, BSprite3;
     public GameObject PauseMenu, GameOverMenu;
+    public float backgroundSpeed;
 
     float horizontalMove = 0f, timer;
+    
     private bool crouch = false, climbing = false, GameOver = false;
     private float closestCheckpointDistance;
     private int closestCheckpointIndex;
@@ -78,13 +80,12 @@ public class CharacterController2D : MonoBehaviour
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
     }
-
-
     void Update()
     {
 
         timer += Time.deltaTime;
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        backgroundSpeed = Input.GetAxisRaw("Horizontal");
         Pause();
         EmptyHeartsManager();
         UpdateHearts();
@@ -96,7 +97,6 @@ public class CharacterController2D : MonoBehaviour
 
 
     }
-
     private void FixedUpdate()
     {
         bool wasGrounded = m_Grounded;
@@ -115,14 +115,16 @@ public class CharacterController2D : MonoBehaviour
         }
 
         // Control our character
-        Move(horizontalMove * Time.fixedDeltaTime, crouch, m_Grounded);
+        if (!crouch)
+        {
+            Move(horizontalMove * Time.fixedDeltaTime, crouch, m_Grounded);
+            animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
+        }
         Dash();
         WeaponSelect();
         Crouch();
         WallClimbing();
-        animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
-        animator.SetBool("IsFacingRight", m_FacingRight);
-
+        animator.SetBool("IsCrouching", crouch);
         if (horizontalMove > 0)
         {
             m_FacingRight = true;
@@ -131,8 +133,17 @@ public class CharacterController2D : MonoBehaviour
         {
             m_FacingRight = false;
         }
-    }
 
+        //if ((m_Rigidbody2D.velocity.x < 0f && m_FacingRight) || (m_Rigidbody2D.velocity.x > 0f && !m_FacingRight) && m_Rigidbody2D.velocity.x != 0)
+        //{
+        //    Flip();
+        //}
+        animator.SetBool("IsFacingRight", m_FacingRight);
+
+        //Debug.Log("X VELOCITY: " + m_Rigidbody2D.velocity.x);
+        //Debug.Log("HORIZONTAL MOVE: " + horizontalMove);
+        //Debug.Log("ACTUAL HORIZONTAL MOVE: " + Input.GetAxisRaw("Horizontal"));
+    }
     private void GameOverCheck()
     {
 
@@ -143,7 +154,6 @@ public class CharacterController2D : MonoBehaviour
             GameOverMenu.SetActive(true);
         }
     }
-
     private void EmptyHeartsManager()
     {
         for (int i = 0; i < maxHeartAmount; i++)
@@ -154,7 +164,6 @@ public class CharacterController2D : MonoBehaviour
             } else healthImages[i].enabled = true;
         }
     }
-
     private void UpdateHearts()
     {
         bool empty = false;
@@ -183,7 +192,6 @@ public class CharacterController2D : MonoBehaviour
             }
         }
     }
-
     private void WallClimbing()
     {
         if (m_FacingRight)
@@ -231,7 +239,6 @@ public class CharacterController2D : MonoBehaviour
        
 
     }
-
     public void Move(float move, bool crouch, bool m_Grounded)
     {
         // If crouching, check to see if the character can stand up
@@ -294,16 +301,8 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        //if (m_Rigidbody2D.velocity.x<0f)
-        //{
-        //    Flip();
-        //}
-        //else if (m_Rigidbody2D.velocity.x>0f)
-        //{
-        //    Flip();
-        //}
+        
     }
-
     public void WeaponSelect()
     {
         var WeaponScriptVar = GetComponent<WeaponsScript>();
@@ -354,7 +353,6 @@ public class CharacterController2D : MonoBehaviour
                 break;
         }
     }
-
     private void Dash()
     {
         //Dash Logic
@@ -379,35 +377,29 @@ public class CharacterController2D : MonoBehaviour
 
         }
     }
-
     private void Crouch()
     {
-
         //Crounch Command Logic
-        if (Input.GetButtonDown("Crouch"))
+        if (Input.GetButton("Crouch") && m_Grounded == true)
         {
             crouch = true;
+            animator.SetFloat("Horizontal", 0f);
+
         }
-        else if (Input.GetButtonUp("Crouch"))
+        else
         {
             crouch = false;
         }
     }
-
     private void Flip()
-    {
-        
+    {        
             // Switch the way the player is labelled as facing.
             m_FacingRight = !m_FacingRight;
-
-
             // Multiply the player's x local scale by -1.
             Vector3 theScale = transform.localScale;
             theScale.x *= -1;
-            transform.localScale = theScale;
-        
+            transform.localScale = theScale;        
     }
-
     private void Pause()
     {
         if(Input.GetButtonDown("Pause/Menu Button"))
@@ -424,7 +416,6 @@ public class CharacterController2D : MonoBehaviour
             }
         }
     }
-
     public void OnRespawn()
     {
         //Respawn Consumables
@@ -459,7 +450,6 @@ public class CharacterController2D : MonoBehaviour
         health = maxHealth;
 
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Enemy")
@@ -470,7 +460,6 @@ public class CharacterController2D : MonoBehaviour
             }
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.tag == "Bullet")
@@ -481,8 +470,6 @@ public class CharacterController2D : MonoBehaviour
             }
         }
     }
-
-
     private IEnumerator Invincible()
     {
         invincible = true;

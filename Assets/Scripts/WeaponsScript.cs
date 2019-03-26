@@ -13,13 +13,20 @@ public class WeaponsScript : MonoBehaviour
     public int Weapon1Bullets, Weapon2Bullets, Weapon3Bullets;
     public int Weapon1MaxBullets = 20, Weapon2MaxBullets = 20, Weapon3MaxBullets = 20;
     public Text MagazineText;
+    public Animator animator;
+
+    bool IsShootingUp;
+    bool IsShootingLeft;
+    bool IsShootingRight;
 
     private void Update()
     {
         timer += Time.deltaTime;
-
+        ShootingAnimations();
+        animator.SetBool("IsShootingRight", IsShootingRight);
+        animator.SetBool("IsShootingLeft", IsShootingLeft);
+        animator.SetBool("IsShootingUp", IsShootingUp);
     }
-
     public void Weapon1()
     {
         Vector2 position = transform.position;
@@ -95,7 +102,6 @@ public class WeaponsScript : MonoBehaviour
         }
         UpdateCanvasWeapon();
     }
-
     public void Weapon2()
     {
         Vector2 position = transform.position;
@@ -156,11 +162,10 @@ public class WeaponsScript : MonoBehaviour
                 go.GetComponent<BulletComponent>().yspeed = -0.3f;
                 Weapon2Bullets--;
             }
-            
+
         }
         UpdateCanvasWeapon();
     }
-
     public void Weapon3()
     {
         Vector2 position = transform.position;
@@ -228,11 +233,10 @@ public class WeaponsScript : MonoBehaviour
                 go.GetComponent<BulletComponent>().bulletType = 3;
                 Weapon3Bullets--;
             }
-            
+
         }
         UpdateCanvasWeapon();
     }
-    
     private void UpdateCanvasWeapon()
     {
         var selectedWeapon = GetComponent<CharacterController2D>().selectedWeapon;
@@ -256,4 +260,38 @@ public class WeaponsScript : MonoBehaviour
                 break;
         }
     }
+
+    void ShootingAnimations()
+    {
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            IsShootingRight = true;
+           
+        }
+        else
+        {
+            IsShootingRight = false;
+            
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            IsShootingLeft = true;
+        }
+        else
+        {
+            IsShootingLeft = false;
+        }
+
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            IsShootingUp = true;
+        }
+        else
+        {
+            IsShootingUp = false;
+        }
+
+    }
+
 }
