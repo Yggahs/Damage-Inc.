@@ -16,10 +16,14 @@ public class BackgroundScript : MonoBehaviour {
     private void Start()
     {
         cam = Camera.main;
-        Debug.Log(cam.name);
+       
     }
     void Update () {
+        
         transform.localScale = new Vector3(cam.orthographicSize * 2.0f * Screen.width / Screen.height, cam.orthographicSize * 2.0f, 0.1f);
-        bgRend.material.mainTextureOffset += new Vector2(bgSpeed*PlayerRef.GetComponent<CharacterController2D>().backgroundSpeed*Time.deltaTime*0.2f,0f);
+        if (PlayerRef.GetComponent<Rigidbody2D>().velocity.x>0 || PlayerRef.GetComponent<Rigidbody2D>().velocity.x < 0)
+        {
+            bgRend.material.mainTextureOffset += new Vector2(bgSpeed * PlayerRef.GetComponent<CharacterController2D>().backgroundSpeed * Time.deltaTime * 0.2f, 0f);
+        }
     }
 }

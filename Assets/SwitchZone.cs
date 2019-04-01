@@ -25,7 +25,7 @@ public class SwitchZone : MonoBehaviour {
         if (targetMat != forestMat)
         {
             targetMat = forestMat;
-            PlayerRef.transform.GetChild(6).GetComponent<BackgroundScript>().bgRend.material = targetMat;
+            PlayerRef.transform.GetChild(7).GetComponent<BackgroundScript>().bgRend.material = targetMat;
         }
     }
     public void SwitchToLab()
@@ -33,7 +33,7 @@ public class SwitchZone : MonoBehaviour {
         if (targetMat != labMat)
         {
             targetMat = labMat;
-            PlayerRef.transform.GetChild(6).GetComponent<BackgroundScript>().bgRend.material = targetMat;
+            PlayerRef.transform.GetChild(7).GetComponent<BackgroundScript>().bgRend.material = targetMat;
         }
     }
     public void SwitchToOffices()
@@ -41,7 +41,7 @@ public class SwitchZone : MonoBehaviour {
         if (targetMat != labMat)
         {
             targetMat = officeMat;
-            PlayerRef.transform.GetChild(6).GetComponent<BackgroundScript>().bgRend.material = targetMat;
+            PlayerRef.transform.GetChild(7).GetComponent<BackgroundScript>().bgRend.material = targetMat;
         }
     }
 }
