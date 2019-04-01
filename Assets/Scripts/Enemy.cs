@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour {
     public GameObject BulletRef;
     public GameObject EnemyBulletRef;
     public GameObject Target;
+    private AudioSource EnemyDeaths;
     public float fireRate;
     float nextFire;
     bool inGeometry = false;
@@ -37,6 +38,7 @@ public class Enemy : MonoBehaviour {
     //    //}
     //}
 
+        
     public void Boss_Arm(bool movingDown)
     {
         transform.Translate(Vector3.down * Time.deltaTime*2f);      
@@ -209,12 +211,16 @@ public class Enemy : MonoBehaviour {
         }
     }
 
-    public void Death()
+    public void Death(AudioClip DeathClip)
     {
         if (health <= 0)
         {
+            EnemyDeaths.clip = DeathClip;
+            EnemyDeaths.Play();
             gameObject.SetActive(false);
+
         }
+        
     }
 
     public void Respawn()
@@ -236,6 +242,8 @@ public class Enemy : MonoBehaviour {
     private void Start()
     {
         PlayerRef = GameObject.FindGameObjectWithTag("GameController");
+        EnemyDeaths = GameObject.Find("EnemyDeaths").GetComponent<AudioSource>();
+
     }
 
     public void TakeDamage(int DamageTaken)

@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shooter : Enemy {	
-	
-	void Update ()
+public class Shooter : Enemy {
+
+    public AudioClip DeathClip;
+
+    void Update ()
     {
         Patrol();
         Shoot();
-        Death();	
-	}
+        Death(DeathClip);
+    }
 }

@@ -11,11 +11,13 @@ public class CharacterController2D : MonoBehaviour
     public Image ActiveWeaponSprite;
     public Sprite BSprite1, BSprite2, BSprite3;
     public GameObject PauseMenu, GameOverMenu;
+    public AudioClip Jump;
 
     float horizontalMove = 0f, timer;
     private bool crouch = false, climbing = false, GameOver = false;
     private float closestCheckpointDistance;
     private int closestCheckpointIndex;
+    private AudioSource ASource;
 
     //Arrays
     public Image[] healthImages;
@@ -66,6 +68,8 @@ public class CharacterController2D : MonoBehaviour
         maxHealth = hearts * healthPerHeart;
         health = maxHealth;
         Time.timeScale = 1;
+        ASource = GetComponent<AudioSource>();
+        
 
     }
     private void Awake()
@@ -197,6 +201,8 @@ public class CharacterController2D : MonoBehaviour
                 if (Input.GetButtonDown("Jump") && climbing &&!m_Grounded)
                 {
                     m_Rigidbody2D.AddForce(new Vector2(-m_JumpForce, m_JumpForce));
+                    ASource.clip = Jump;
+                    ASource.Play();
                 }
             }
             else
@@ -216,6 +222,8 @@ public class CharacterController2D : MonoBehaviour
                 if (Input.GetButtonDown("Jump") && climbing && !m_FacingRight && !m_Grounded)
                 {
                     m_Rigidbody2D.AddForce(new Vector2(m_JumpForce, m_JumpForce));
+                    ASource.clip = Jump;
+                    ASource.Play();
                 }
 
             }
@@ -291,6 +299,8 @@ public class CharacterController2D : MonoBehaviour
                 // Add a vertical force to the player.
                 m_Grounded = false;
                 m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+                ASource.clip = Jump;
+                ASource.Play();
             }
         }
 

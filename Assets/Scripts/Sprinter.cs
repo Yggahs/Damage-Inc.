@@ -5,20 +5,19 @@ using UnityEngine;
 public class Sprinter : Enemy
 {
     Animator animatore;
+    public AudioClip DeathClip;
     private bool animator;
-    
 
     private void Awake()
     {
         animator = GetComponent<SpriteRenderer>().flipX;
         animatore = GetComponent<Animator>();
     }
+
     // Update is called once per frame
     void Update()
     {
-        Death();
-
-
+        Death(DeathClip);
     }
     
 

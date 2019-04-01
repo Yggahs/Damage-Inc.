@@ -11,11 +11,13 @@ public class Collectables : MonoBehaviour
     public GameObject Player;
     private GameManager Manager;
     public bool RandomConsumable;
+    public AudioClip CollectibleSound, UnlockSound;
+    AudioSource ASource;
     //public Tmpro Title, Description;
 
     private void Start()
     {
-
+        ASource = GetComponent<AudioSource>();
         if (RandomConsumable)
         {
             Item = Random.Range(1, 4);
@@ -32,15 +34,18 @@ public class Collectables : MonoBehaviour
         var WeaponsScript = collision.GetComponent<WeaponsScript>();
         var CharacterController2DScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<CharacterController2D>();
         var DropBombScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<DropBomb>();
-
-
+        
+        
         switch (Item)
         {
+
             case 1:
                 if (WeaponsScript.Weapon2Bullets < WeaponsScript.Weapon2MaxBullets)
                 {
                     WeaponsScript.Weapon2Bullets = WeaponsScript.Weapon2MaxBullets;
                     gameObject.SetActive(false);
+                    ASource.clip = CollectibleSound;
+                    ASource.Play();
                 }
                 break;
 
@@ -49,6 +54,8 @@ public class Collectables : MonoBehaviour
                 {
                     WeaponsScript.Weapon3Bullets = WeaponsScript.Weapon3MaxBullets;
                     gameObject.SetActive(false);
+                    ASource.clip = CollectibleSound;
+                    ASource.Play();
                 }
                 break;
 
@@ -57,14 +64,16 @@ public class Collectables : MonoBehaviour
                 {
                     CharacterController2DScript.health = CharacterController2DScript.maxHealth;
                     gameObject.SetActive(false);
+                    ASource.clip = CollectibleSound;
+                    ASource.Play();
                 }
                 break;
             case 4:
-                if (DropBombScript.bombUnlocked == false)
+                if (CharacterController2DScript.weapon3Unlocked == false)
                 {
-                    DropBombScript.bombUnlocked = true;
-                    Manager.BombsUI.SetActive(true);
-                    gameObject.SetActive(false);
+                    DropBombScript.bombs = DropBombScript.maxBombs;
+                    ASource.clip = CollectibleSound;
+                    ASource.Play();
                 }
                 break;
             case 5:
@@ -74,11 +83,15 @@ public class Collectables : MonoBehaviour
                     CharacterController2DScript.maxHealth = CharacterController2DScript.hearts * CharacterController2DScript.healthPerHeart;
                     CharacterController2DScript.health = CharacterController2DScript.maxHealth;
                     gameObject.SetActive(false);
+                    ASource.clip = CollectibleSound;
+                    ASource.Play();
                 }
                 break;
             case 6:
                 if (CharacterController2DScript.weapon2Unlocked == false)
                 {
+                    ASource.clip = UnlockSound;
+                    ASource.Play();
                     CharacterController2DScript.weapon2Unlocked = true;
                     CharacterController2DScript.selectedWeapon = 2;
                     CharacterController2DScript.ActiveWeaponSprite.sprite = CharacterController2DScript.BSprite2;
@@ -89,8 +102,10 @@ public class Collectables : MonoBehaviour
                 }
                 break;
             case 7:
-                if (CharacterController2DScript.weapon3Unlocked == false)
+                if (DropBombScript.bombUnlocked == false)
                 {
+                    ASource.clip = UnlockSound;
+                    ASource.Play();
                     CharacterController2DScript.weapon3Unlocked = true;
                     CharacterController2DScript.selectedWeapon = 3;
                     CharacterController2DScript.ActiveWeaponSprite.sprite = CharacterController2DScript.BSprite3;
@@ -104,7 +119,10 @@ public class Collectables : MonoBehaviour
             case 8:
                 if (DropBombScript.bombs < DropBombScript.maxBombs)
                 {
-                    DropBombScript.bombs = DropBombScript.maxBombs;
+                    ASource.clip = UnlockSound;
+                    ASource.Play();
+                    DropBombScript.bombUnlocked = true;
+                    Manager.BombsUI.SetActive(true);
                     Manager.Title.text = "Bombs Unlocked!";
                     Manager.Description.text = "The bomb is a strong weapon that destroyes cracked walls, enemies or...yourself.";
                     Manager.InputButton.text = "Q";
