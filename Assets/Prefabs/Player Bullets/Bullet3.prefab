@@ -70,7 +70,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xspeed: 0
   yspeed: 0
-  bulletType: 0
+  bulletType: 3
+  Explosion: {fileID: 0}
 --- !u!212 &212267338114606646
 SpriteRenderer:
   m_ObjectHideFlags: 1

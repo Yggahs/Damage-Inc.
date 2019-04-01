@@ -20,6 +20,7 @@ public class Collectables : MonoBehaviour
         {
             Item = Random.Range(1, 4);
         }
+
         Manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         SetNameAppearance();      
         StartCoroutine(Glowing());
@@ -168,11 +169,11 @@ public class Collectables : MonoBehaviour
 
     private IEnumerator GuiFeedback()
     {
-        Manager.CollectablesUI.SetActive(true);
+        Manager.CollectUI.SetActive(true);
         Time.timeScale = 0;       
         yield return new WaitForSecondsRealtime(6f); 
         Time.timeScale = 1;
-        Manager.CollectablesUI.SetActive(false);
+        Manager.CollectUI.SetActive(false);
         gameObject.SetActive(false);
 
 

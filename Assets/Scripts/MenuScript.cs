@@ -10,7 +10,6 @@ public class MenuScript : MonoBehaviour
 
     public void ExitGame()
     {
-        Debug.Log("kek");
         Application.Quit();
     }
 
@@ -24,5 +23,10 @@ public class MenuScript : MonoBehaviour
         Player.GetComponent<CharacterController2D>().OnRespawn();
         Time.timeScale = 1;
         
+    }
+
+    public void StartGame()
+    {
+        SceneManager.LoadScene("MainScene");
     }
 }
