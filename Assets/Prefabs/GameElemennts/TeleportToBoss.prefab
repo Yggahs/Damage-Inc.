@@ -108,3 +108,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerRef: {fileID: 0}
   BossRoomEntrace: {fileID: 1501471092891996}
+  Boss: {fileID: 0}

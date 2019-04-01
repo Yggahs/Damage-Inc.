@@ -215,10 +215,9 @@ public class Enemy : MonoBehaviour {
     {
         if (health <= 0)
         {
-            EnemyDeaths.clip = DeathClip;
-            EnemyDeaths.Play();
+            //EnemyDeaths.clip = DeathClip;
+            //EnemyDeaths.Play();
             gameObject.SetActive(false);
-
         }
         
     }
