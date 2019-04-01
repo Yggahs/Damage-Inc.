@@ -123,6 +123,7 @@ public class Collectables : MonoBehaviour
                     ASource.Play();
                     DropBombScript.bombUnlocked = true;
                     Manager.BombsUI.SetActive(true);
+                    gameObject.SetActive(false);
                     Manager.Title.text = "Bombs Unlocked!";
                     Manager.Description.text = "The bomb is a strong weapon that destroyes cracked walls, enemies or...yourself.";
                     Manager.InputButton.text = "Q";
