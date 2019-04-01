@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ArmBehaviour : Enemy {
+
+    public AudioClip DeathClip;
     public GameObject shockwaveL;
     public GameObject shockwaveR;
     bool movingDown;
+
     private void Start()
     {
         movingDown = true;
     }
+
     private void Update()
     {       
         Boss_Arm(movingDown);
-        Death();
+        Death(DeathClip);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

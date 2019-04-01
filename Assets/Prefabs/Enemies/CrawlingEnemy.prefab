@@ -208,6 +208,7 @@ MonoBehaviour:
   TargetAcquired: 0
   targetPostion: {x: 0, y: 0, z: 0}
   facing: {x: 0, y: 0, z: 0}
+  DeathClip: {fileID: 0}
 --- !u!212 &212232918264795508
 SpriteRenderer:
   m_ObjectHideFlags: 1

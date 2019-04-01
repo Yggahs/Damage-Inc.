@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Patroller : Enemy
 {
+    public AudioClip DeathClip;
+
     private void Update()
     {            
         Patrol();
-        Death();        
+        Death(DeathClip);
     }
 }
