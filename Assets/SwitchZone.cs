@@ -13,9 +13,9 @@ public class SwitchZone : MonoBehaviour {
     {
         PlayerRef = GameObject.FindGameObjectWithTag("GameController");
         
-        labMat = PlayerRef.transform.GetChild(6).GetComponent<BackgroundScript>().lab;
-        forestMat = PlayerRef.transform.GetChild(6).GetComponent<BackgroundScript>().forest;
-        officeMat = PlayerRef.transform.GetChild(6).GetComponent<BackgroundScript>().offices;
+        labMat = PlayerRef.transform.GetChild(7).GetComponent<BackgroundScript>().lab;
+        forestMat = PlayerRef.transform.GetChild(7).GetComponent<BackgroundScript>().forest;
+        officeMat = PlayerRef.transform.GetChild(7).GetComponent<BackgroundScript>().offices;
 
         targetMat = forestMat;
 
