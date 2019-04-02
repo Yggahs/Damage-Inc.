@@ -21,6 +21,13 @@ TextureImporter:
     21300032: walking_inspector2_spritesheet 1_16
     21300034: walking_inspector2_spritesheet 1_17
     21300036: walking_inspector2_spritesheet 1_18
+    21300038: walking_inspector2_spritesheet 1_19
+    21300040: walking_inspector2_spritesheet 1_20
+    21300042: walking_inspector2_spritesheet 1_21
+    21300044: walking_inspector2_spritesheet 1_22
+    21300046: walking_inspector2_spritesheet 1_23
+    21300048: walking_inspector2_spritesheet 1_24
+    21300050: walking_inspector2_spritesheet 1_25
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -118,7 +125,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 523
+        y: 1183
         width: 50
         height: 150
       alignment: 0
@@ -128,7 +135,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 100e75cf936f02546aeba5937e5d0f07
+      spriteID: 781e6906fdebc32488ff583713b10387
       vertices: []
       indices: 
       edges: []
@@ -138,7 +145,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 123
-        y: 523
+        y: 1183
         width: 50
         height: 150
       alignment: 0
@@ -148,7 +155,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0978eeeb8004144eaaa8ed28243c188
+      spriteID: d553f6dd785d01342b49bb0da9cf3635
       vertices: []
       indices: 
       edges: []
@@ -158,7 +165,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 246
-        y: 523
+        y: 1183
         width: 50
         height: 150
       alignment: 0
@@ -168,7 +175,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dcdecec285952145a44c51acb7ee3df
+      spriteID: abdd3d2e120fa2a4e9179e959798b727
       vertices: []
       indices: 
       edges: []
@@ -178,7 +185,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 369
-        y: 523
+        y: 1183
         width: 65
         height: 150
       alignment: 0
@@ -188,7 +195,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 929459d90eb7a124493874efb3667633
+      spriteID: 941b946565d4bdb4cbf8131192e46232
       vertices: []
       indices: 
       edges: []
@@ -198,7 +205,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 507
-        y: 523
+        y: 1183
         width: 50
         height: 150
       alignment: 0
@@ -208,7 +215,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa217690ca8ec67489f81932e34ad3bf
+      spriteID: 24342c45d5e99aa44b440e015e8bdd9a
       vertices: []
       indices: 
       edges: []
@@ -218,7 +225,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 630
-        y: 523
+        y: 1183
         width: 50
         height: 150
       alignment: 0
@@ -228,7 +235,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9812b77101ebe4a47af3a2dfe7a57322
+      spriteID: e702462eb08da3649a5a47a854a823f6
       vertices: []
       indices: 
       edges: []
@@ -237,10 +244,10 @@ TextureImporter:
       name: walking_inspector2_spritesheet 1_6
       rect:
         serializedVersion: 2
-        x: 0
-        y: 362
-        width: 54
-        height: 109
+        x: 753
+        y: 1183
+        width: 64
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,7 +255,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6635d9e5e0d33234ba6a88ee3a3adf86
+      spriteID: d6e0e9ad92858dc448e6c68ad0a1613a
       vertices: []
       indices: 
       edges: []
@@ -257,10 +264,10 @@ TextureImporter:
       name: walking_inspector2_spritesheet 1_7
       rect:
         serializedVersion: 2
-        x: 123
-        y: 362
-        width: 60
-        height: 129
+        x: 874
+        y: 1183
+        width: 64
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,7 +275,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ee73a61d5d312a48ac43670f93cf80d
+      spriteID: c3674aec837ddae40a59ae91b0d03dfb
       vertices: []
       indices: 
       edges: []
@@ -277,10 +284,10 @@ TextureImporter:
       name: walking_inspector2_spritesheet 1_8
       rect:
         serializedVersion: 2
-        x: 239
-        y: 362
-        width: 55
-        height: 128
+        x: 986
+        y: 1177
+        width: 62
+        height: 156
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -288,7 +295,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0fc094bd211809a4da9d93b16ee7af68
+      spriteID: 62f48953afffe0443a742390b1344a95
       vertices: []
       indices: 
       edges: []
@@ -297,8 +304,88 @@ TextureImporter:
       name: walking_inspector2_spritesheet 1_9
       rect:
         serializedVersion: 2
+        x: 1093
+        y: 1177
+        width: 62
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e03aea8f5e8c906469eced1bca556531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking_inspector2_spritesheet 1_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1022
+        width: 54
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d0a6a677e939a264682ef6e92a1735ff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking_inspector2_spritesheet 1_11
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 1022
+        width: 60
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d613d988d0ed364da3e9642ad4f5f87
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking_inspector2_spritesheet 1_12
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 1022
+        width: 55
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40e097a2044abc74cbf3aa52c872b73c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking_inspector2_spritesheet 1_13
+      rect:
+        serializedVersion: 2
         x: 368
-        y: 362
+        y: 1022
         width: 49
         height: 150
       alignment: 0
@@ -308,17 +395,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61b5c573c81b1644b9512bdf84b10d86
+      spriteID: c6d65436399a72347a0d0896afceaa1a
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walking_inspector2_spritesheet 1_10
+      name: walking_inspector2_spritesheet 1_14
       rect:
         serializedVersion: 2
         x: 507
-        y: 362
+        y: 1022
         width: 49
         height: 148
       alignment: 0
@@ -328,87 +415,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7dc9bc55c3508b43b55a93b14357e19
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walking_inspector2_spritesheet 1_11
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 177
-        width: 49
-        height: 179
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fc1880d12dc36914589c48a0ba9a129a
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walking_inspector2_spritesheet 1_12
-      rect:
-        serializedVersion: 2
-        x: 123
-        y: 177
-        width: 49
-        height: 179
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bf72186eaf5062f47aefb3778503e683
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walking_inspector2_spritesheet 1_13
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 50
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c0c301d98e9ca9845b43fd0b05594c6f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: walking_inspector2_spritesheet 1_14
-      rect:
-        serializedVersion: 2
-        x: 123
-        y: 0
-        width: 50
-        height: 150
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43a268527f5a1764c8059357547cbfd3
+      spriteID: a557a5f05ff6aef45a934398f54ebd99
       vertices: []
       indices: 
       edges: []
@@ -417,8 +424,128 @@ TextureImporter:
       name: walking_inspector2_spritesheet 1_15
       rect:
         serializedVersion: 2
+        x: 580
+        y: 1022
+        width: 88
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cc8bbd6240b284478e4ce46454b57a1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking_inspector2_spritesheet 1_16
+      rect:
+        serializedVersion: 2
+        x: 706
+        y: 1021
+        width: 88
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 579f58bf1df27224986b99c86e5d6457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking_inspector2_spritesheet 1_17
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 837
+        width: 49
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0cb1e6530567ba44a5e67bf5cea9c07
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking_inspector2_spritesheet 1_18
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 837
+        width: 49
+        height: 179
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8da63cd84c6df6b4fbde74f235db9d9e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking_inspector2_spritesheet 1_19
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 660
+        width: 50
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c6060f0765afeb8438b98948cc5fa22c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking_inspector2_spritesheet 1_20
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 660
+        width: 50
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14ec221e5ad807941a15c4e85ad39e90
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking_inspector2_spritesheet 1_21
+      rect:
+        serializedVersion: 2
         x: 246
-        y: 0
+        y: 660
         width: 65
         height: 150
       alignment: 0
@@ -428,17 +555,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea1110345cc03f04e9672dee36838224
+      spriteID: 9ffd5e39f078d724eaf6edf5d1ebfab3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walking_inspector2_spritesheet 1_16
+      name: walking_inspector2_spritesheet 1_22
       rect:
         serializedVersion: 2
         x: 384
-        y: 0
+        y: 660
         width: 50
         height: 150
       alignment: 0
@@ -448,17 +575,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c443c8e93d179944a313f43b3f779b7
+      spriteID: 838ceb5eea255df459be5c723bfcaff1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walking_inspector2_spritesheet 1_17
+      name: walking_inspector2_spritesheet 1_23
       rect:
         serializedVersion: 2
         x: 507
-        y: 0
+        y: 660
         width: 50
         height: 150
       alignment: 0
@@ -468,17 +595,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d8f3dab63e1f24a4a8aa3bf9d6200022
+      spriteID: 22ae11b89858c4249a29047d690aa681
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: walking_inspector2_spritesheet 1_18
+      name: walking_inspector2_spritesheet 1_24
       rect:
         serializedVersion: 2
         x: 630
-        y: 0
+        y: 660
         width: 50
         height: 150
       alignment: 0
@@ -488,7 +615,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f067fcc6848ef2646b0241d5ec320428
+      spriteID: 5228cb410007dc4459ba952b37cb040e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: walking_inspector2_spritesheet 1_25
+      rect:
+        serializedVersion: 2
+        x: 706
+        y: 641
+        width: 151
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df985dcedc745fb4ab4d7f4bd53a23bb
       vertices: []
       indices: 
       edges: []

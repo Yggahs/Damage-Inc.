@@ -129,6 +129,7 @@ public class CharacterController2D : MonoBehaviour
         Crouch();
         WallClimbing();
         animator.SetBool("IsCrouching", crouch);
+        animator.SetBool("IsJumping", !m_Grounded);
         if (horizontalMove > 0)
         {
             m_FacingRight = true;
@@ -137,22 +138,17 @@ public class CharacterController2D : MonoBehaviour
         {
             m_FacingRight = false;
         }
-
-        //if ((m_Rigidbody2D.velocity.x < 0f && m_FacingRight) || (m_Rigidbody2D.velocity.x > 0f && !m_FacingRight) && m_Rigidbody2D.velocity.x != 0)
-        //{
-        //    Flip();
-        //}
         animator.SetBool("IsFacingRight", m_FacingRight);
-
-        //Debug.Log("X VELOCITY: " + m_Rigidbody2D.velocity.x);
-        //Debug.Log("HORIZONTAL MOVE: " + horizontalMove);
-        //Debug.Log("ACTUAL HORIZONTAL MOVE: " + Input.GetAxisRaw("Horizontal"));
+        
+    
     }
     private void GameOverCheck()
     {
-
+        bool isdead = false;
         if (health <= 0)
         {
+            isdead = true;
+            animator.SetBool("IsDead", isdead);
             GameOver = true;
             Time.timeScale = 0;
             GameOverMenu.SetActive(true);

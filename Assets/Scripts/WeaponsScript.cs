@@ -18,6 +18,7 @@ public class WeaponsScript : MonoBehaviour
     bool IsShootingUp;
     bool IsShootingLeft;
     bool IsShootingRight;
+    bool IsShootingDown;
 
     private void Update()
     {
@@ -26,6 +27,7 @@ public class WeaponsScript : MonoBehaviour
         animator.SetBool("IsShootingRight", IsShootingRight);
         animator.SetBool("IsShootingLeft", IsShootingLeft);
         animator.SetBool("IsShootingUp", IsShootingUp);
+        animator.SetBool("IsShootingDown", IsShootingDown);
     }
     public void Weapon1()
     {
@@ -309,6 +311,14 @@ public class WeaponsScript : MonoBehaviour
             IsShootingUp = false;
         }
 
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            IsShootingDown = true;
+        }
+        else
+        {
+            IsShootingDown = false;
+        }
     }
 
 }
