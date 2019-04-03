@@ -8,9 +8,11 @@ public class ArmBehaviour : Enemy {
     public GameObject shockwaveL;
     public GameObject shockwaveR;
     bool movingDown;
+    
 
     private void Start()
     {
+        PlayerRef = transform.parent.parent.GetComponent<Enemy>().PlayerRef;
         movingDown = true;
     }
 
@@ -38,5 +40,13 @@ public class ArmBehaviour : Enemy {
             
         }
         movingDown = !movingDown;
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.transform.name == "player")
+        {
+            DealDamage(damage*3);
+        }
     }
 }

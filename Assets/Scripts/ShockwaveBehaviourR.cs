@@ -16,6 +16,10 @@ public class ShockwaveBehaviourR : Enemy
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        if (collision.transform.name == "player")
+        {
+            DealDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }

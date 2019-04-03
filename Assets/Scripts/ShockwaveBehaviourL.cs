@@ -13,8 +13,12 @@ public class ShockwaveBehaviourL : Enemy {
         transform.Translate(Vector2.left * Time.deltaTime);
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(gameObject);
+        if (collision.transform.name == "player")
+        {
+            DealDamage(damage);
+            Destroy(gameObject);
+        }
     }
 }
