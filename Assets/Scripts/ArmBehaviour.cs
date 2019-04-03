@@ -23,23 +23,22 @@ public class ArmBehaviour : Enemy {
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
-    {
-
+    {        
         if (collision.transform.name == "Tilemap")
         {
             if (movingDown == true)
             {
-                Instantiate(shockwaveL, new Vector3(transform.position.x - 0.8f, transform.position.y - 0.15f, transform.position.z), Quaternion.identity);
-                Instantiate(shockwaveR, new Vector3(transform.position.x + 0.8f, transform.position.y - 0.15f, transform.position.z), Quaternion.identity);
+                Instantiate(shockwaveL, new Vector3(collision.contacts[0].point.x - 1f, collision.contacts[0].point.y - 0.25f,-1f), Quaternion.identity);
+                Instantiate(shockwaveR, new Vector3(collision.contacts[0].point.x + 3f, collision.contacts[0].point.y - 0.25f, -1f), Quaternion.identity);   
             }
             else
             {
-                Instantiate(shockwaveL, new Vector3(transform.position.x - 0.8f, transform.position.y + 0.15f, transform.position.z), Quaternion.identity);
-                Instantiate(shockwaveR, new Vector3(transform.position.x + 0.8f, transform.position.y + 0.15f, transform.position.z), Quaternion.identity);
+                Instantiate(shockwaveL, new Vector3(collision.contacts[0].point.x - 1f, collision.contacts[0].point.y + 0.25f, -1f), Quaternion.identity);
+                Instantiate(shockwaveR, new Vector3(collision.contacts[0].point.x + 3f, collision.contacts[0].point.y + 0.25f, -1f), Quaternion.identity);
             }
-            
+            movingDown = !movingDown;
         }
-        movingDown = !movingDown;
+        
     }
 
     private void OnCollisionStay2D(Collision2D collision)

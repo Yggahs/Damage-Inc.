@@ -6,7 +6,7 @@ public class BossBullet : Enemy {
     //public int damage = 1;
     private void Awake()
     {
-        Destroy(gameObject,5f);
+        Destroy(gameObject,10f);
     }
     // Update is called once per frame
     void Update () {
@@ -29,7 +29,7 @@ public class BossBullet : Enemy {
 
         if (collision.name == "player")
         {
-            Debug.Log("colpito");
+           
             DealDamage(damage);
             Destroy(gameObject);
         }
