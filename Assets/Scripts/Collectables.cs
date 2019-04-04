@@ -31,104 +31,107 @@ public class Collectables : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var WeaponsScript = collision.GetComponent<WeaponsScript>();
-        var CharacterController2DScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<CharacterController2D>();
-        var DropBombScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<DropBomb>();
-        
-        
-        switch (Item)
+        if (collision.tag == "GameController")
         {
+            var WeaponsScript = collision.GetComponent<WeaponsScript>();
+            var CharacterController2DScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<CharacterController2D>();
+            var DropBombScript = GameObject.FindGameObjectWithTag("GameController").GetComponent<DropBomb>();
 
-            case 1:
-                if (WeaponsScript.Weapon2Bullets < WeaponsScript.Weapon2MaxBullets)
-                {
-                    WeaponsScript.Weapon2Bullets = WeaponsScript.Weapon2MaxBullets;
-                    gameObject.SetActive(false);
-                    ASource.clip = CollectibleSound;
-                    ASource.Play();
-                }
-                break;
 
-            case 2:
-                if (WeaponsScript.Weapon3Bullets < WeaponsScript.Weapon3MaxBullets)
-                {
-                    WeaponsScript.Weapon3Bullets = WeaponsScript.Weapon3MaxBullets;
-                    gameObject.SetActive(false);
-                    ASource.clip = CollectibleSound;
-                    ASource.Play();
-                }
-                break;
+            switch (Item)
+            {
 
-            case 3:
-                if (CharacterController2DScript.health < CharacterController2DScript.maxHealth)
-                {
-                    CharacterController2DScript.health = CharacterController2DScript.maxHealth;
-                    gameObject.SetActive(false);
-                    ASource.clip = CollectibleSound;
-                    ASource.Play();
-                }
-                break;
-            case 4:
-                if (CharacterController2DScript.weapon3Unlocked == false)
-                {
-                    DropBombScript.bombs = DropBombScript.maxBombs;
-                    ASource.clip = CollectibleSound;
-                    ASource.Play();
-                }
-                break;
-            case 5:
-                if (CharacterController2DScript.hearts < CharacterController2DScript.maxHeartAmount)
-                {
-                    CharacterController2DScript.hearts++;
-                    CharacterController2DScript.maxHealth = CharacterController2DScript.hearts * CharacterController2DScript.healthPerHeart;
-                    CharacterController2DScript.health = CharacterController2DScript.maxHealth;
-                    gameObject.SetActive(false);
-                    ASource.clip = CollectibleSound;
-                    ASource.Play();
-                }
-                break;
-            case 6:
-                if (CharacterController2DScript.weapon2Unlocked == false)
-                {
-                    ASource.clip = UnlockSound;
-                    ASource.Play();
-                    CharacterController2DScript.weapon2Unlocked = true;
-                    CharacterController2DScript.selectedWeapon = 2;
-                    CharacterController2DScript.ActiveWeaponSprite.sprite = CharacterController2DScript.BSprite2;
-                    Manager.Title.text = "Rocket Launcher Unlocked!";
-                    Manager.Description.text = "Feel like a gun is not the answer?" + System.Environment.NewLine + "Well you are right, but a Rocket Launcher definitely is!";
-                    Manager.InputButton.text = "2";
-                    StartCoroutine(GuiFeedback());
-                }
-                break;
-            case 7:
-                if (DropBombScript.bombUnlocked == false)
-                {
-                    ASource.clip = UnlockSound;
-                    ASource.Play();
-                    CharacterController2DScript.weapon3Unlocked = true;
-                    CharacterController2DScript.selectedWeapon = 3;
-                    CharacterController2DScript.ActiveWeaponSprite.sprite = CharacterController2DScript.BSprite3;
-                    Manager.Title.text = "Boomerang Unlocked!";
-                    Manager.Description.text = "The boomerang is a versatile weapon that  hits all the enemy in a line...and comes back to give them double!";
-                    Manager.InputButton.text = "3";
-                    StartCoroutine(GuiFeedback());
-                }
-                break;
+                case 1:
+                    if (WeaponsScript.Weapon2Bullets < WeaponsScript.Weapon2MaxBullets)
+                    {
+                        WeaponsScript.Weapon2Bullets = WeaponsScript.Weapon2MaxBullets;
+                        gameObject.SetActive(false);
+                        ASource.clip = CollectibleSound;
+                        ASource.Play();
+                    }
+                    break;
 
-            case 8:
-                if (DropBombScript.bombs < DropBombScript.maxBombs)
-                {
-                    ASource.clip = UnlockSound;
-                    ASource.Play();
-                    DropBombScript.bombUnlocked = true;
-                    Manager.BombsUI.SetActive(true);
-                    Manager.Title.text = "Bombs Unlocked!";
-                    Manager.Description.text = "The bomb is a strong weapon that destroyes cracked walls, enemies or...yourself.";
-                    Manager.InputButton.text = "Q";
-                    StartCoroutine(GuiFeedback());                  
-                }
-                break;
+                case 2:
+                    if (WeaponsScript.Weapon3Bullets < WeaponsScript.Weapon3MaxBullets)
+                    {
+                        WeaponsScript.Weapon3Bullets = WeaponsScript.Weapon3MaxBullets;
+                        gameObject.SetActive(false);
+                        ASource.clip = CollectibleSound;
+                        ASource.Play();
+                    }
+                    break;
+
+                case 3:
+                    if (CharacterController2DScript.health < CharacterController2DScript.maxHealth)
+                    {
+                        CharacterController2DScript.health = CharacterController2DScript.maxHealth;
+                        gameObject.SetActive(false);
+                        ASource.clip = CollectibleSound;
+                        ASource.Play();
+                    }
+                    break;
+                case 4:
+                    if (CharacterController2DScript.weapon3Unlocked == false)
+                    {
+                        DropBombScript.bombs = DropBombScript.maxBombs;
+                        ASource.clip = CollectibleSound;
+                        ASource.Play();
+                    }
+                    break;
+                case 5:
+                    if (CharacterController2DScript.hearts < CharacterController2DScript.maxHeartAmount)
+                    {
+                        CharacterController2DScript.hearts++;
+                        CharacterController2DScript.maxHealth = CharacterController2DScript.hearts * CharacterController2DScript.healthPerHeart;
+                        CharacterController2DScript.health = CharacterController2DScript.maxHealth;
+                        gameObject.SetActive(false);
+                        ASource.clip = CollectibleSound;
+                        ASource.Play();
+                    }
+                    break;
+                case 6:
+                    if (CharacterController2DScript.weapon2Unlocked == false)
+                    {
+                        ASource.clip = UnlockSound;
+                        ASource.Play();
+                        CharacterController2DScript.weapon2Unlocked = true;
+                        CharacterController2DScript.selectedWeapon = 2;
+                        CharacterController2DScript.ActiveWeaponSprite.sprite = CharacterController2DScript.BSprite2;
+                        Manager.Title.text = "Rocket Launcher Unlocked!";
+                        Manager.Description.text = "Feel like a gun is not the answer?" + System.Environment.NewLine + "Well you are right, but a Rocket Launcher definitely is!";
+                        Manager.InputButton.text = "2";
+                        StartCoroutine(GuiFeedback());
+                    }
+                    break;
+                case 7:
+                    if (DropBombScript.bombUnlocked == false)
+                    {
+                        ASource.clip = UnlockSound;
+                        ASource.Play();
+                        CharacterController2DScript.weapon3Unlocked = true;
+                        CharacterController2DScript.selectedWeapon = 3;
+                        CharacterController2DScript.ActiveWeaponSprite.sprite = CharacterController2DScript.BSprite3;
+                        Manager.Title.text = "Boomerang Unlocked!";
+                        Manager.Description.text = "The boomerang is a versatile weapon that  hits all the enemy in a line...and comes back to give them double!";
+                        Manager.InputButton.text = "3";
+                        StartCoroutine(GuiFeedback());
+                    }
+                    break;
+
+                case 8:
+                    if (DropBombScript.bombs < DropBombScript.maxBombs)
+                    {
+                        ASource.clip = UnlockSound;
+                        ASource.Play();
+                        DropBombScript.bombUnlocked = true;
+                        Manager.BombsUI.SetActive(true);
+                        Manager.Title.text = "Bombs Unlocked!";
+                        Manager.Description.text = "The bomb is a strong weapon that destroyes cracked walls, enemies or...yourself.";
+                        Manager.InputButton.text = "Q";
+                        StartCoroutine(GuiFeedback());
+                    }
+                    break;
+            }
         }
     }
 

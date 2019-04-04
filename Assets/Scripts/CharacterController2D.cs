@@ -94,6 +94,7 @@ public class CharacterController2D : MonoBehaviour
         Pause();
         EmptyHeartsManager();
         UpdateHearts();
+
         if (health < 0)
         {
             health = 0;
@@ -105,6 +106,7 @@ public class CharacterController2D : MonoBehaviour
             isdead = false;
         }
         animator.SetBool("IsDead", isdead);
+
         if (GameOver == false)
         {
             GameOverCheck();
@@ -467,6 +469,8 @@ public class CharacterController2D : MonoBehaviour
 
         //Refill Player Health
         health = maxHealth;
+
+        GameOver = false;
 
     }
     private void OnCollisionEnter2D(Collision2D collision)

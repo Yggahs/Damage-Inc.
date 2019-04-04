@@ -94,8 +94,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1599921754794688}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.82779, y: -15.630966, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 24.719341, y: 32.457947, z: 1.4375}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4674720519766158}
@@ -205,9 +205,9 @@ MonoBehaviour:
     type: 2}
   Target: {fileID: 0}
   fireRate: 1
-  TargetAcquired: 1
+  TargetAcquired: 0
   targetPostion: {x: 0, y: 0, z: 0}
-  facing: {x: -0.9105625, y: -0.41337138, z: 0}
+  facing: {x: -0.5397227, y: 0.84184283, z: 0}
   DeathClip: {fileID: 8300000, guid: 415c6a6cdf39bee40962521fd734bef2, type: 3}
 --- !u!212 &212616815428187356
 SpriteRenderer:
@@ -244,7 +244,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300002, guid: 131f6a7e93ddc424b93665574cb737d5, type: 3}
+  m_Sprite: {fileID: 21300006, guid: 131f6a7e93ddc424b93665574cb737d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -33,8 +33,8 @@ public class ArmBehaviour : Enemy {
             }
             else
             {
-                Instantiate(shockwaveL, new Vector3(collision.contacts[0].point.x - 1f, collision.contacts[0].point.y + 0.25f, -1f), Quaternion.identity);
-                Instantiate(shockwaveR, new Vector3(collision.contacts[0].point.x + 3f, collision.contacts[0].point.y + 0.25f, -1f), Quaternion.identity);
+                Instantiate(shockwaveL, new Vector3(collision.contacts[0].point.x - 1f, collision.contacts[0].point.y + 1.5f, -1f), Quaternion.identity);
+                Instantiate(shockwaveR, new Vector3(collision.contacts[0].point.x + 3f, collision.contacts[0].point.y + 1.5f, -1f), Quaternion.identity);
             }
             movingDown = !movingDown;
         }

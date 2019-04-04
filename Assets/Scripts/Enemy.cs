@@ -41,7 +41,8 @@ public class Enemy : MonoBehaviour {
         
     public void Boss_Arm(bool movingDown)
     {
-        transform.Translate(Vector3.down * Time.deltaTime*2f);      
+        
+        transform.Translate(Vector3.down * Time.deltaTime* 5f);      
         if (movingDown == true)
         {
             transform.eulerAngles = new Vector3(-180, 0,0);

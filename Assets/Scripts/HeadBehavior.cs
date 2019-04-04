@@ -37,4 +37,6 @@ public class HeadBehavior : Enemy
             resetTime = 3f;
         }
     }
+
+    //public void trigger
 }

@@ -15,6 +15,13 @@ public class DialoguesScript : MonoBehaviour
         DialoguesList.Add("*record scratches*");
         DialoguesList.Add("Yup, that's me");
         DialoguesList.Add("You might be wondering how I ended up here");
+        DialoguesList.Add("You might be wondering how I ended up here");
+        DialoguesList.Add("You might be wondering how I ended up here");
+        DialoguesList.Add("You might be wondering how I ended up here");
+        DialoguesList.Add("You might be wondering how I ended up here");
+        DialoguesList.Add("You might be wondering how I ended up here");
+        DialoguesList.Add("You might be wondering how I ended up here");
+        DialoguesList.Add("You might be wondering how I ended up here"); 
     }
 
     private void Update()

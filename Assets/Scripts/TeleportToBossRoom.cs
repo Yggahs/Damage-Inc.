@@ -17,7 +17,7 @@ public class TeleportToBossRoom : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E))
         {
             PlayerRef.transform.position = BossRoomEntrace.transform.position;
-            Instantiate(Boss, new Vector3(-149.76f, 82.96f, 0),Quaternion.identity);
+            Instantiate(Boss, new Vector3(147.55f, 81f, 0),Quaternion.identity);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
