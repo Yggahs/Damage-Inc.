@@ -21,6 +21,7 @@ public class HeadBehavior : Enemy
     {
         MouthLaser();
         Death(DeathClip);
+        triggerEndScreen();
     }
 
     void MouthLaser()
@@ -38,5 +39,11 @@ public class HeadBehavior : Enemy
         }
     }
 
-    //public void trigger
+    public void triggerEndScreen()
+    {
+        if (health <= 0)
+        {
+            Debug.Log("sommorto bravo game over");
+        }
+    }
 }

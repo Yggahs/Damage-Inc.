@@ -19,7 +19,7 @@ public class DeathTilesScript : MonoBehaviour {
         }
         else
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
         
     }

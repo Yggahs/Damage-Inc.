@@ -180,6 +180,10 @@ public class Enemy : MonoBehaviour {
             inGeometry = true;
             
         }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
         if (collision.transform.name == "player")
         {
             DealDamage(damage);
