@@ -58,7 +58,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4283165913548536
 Transform:
   m_ObjectHideFlags: 1
@@ -92,7 +92,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1441857969892822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 74.17, y: 84.5, z: -2.78125}
+  m_LocalPosition: {x: 74.14, y: 84.5, z: -2.78125}
   m_LocalScale: {x: 7.6608, y: 4.9665923, z: 5.1072}
   m_Children:
   - {fileID: 4617436771808336}
@@ -139,6 +139,7 @@ MonoBehaviour:
   PlayerRef: {fileID: 0}
   BossRoomEntrace: {fileID: 1501471092891996}
   Boss: {fileID: 1295968475137204, guid: 992a04385674daf4c9f5ae21299c3f4c, type: 2}
+  prompt: {fileID: 1704563774865284}
 --- !u!212 &212004304681065820
 SpriteRenderer:
   m_ObjectHideFlags: 1
