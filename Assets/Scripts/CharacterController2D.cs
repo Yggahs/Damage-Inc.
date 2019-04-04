@@ -40,6 +40,10 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
     [SerializeField] private Transform m_ClimbingCheckRight;
     [SerializeField] private Transform m_ClimbingCheckLeft;
+    [SerializeField] private Transform m_ClimbingCheckRight2;
+    [SerializeField] private Transform m_ClimbingCheckLeft2;
+    [SerializeField] private Transform m_ClimbingCheckRight3;
+    [SerializeField] private Transform m_ClimbingCheckLeft3;
 
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     public bool m_Grounded;    
@@ -212,8 +216,10 @@ public class CharacterController2D : MonoBehaviour
         if (m_FacingRight)
         {
             RaycastHit2D hit1 = Physics2D.Raycast(m_ClimbingCheckRight.position, transform.right, 0.07f);
+            RaycastHit2D hit2 = Physics2D.Raycast(m_ClimbingCheckRight2.position, transform.right, 0.07f);
+            RaycastHit2D hit3 = Physics2D.Raycast(m_ClimbingCheckRight3.position, transform.right, 0.07f);
             Debug.DrawLine(m_ClimbingCheckRight.position, m_ClimbingCheckRight.position + transform.right * 0.07f, Color.yellow);
-            if (hit1)
+            if (hit1 || hit2)
             {
                 climbing = true;
                 GetComponent<Rigidbody2D>().drag = 10;
@@ -233,8 +239,10 @@ public class CharacterController2D : MonoBehaviour
         else
         {
             RaycastHit2D hit1 = Physics2D.Raycast(m_ClimbingCheckLeft.position, -transform.right, 0.07f);
+            RaycastHit2D hit2 = Physics2D.Raycast(m_ClimbingCheckLeft2.position, -transform.right, 0.07f);
+            RaycastHit2D hit3 = Physics2D.Raycast(m_ClimbingCheckLeft3.position, -transform.right, 0.07f);
             Debug.DrawLine(m_ClimbingCheckLeft.position, m_ClimbingCheckLeft.position + (-transform.right * 0.07f), Color.green);
-            if (hit1)
+            if (hit1 || hit2 || hit3)
             {
                 climbing = true;
                 GetComponent<Rigidbody2D>().drag = 10;
@@ -496,13 +504,15 @@ public class CharacterController2D : MonoBehaviour
     private IEnumerator Invincible()
     {
         invincible = true;
-        GetComponent<SpriteRenderer>().enabled = false;
-        yield return new WaitForSeconds(0.1f);
-        GetComponent<SpriteRenderer>().enabled = true;
-        yield return new WaitForSeconds(.1f);
-        GetComponent<SpriteRenderer>().enabled = false;
-        yield return new WaitForSeconds(.1f);
-        GetComponent<SpriteRenderer>().enabled = true;
-        invincible = false;
+        
+        
+            GetComponent<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(0.1f);
+            GetComponent<SpriteRenderer>().enabled = true;
+            yield return new WaitForSeconds(.1f);
+            GetComponent<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(.1f);
+            GetComponent<SpriteRenderer>().enabled = true;
+            invincible = false;
     }
 }

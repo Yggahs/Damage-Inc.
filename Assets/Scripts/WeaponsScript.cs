@@ -288,69 +288,71 @@ public class WeaponsScript : MonoBehaviour
 
     void ShootingAnimations()
     {
-        if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.UpArrow))
-        {
-            IsShootingRight = true;
-           
-        }
-        else
-        {
-            IsShootingRight = false;
-            
-        }
-
-        if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.UpArrow))
-        {
-            IsShootingLeft = true;
-        }
-        else
-        {
-            IsShootingLeft = false;
-        }
-
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            if (Input.GetKey(KeyCode.LeftArrow))
+        if (Time.timeScale >0) {
+            if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.UpArrow))
             {
-                IsShootingDiagonallyLeft = true;
+                IsShootingRight = true;
+
             }
             else
             {
-                IsShootingDiagonallyLeft = false;
+                IsShootingRight = false;
 
             }
 
-            if (Input.GetKey(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.UpArrow))
             {
-                IsShootingDiagonallyRight = true;
+                IsShootingLeft = true;
             }
             else
             {
+                IsShootingLeft = false;
+            }
+
+            if (Input.GetKey(KeyCode.UpArrow))
+            {
+                if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    IsShootingDiagonallyLeft = true;
+                }
+                else
+                {
+                    IsShootingDiagonallyLeft = false;
+
+                }
+
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    IsShootingDiagonallyRight = true;
+                }
+                else
+                {
+                    IsShootingDiagonallyRight = false;
+
+                }
+
+                if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
+                {
+                    IsShootingUp = true;
+
+                }
+
+            }
+            else
+            {
+                IsShootingUp = false;
                 IsShootingDiagonallyRight = false;
-
+                IsShootingDiagonallyLeft = false;
             }
 
-            if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.DownArrow))
             {
-                IsShootingUp = true;
-               
+                IsShootingDown = true;
             }
-
-        }
-        else
-        {
-            IsShootingUp = false;
-            IsShootingDiagonallyRight = false;
-            IsShootingDiagonallyLeft = false;
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            IsShootingDown = true;
-        }
-        else
-        {
-            IsShootingDown = false;
+            else
+            {
+                IsShootingDown = false;
+            }
         }
     }
 

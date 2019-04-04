@@ -167,7 +167,7 @@ public class Enemy : MonoBehaviour {
         {
             if (Time.time > nextFire)
             {
-                Instantiate(EnemyBulletRef, transform.position, Quaternion.identity,transform);
+                Instantiate(EnemyBulletRef, transform.position, Quaternion.identity, transform);
                 nextFire = Time.time + fireRate;
             }
         }        
