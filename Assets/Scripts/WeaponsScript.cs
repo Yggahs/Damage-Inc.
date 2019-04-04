@@ -19,6 +19,8 @@ public class WeaponsScript : MonoBehaviour
     bool IsShootingLeft;
     bool IsShootingRight;
     bool IsShootingDown;
+    bool IsShootingDiagonallyRight;
+    bool IsShootingDiagonallyLeft;
 
     private void Update()
     {
@@ -28,6 +30,8 @@ public class WeaponsScript : MonoBehaviour
         animator.SetBool("IsShootingLeft", IsShootingLeft);
         animator.SetBool("IsShootingUp", IsShootingUp);
         animator.SetBool("IsShootingDown", IsShootingDown);
+        animator.SetBool("IsShootingDiagonallyRight", IsShootingDiagonallyRight);
+        animator.SetBool("IsShootingDiagonallyLeft", IsShootingDiagonallyLeft);
     }
     public void Weapon1()
     {
@@ -201,7 +205,7 @@ public class WeaponsScript : MonoBehaviour
                     go.GetComponent<BulletComponent>().yspeed = 0.3f;
                     go.GetComponent<BulletComponent>().bulletType = 3;
                     Weapon3Bullets--;
-
+                    
                 }
                 else
                 {
@@ -209,6 +213,7 @@ public class WeaponsScript : MonoBehaviour
                     go.GetComponent<BulletComponent>().xspeed = 0.3f;
                     go.GetComponent<BulletComponent>().bulletType = 3;
                     Weapon3Bullets--;
+                    
                 }
             }
             //Shoot Left Up
@@ -223,7 +228,7 @@ public class WeaponsScript : MonoBehaviour
                     go.GetComponent<BulletComponent>().yspeed = 0.3f;
                     go.GetComponent<BulletComponent>().bulletType = 3;
                     Weapon3Bullets--;
-
+                    
                 }
                 else
                 {
@@ -232,6 +237,7 @@ public class WeaponsScript : MonoBehaviour
                     go.GetComponent<BulletComponent>().xspeed = -0.3f;
                     go.GetComponent<BulletComponent>().bulletType = 3;
                     Weapon3Bullets--;
+                    IsShootingDiagonallyLeft = false;
                 }
             }
             //Shoot  Up
@@ -282,7 +288,7 @@ public class WeaponsScript : MonoBehaviour
 
     void ShootingAnimations()
     {
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.UpArrow))
         {
             IsShootingRight = true;
            
@@ -293,7 +299,7 @@ public class WeaponsScript : MonoBehaviour
             
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.UpArrow))
         {
             IsShootingLeft = true;
         }
@@ -304,11 +310,38 @@ public class WeaponsScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            IsShootingUp = true;
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                IsShootingDiagonallyLeft = true;
+            }
+            else
+            {
+                IsShootingDiagonallyLeft = false;
+
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                IsShootingDiagonallyRight = true;
+            }
+            else
+            {
+                IsShootingDiagonallyRight = false;
+
+            }
+
+            if (!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
+            {
+                IsShootingUp = true;
+               
+            }
+
         }
         else
         {
             IsShootingUp = false;
+            IsShootingDiagonallyRight = false;
+            IsShootingDiagonallyLeft = false;
         }
 
         if (Input.GetKey(KeyCode.DownArrow))

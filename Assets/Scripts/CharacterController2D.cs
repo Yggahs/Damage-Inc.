@@ -122,7 +122,7 @@ public class CharacterController2D : MonoBehaviour
         if (!crouch)
         {
             Move(horizontalMove * Time.fixedDeltaTime, crouch, m_Grounded);
-            animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));
+            animator.SetFloat("Horizontal", Input.GetAxisRaw("Horizontal"));            
         }
         Dash();
         WeaponSelect();
@@ -130,6 +130,7 @@ public class CharacterController2D : MonoBehaviour
         WallClimbing();
         animator.SetBool("IsCrouching", crouch);
         animator.SetBool("IsJumping", !m_Grounded);
+        animator.SetBool("IsSliding", climbing);
         if (horizontalMove > 0)
         {
             m_FacingRight = true;
