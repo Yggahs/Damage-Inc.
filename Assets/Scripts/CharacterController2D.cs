@@ -64,6 +64,7 @@ public class CharacterController2D : MonoBehaviour
     private bool m_wasCrouching = false;
 
     public Animator animator;
+    bool isdead = false;
 
     private void Start()
     {
@@ -93,7 +94,17 @@ public class CharacterController2D : MonoBehaviour
         Pause();
         EmptyHeartsManager();
         UpdateHearts();
-        if (health < 0) health = 0;
+        if (health < 0)
+        {
+            health = 0;
+            isdead = true;
+            
+        }
+        else
+        {
+            isdead = false;
+        }
+        animator.SetBool("IsDead", isdead);
         if (GameOver == false)
         {
             GameOverCheck();
@@ -145,15 +156,16 @@ public class CharacterController2D : MonoBehaviour
     }
     private void GameOverCheck()
     {
-        bool isdead = false;
+        
         if (health <= 0)
         {
-            isdead = true;
-            animator.SetBool("IsDead", isdead);
+            
+            
             GameOver = true;
             Time.timeScale = 0;
             GameOverMenu.SetActive(true);
         }
+      
     }
     private void EmptyHeartsManager()
     {
