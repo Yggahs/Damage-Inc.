@@ -6,6 +6,9 @@ public class SwitchToOffices : SwitchZone
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SwitchToOffices();
+        if (collision.transform.name == "player")
+        {
+            SwitchToOffices();
+        }
     }
 }

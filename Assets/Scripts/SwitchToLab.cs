@@ -7,6 +7,9 @@ public class SwitchToLab : SwitchZone
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SwitchToLab();
+        if (collision.transform.name == "player")
+        {
+            SwitchToLab();
+        }
     }
 }

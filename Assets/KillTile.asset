@@ -13,5 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: New Death Tile
   Kills: 1
-  m_Sprite: {fileID: 21300000, guid: 14c3568696b4a7b4c80103adca1c7866, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e892470b6e71eeb4c80edbfbcdd9dc7a, type: 3}
   m_Prefab: {fileID: 1564875808224082, guid: 86cfb0b25da24564dbcccb4f520548b0, type: 2}

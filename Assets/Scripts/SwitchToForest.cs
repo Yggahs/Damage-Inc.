@@ -6,7 +6,10 @@ public class SwitchToForest : SwitchZone {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        SwitchToForest();
+        if (collision.transform.name == "player")
+        {
+            SwitchToForest();
+        }
     }
 
 }
