@@ -7,8 +7,9 @@ using TMPro;
 public class Collectables : MonoBehaviour
 {
     public int Item;
-    public Sprite Weapon2Ammo_1,Weapon3Ammo_2, HealthRefill_3, BombsRefill_4, HeartsIncrease_5, UnlockWeapon2_6, UnlockWeapon3_7, UnlockBombs_8;
+    public Sprite Weapon2Ammo_1,Weapon3Ammo_2, HealthRefill_3, BombsRefill_4, HeartsIncrease_5, UnlockWeapon2_6, UnlockWeapon3_7, UnlockBombs_8, Weapon2UnlockedGui, Weapon3UnlockedGui;
     public GameObject Player;
+    private Image Weapon2, Weapon3;
     private GameManager Manager;
     public bool RandomConsumable;
     public AudioClip CollectibleSound, UnlockSound;
@@ -24,6 +25,8 @@ public class Collectables : MonoBehaviour
         }
 
         Manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        Weapon2 = GameObject.Find("Weapon2").GetComponent<Image>();
+        Weapon3 = GameObject.Find("Weapon2").GetComponent<Image>();
         SetNameAppearance();      
         StartCoroutine(Glowing());
     }
@@ -95,6 +98,7 @@ public class Collectables : MonoBehaviour
                         Manager.Title.text = "Rocket Launcher Unlocked!";
                         Manager.Description.text = "Feel like a gun is not the answer?" + System.Environment.NewLine + "Well you are right, but a Rocket Launcher definitely is!";
                         Manager.InputButton.text = "2";
+                        Weapon2.sprite = Weapon2UnlockedGui;
                         StartCoroutine(GuiFeedback());
                     }
                     break;
@@ -108,6 +112,7 @@ public class Collectables : MonoBehaviour
                         Manager.Title.text = "Boomerang Unlocked!";
                         Manager.Description.text = "The boomerang is a versatile weapon that  hits all the enemy in a line...and comes back to give them double!";
                         Manager.InputButton.text = "3";
+                        Weapon3.sprite = Weapon3UnlockedGui;
                         StartCoroutine(GuiFeedback());
                     }
                     break;

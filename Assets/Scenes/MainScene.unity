@@ -2076,11 +2076,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4187421194337088, guid: 46cd41c5d72892f49bb820181e8c4fa4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 76
+      value: -34
       objectReference: {fileID: 0}
     - target: {fileID: 4187421194337088, guid: 46cd41c5d72892f49bb820181e8c4fa4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 86
+      value: -38
       objectReference: {fileID: 0}
     - target: {fileID: 4187421194337088, guid: 46cd41c5d72892f49bb820181e8c4fa4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2434,6 +2434,22 @@ Prefab:
     - target: {fileID: 1277415336837298, guid: 46cd41c5d72892f49bb820181e8c4fa4, type: 2}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 114750635413820466, guid: 46cd41c5d72892f49bb820181e8c4fa4,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bfd34a9e1a3d39047b58403c633ccc21,
+        type: 3}
+    - target: {fileID: 114878838003986340, guid: 46cd41c5d72892f49bb820181e8c4fa4,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 51aaa191ceead3d43a236df3cd6bca40,
+        type: 3}
+    - target: {fileID: 1341437370906626, guid: 46cd41c5d72892f49bb820181e8c4fa4, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46cd41c5d72892f49bb820181e8c4fa4, type: 2}
@@ -143629,6 +143645,18 @@ Prefab:
       propertyPath: Item
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114914805395541914, guid: 5a109de1219abfa43a2714fa5bd523f0,
+        type: 2}
+      propertyPath: Weapon2UnlockedGui
+      value: 
+      objectReference: {fileID: 21300000, guid: 1f24df1de7fc2e044a6d03af87c23a5c,
+        type: 3}
+    - target: {fileID: 114914805395541914, guid: 5a109de1219abfa43a2714fa5bd523f0,
+        type: 2}
+      propertyPath: Weapon3UnlockedGui
+      value: 
+      objectReference: {fileID: 21300000, guid: 1ed9e6ee3a485494eb659cfdb6e11f4d,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a109de1219abfa43a2714fa5bd523f0, type: 2}
   m_IsPrefabAsset: 0
