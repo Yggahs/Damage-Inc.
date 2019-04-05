@@ -27,6 +27,7 @@ public class MenuScript : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("GameScene");
+        SceneManager.LoadScene("MainScene");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

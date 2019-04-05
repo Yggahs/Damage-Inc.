@@ -20,9 +20,13 @@ public class Explosion : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.gameObject == PlayerRef)
         {
-            PlayerRef.GetComponent<CharacterController2D>().health -= damage;
+            if (!PlayerRef.GetComponent<CharacterController2D>().invincible)
+            {
+                PlayerRef.GetComponent<CharacterController2D>().health -= damage;
+            }
         }
         else if (collision.gameObject.tag == "Enemy")
         {

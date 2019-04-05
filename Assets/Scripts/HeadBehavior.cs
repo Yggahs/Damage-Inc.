@@ -8,10 +8,12 @@ public class HeadBehavior : Enemy
     float _speed = 2f;
     float resetTime;
     public GameObject bullets;
+    private GameManager Manager;
     public AudioClip DeathClip;
     private void Awake()
     {
         PlayerRef = GameObject.FindGameObjectWithTag("GameController");
+        Manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     private void Start()
     {
@@ -43,7 +45,8 @@ public class HeadBehavior : Enemy
     {
         if (health <= 0)
         {
-            Debug.Log("sommorto bravo game over");
+            Time.timeScale = 0;
+            Manager.VictoryScreen.SetActive(true);
         }
     }
 }

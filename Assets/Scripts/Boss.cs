@@ -11,7 +11,8 @@ public class Boss : MonoBehaviour {
         arm2 = transform.GetChild(1);
     }
     // Update is called once per frame
-    void Update () {
+    void Update ()
+    {
 
         //Debug.Log(arm1.name);
         //Debug.Log(arm2.name);

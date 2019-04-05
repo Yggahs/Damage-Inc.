@@ -234,15 +234,19 @@ public class Enemy : MonoBehaviour {
     }
     public void DealDamage(int damage)
 	{
-        Debug.Log("I am dealing "+ damage +" damage");
-        PlayerRef.GetComponent<CharacterController2D>().health -= damage;
-        PlayerRef.GetComponent<Rigidbody2D>().AddForce(new Vector2(100f, 200f));
+        if (!PlayerRef.GetComponent<CharacterController2D>().invincible)
+        {
+            Debug.Log("I am dealing " + damage + " damage");
+            PlayerRef.GetComponent<CharacterController2D>().health -= damage;
+            PlayerRef.GetComponent<Rigidbody2D>().AddForce(new Vector2(100f, 200f));
+        }
 	}
 
     private void Awake()
     {
         nextFire = Time.time;
     }
+
     private void Start()
     {
         PlayerRef = GameObject.FindGameObjectWithTag("GameController");

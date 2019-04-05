@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject BombsUI, CollectUI;
+    public GameObject BombsUI, CollectUI, VictoryScreen;
     public Text Title, Description, InputButton;
 
     // Use this for initialization
@@ -17,10 +17,12 @@ public class GameManager : MonoBehaviour
         InputButton = GameObject.Find("InputButton").GetComponent<Text>();
         CollectUI = GameObject.Find("CollectUI");
         BombsUI = GameObject.Find("BombInfos");
+        VictoryScreen = GameObject.Find("VictoryMenu");
 
         CollectUI.SetActive(false);
         BombsUI.SetActive(false);
-        
+        VictoryScreen.SetActive(false);
+
     }
 
 }

@@ -49,6 +49,7 @@ public class WeaponsScript : MonoBehaviour
                     go.GetComponent<BulletComponent>().xspeed = 0.3f;
                     go.GetComponent<BulletComponent>().yspeed = 0.3f;
                     go.GetComponent<BulletComponent>().bulletType = 1;
+                    go.transform.rotation = Quaternion.Euler(0, 0, 45);
                     i = 0;
                 }
             }
@@ -74,6 +75,7 @@ public class WeaponsScript : MonoBehaviour
                     go.GetComponent<BulletComponent>().xspeed = -0.3f;
                     go.GetComponent<BulletComponent>().yspeed = 0.3f;
                     go.GetComponent<BulletComponent>().bulletType = 1;
+                    go.transform.rotation = Quaternion.Euler(0, 0, 135);
                     i = 0;
                 }
             }
@@ -83,6 +85,7 @@ public class WeaponsScript : MonoBehaviour
                 GameObject go = Instantiate(bullet1, BulletExit.transform.position, Quaternion.identity);
                 go.GetComponent<BulletComponent>().xspeed = -0.3f;
                 go.GetComponent<BulletComponent>().bulletType = 1;
+                go.transform.rotation = Quaternion.Euler(0, 0, 180);
                 i = 0;
             }
         }
@@ -96,6 +99,7 @@ public class WeaponsScript : MonoBehaviour
                 GameObject go = (GameObject)Instantiate(bullet1, BulletExit.transform.position, Quaternion.identity);
                 go.GetComponent<BulletComponent>().yspeed = 0.3f;
                 go.GetComponent<BulletComponent>().bulletType = 1;
+                go.transform.rotation = Quaternion.Euler(0, 0, 90);
                 i = 0;
             }
         }
@@ -109,6 +113,7 @@ public class WeaponsScript : MonoBehaviour
                 GameObject go = (GameObject)Instantiate(bullet1, BulletExit.transform.position, Quaternion.identity);
                 go.GetComponent<BulletComponent>().yspeed = -0.3f;
                 go.GetComponent<BulletComponent>().bulletType = 1;
+                go.transform.rotation = Quaternion.Euler(0, 0, -90);
                 i = 0;
             }
         }
